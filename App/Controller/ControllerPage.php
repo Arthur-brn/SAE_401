@@ -2,15 +2,9 @@
 
 namespace App\Controller;
 
-// Controllers datas
-use App\Controller\{
-    ControllerReview
-};
-
 // Pages
 use App\Model\Pages\{
-    Home,
-    Error404
+    Home
 };
 
 class ControllerPage
