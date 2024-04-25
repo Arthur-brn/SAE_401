@@ -15,12 +15,12 @@ class CreateBookNoticeTable extends Migration
     {
         Schema::create('book_notice', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('UserId');
-            $table->foreign('UserId')->references('id')->on('user');
-            $table->unsignedBigInteger('BookId');
-            $table->foreign('BookId')->references('id')->on('book');
-            $table->text('NoticeContent');
-            $table->integer('NoticeMark');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->unsignedBigInteger('book_id');
+            $table->foreign('book_id')->references('id')->on('book');
+            $table->text('notice_content');
+            $table->integer('notice_mark');
             $table->timestamps();
         });
     }

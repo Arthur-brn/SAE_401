@@ -15,18 +15,18 @@ class CreateBookTable extends Migration
     {
         Schema::create('book', function (Blueprint $table) {
             $table->id();
-            $table->string('BookTitle', 50);
-            $table->unsignedBigInteger('AuthorId');
-            $table->foreign('AuthorId')->references('id')->on('author');
-            $table->string('BookEditor', 50);
-            $table->string('BookStyle', 50);
-            $table->integer('BookPageNumber');
-            $table->integer('BookEditionDate');
-            $table->integer('BookLoanNumber');
-            $table->string('BookType', 50);
-            $table->text('BookSummary');
-            $table->tinyInteger('IsBooked');
-            $table->tinyInteger('IsBorrowed');
+            $table->string('title', 50);
+            $table->unsignedBigInteger('author_id');
+            $table->foreign('author_id')->references('id')->on('author');
+            $table->string('editor', 50);
+            $table->string('style', 50);
+            $table->integer('page_number');
+            $table->integer('edition_date');
+            $table->integer('loan_number');
+            $table->string('type', 50);
+            $table->text('summary');
+            $table->tinyInteger('is_booked');
+            $table->tinyInteger('is_borrowed');
             $table->timestamps();
         });
     }

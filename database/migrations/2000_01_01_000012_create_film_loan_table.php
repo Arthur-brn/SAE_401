@@ -16,12 +16,12 @@ class CreateFilmLoanTable extends Migration
     {
         Schema::create('film_loan', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('UserId');
-            $table->foreign('UserId')->references('id')->on('user');
-            $table->unsignedBigInteger('FilmId');
-            $table->foreign('FilmId')->references('id')->on('film');
-            $table->date('LoanDate')->default(Carbon::now()->toDateString());
-            $table->date('ReturnDate')->default(Carbon::now()->addDays(7)->toDateString());
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->unsignedBigInteger('film_id');
+            $table->foreign('film_id')->references('id')->on('film');
+            $table->date('loan_date')->default(Carbon::now()->toDateString());
+            $table->date('return_date')->default(Carbon::now()->addDays(7)->toDateString());
             $table->timestamps();
         });
     }

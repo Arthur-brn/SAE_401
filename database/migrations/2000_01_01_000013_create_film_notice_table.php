@@ -15,12 +15,12 @@ class CreateFilmNoticeTable extends Migration
     {
         Schema::create('film_notice', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('UserId');
-            $table->foreign('UserId')->references('id')->on('user');
-            $table->unsignedBigInteger('FilmId');
-            $table->foreign('FilmId')->references('id')->on('film');
-            $table->text('NoticeContent');
-            $table->integer('NoticeMark');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->unsignedBigInteger('film_id');
+            $table->foreign('film_id')->references('id')->on('film');
+            $table->text('notice_content');
+            $table->integer('notice_mark');
             $table->timestamps();
         });
     }

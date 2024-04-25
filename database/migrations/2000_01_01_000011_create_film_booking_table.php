@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFilmLanguageTable extends Migration
+class CreateFilmBookingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateFilmLanguageTable extends Migration
      */
     public function up()
     {
-        Schema::create('film_langage', function (Blueprint $table) {
+        Schema::create('film_booking', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('FilmId');
-            $table->foreign('FilmId')->references('id')->on('film');
-            $table->unsignedBigInteger('LangageId');
-            $table->foreign('LangageId')->references('id')->on('langage');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->unsignedBigInteger('film_id');
+            $table->foreign('film_id')->references('id')->on('film');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateFilmLanguageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('film_langage');
+        Schema::dropIfExists('film_booking');
     }
 }

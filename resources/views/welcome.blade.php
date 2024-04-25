@@ -495,10 +495,26 @@
                     <?php
 
                     use App\Models\Film;
+
+                    // Créer une nouvelle instance du modèle Film avec les valeurs souhaitées
+                    $film = new Film();
+                    $film->name = 'Nom du film';
+                    $film->duration = 2024;
+                    $film->director = 'Directeur du film';
+                    $film->year = 2024;
+                    $film->age_limit = 2024;
+                    $film->summary = 'Résumé du film';
+                    $film->loan_number = 2024;
+                    $film->copy_number = 2024;
+
+                    // Assignez les autres attributs si nécessaire
+
+                    // Enregistrer le nouvel enregistrement dans la base de données
+                    $film->save();
                     ?>
                     @foreach(Film::all() as $film)
                     <div>
-                        <h2>{{ $film->film_name }}</h2>
+                        <h2>{{ $film->name }}</h2>
                         <p>Directeur: {{ $film->director }}</p>
                         <p>Année: {{ $film->year }}</p>
                         <!-- Ajoutez d'autres détails du film ici -->

@@ -16,12 +16,12 @@ class CreateBookLoanTable extends Migration
     {
         Schema::create('book_loan', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('UserId');
-            $table->foreign('UserId')->references('id')->on('user');
-            $table->unsignedBigInteger('BookId');
-            $table->foreign('BookId')->references('id')->on('book');
-            $table->date('LoanDate')->default(Carbon::now()->toDateString());
-            $table->date('ReturnDate')->default(Carbon::now()->addDays(7)->toDateString());
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->unsignedBigInteger('book_id');
+            $table->foreign('book_id')->references('id')->on('book');
+            $table->date('loan_date')->default(Carbon::now()->toDateString());
+            $table->date('return_date')->default(Carbon::now()->addDays(7)->toDateString());
             $table->timestamps();
         });
     }

@@ -15,17 +15,17 @@ class CreateFilmTable extends Migration
     {
         Schema::create('film', function (Blueprint $table) {
             $table->id();
-            $table->string('FilmName');
-            $table->integer('FilmDuration');
-            $table->string('FilmDirector');
-            $table->integer('FilmYear');
-            $table->integer('FilmAgeLimit');
-            $table->text('FilmSummary');
-            $table->integer('FilmLoanNumber');
-            $table->boolean('IsBooked')->default(false);
-            $table->boolean('IsBorrowed')->default(false);
-            $table->string('FilmPicture')->nullable();
-            $table->integer('CopyNumber');
+            $table->string('name');
+            $table->integer('duration');
+            $table->string('director');
+            $table->integer('year');
+            $table->integer('age_limit');
+            $table->text('summary');
+            $table->integer('loan_number');
+            $table->boolean('is_booked')->default(false);
+            $table->boolean('is_borrowed')->default(false);
+            $table->string('picture')->nullable();
+            $table->integer('copy_number');
             $table->timestamps();
         });
     }

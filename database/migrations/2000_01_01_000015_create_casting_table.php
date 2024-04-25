@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubtitleTable extends Migration
+class CreateCastingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSubtitleTable extends Migration
      */
     public function up()
     {
-        Schema::create('subtitle', function (Blueprint $table) {
+        Schema::create('casting', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('FilmId');
-            $table->foreign('FilmId')->references('id')->on('film');
-            $table->unsignedBigInteger('LangageId');
-            $table->foreign('LangageId')->references('id')->on('langage');
+            $table->unsignedBigInteger('actor_id');
+            $table->foreign('actor_id')->references('id')->on('actor');
+            $table->unsignedBigInteger('film_id');
+            $table->foreign('film_id')->references('id')->on('film');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateSubtitleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subtitle');
+        Schema::dropIfExists('casting');
     }
 }

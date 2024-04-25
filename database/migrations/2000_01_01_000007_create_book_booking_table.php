@@ -15,10 +15,10 @@ class CreateBookBookingTable extends Migration
     {
         Schema::create('book_booking', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('UserId');
-            $table->foreign('UserId')->references('id')->on('user');
-            $table->unsignedBigInteger('BookId');
-            $table->foreign('BookId')->references('id')->on('book');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->unsignedBigInteger('book_id');
+            $table->foreign('book_id')->references('id')->on('book');
             $table->timestamps();
         });
     }
