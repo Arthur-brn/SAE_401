@@ -21,12 +21,12 @@ class CreateBookTable extends Migration
             $table->string('editor', 50);
             $table->string('style', 50);
             $table->integer('page_number');
-            $table->integer('edition_date');
+            $table->date('edition_date');
             $table->integer('loan_number');
             $table->string('type', 50);
             $table->text('summary');
-            $table->tinyInteger('is_booked');
-            $table->tinyInteger('is_borrowed');
+            $table->tinyInteger('is_booked')->default(false);
+            $table->tinyInteger('is_borrowed')->default(false);
             $table->timestamps();
         });
     }
