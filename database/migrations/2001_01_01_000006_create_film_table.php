@@ -15,18 +15,20 @@ class CreateFilmTable extends Migration
     {
         Schema::create('film', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('duration');
-            $table->string('director');
-            $table->integer('year');
+            $table->string('title', 50);
+            $table->string('picture', 50);
+            $table->unsignedBigInteger('director_id');
+            $table->string('style', 50);
+            $table->string('type', 50);
             $table->integer('age_limit');
             $table->text('summary');
-            $table->integer('loan_number');
+            $table->integer('duration');
+            $table->integer('year');
             $table->boolean('is_booked')->default(false);
             $table->boolean('is_borrowed')->default(false);
-            $table->string('picture')->nullable();
-            $table->integer('copy_number');
             $table->timestamps();
+
+            $table->foreign('director_id')->references('id')->on('director');
         });
     }
 

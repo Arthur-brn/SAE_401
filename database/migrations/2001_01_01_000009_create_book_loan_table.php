@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Carbon;
 
-class CreateBookNoticeTable extends Migration
+class CreateBookLoanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +14,16 @@ class CreateBookNoticeTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_notice', function (Blueprint $table) {
+        Schema::create('book_loan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user');
             $table->unsignedBigInteger('book_id');
-            $table->foreign('book_id')->references('id')->on('book');
-            $table->text('notice_content');
-            $table->integer('notice_mark');
+            $table->date('loan_date');
+            $table->date('return_date');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('book_id')->references('id')->on('book');
         });
     }
 
@@ -32,6 +34,6 @@ class CreateBookNoticeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_notice');
+        Schema::dropIfExists('book_loan');
     }
 }

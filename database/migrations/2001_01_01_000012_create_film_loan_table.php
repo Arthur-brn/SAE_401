@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Carbon;
 
-class CreateFilmNoticeTable extends Migration
+class CreateFilmLoanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +14,16 @@ class CreateFilmNoticeTable extends Migration
      */
     public function up()
     {
-        Schema::create('film_notice', function (Blueprint $table) {
+        Schema::create('film_loan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user');
             $table->unsignedBigInteger('film_id');
-            $table->foreign('film_id')->references('id')->on('film');
-            $table->text('notice_content');
-            $table->integer('notice_mark');
+            $table->date('loan_date');
+            $table->date('return_date');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('film_id')->references('id')->on('film');
         });
     }
 
@@ -32,6 +34,6 @@ class CreateFilmNoticeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('film_notice');
+        Schema::dropIfExists('film_loan');
     }
 }

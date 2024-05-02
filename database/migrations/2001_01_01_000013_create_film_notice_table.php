@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Carbon;
 
-class CreateFilmLoanTable extends Migration
+class CreateFilmNoticeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +13,16 @@ class CreateFilmLoanTable extends Migration
      */
     public function up()
     {
-        Schema::create('film_loan', function (Blueprint $table) {
+        Schema::create('film_notice', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user');
             $table->unsignedBigInteger('film_id');
-            $table->foreign('film_id')->references('id')->on('film');
-            $table->date('loan_date')->default(Carbon::now()->toDateString());
-            $table->date('return_date')->default(Carbon::now()->addDays(7)->toDateString());
+            $table->text('notice_content');
+            $table->unsignedTinyInteger('notice_mark');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('film_id')->references('id')->on('film');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateFilmLoanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('film_loan');
+        Schema::dropIfExists('film_notice');
     }
 }

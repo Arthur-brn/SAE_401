@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCastingTable extends Migration
+class CreateBookLanguageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateCastingTable extends Migration
      */
     public function up()
     {
-        Schema::create('casting', function (Blueprint $table) {
+        Schema::create('book_language', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('actor_id');
-            $table->foreign('actor_id')->references('id')->on('actor');
-            $table->unsignedBigInteger('film_id');
-            $table->foreign('film_id')->references('id')->on('film');
+            $table->unsignedBigInteger('book_id');
+            $table->unsignedBigInteger('language_id');
             $table->timestamps();
+
+            $table->foreign('book_id')->references('id')->on('book');
+            $table->foreign('language_id')->references('id')->on('language');
         });
     }
 
@@ -30,6 +31,6 @@ class CreateCastingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('casting');
+        Schema::dropIfExists('book_language');
     }
 }

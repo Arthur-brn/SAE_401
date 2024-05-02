@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookLangageTable extends Migration
+class CreateSubtitleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateBookLangageTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_langage', function (Blueprint $table) {
+        Schema::create('subtitle', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('book_id');
-            $table->foreign('book_id')->references('id')->on('book');
-            $table->unsignedBigInteger('langage_id');
-            $table->foreign('langage_id')->references('id')->on('langage');
+            $table->unsignedBigInteger('film_id');
+            $table->unsignedBigInteger('language_id');
             $table->timestamps();
+
+            $table->foreign('film_id')->references('id')->on('film');
+            $table->foreign('language_id')->references('id')->on('language');
         });
     }
 
@@ -30,6 +31,6 @@ class CreateBookLangageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_langage');
+        Schema::dropIfExists('subtitle');
     }
 }
