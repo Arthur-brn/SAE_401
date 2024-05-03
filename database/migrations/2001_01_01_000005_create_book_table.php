@@ -26,6 +26,7 @@ class CreateBookTable extends Migration
             $table->unsignedInteger('page_number');
             $table->unsignedInteger('edition_year');
             $table->unsignedTinyInteger('copy_number');
+            $table->unsignedInteger('loan_number')->default(0);
             $table->timestamps();
 
             $table->foreign('author_id')->references('id')->on('author');

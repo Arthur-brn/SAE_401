@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Carbon;
 
 class CreateBookNoticeTable extends Migration
 {
@@ -20,6 +21,7 @@ class CreateBookNoticeTable extends Migration
             $table->unsignedBigInteger('film_id')->nullable();
             $table->text('notice_content');
             $table->unsignedTinyInteger('notice_mark');
+            $table->date('post_date')->default(Carbon::now());
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('user');
