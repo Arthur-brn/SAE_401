@@ -19,13 +19,13 @@ class CreateBookTable extends Migration
             $table->string('picture', 50);
             $table->unsignedBigInteger('author_id');
             $table->unsignedBigInteger('editor_id');
+            $table->unsignedBigInteger('language_id');
             $table->string('style', 50);
             $table->string('type', 50);
             $table->text('summary');
             $table->unsignedInteger('page_number');
             $table->unsignedInteger('edition_year');
-            $table->boolean('is_booked')->default(false);
-            $table->boolean('is_borrowed')->default(false);
+            $table->unsignedTinyInteger('copy_number');
             $table->timestamps();
 
             $table->foreign('author_id')->references('id')->on('author');

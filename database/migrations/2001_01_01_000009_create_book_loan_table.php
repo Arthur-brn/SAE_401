@@ -14,16 +14,18 @@ class CreateBookLoanTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_loan', function (Blueprint $table) {
+        Schema::create('loan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('book_id');
-            $table->date('loan_date');
-            $table->date('return_date');
+            $table->unsignedBigInteger('book_id')->nullable();
+            $table->unsignedBigInteger('film_id')->nullable();
+            $table->date('start_date');
+            $table->string('status', 15);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('user');
             $table->foreign('book_id')->references('id')->on('book');
+            $table->foreign('film_id')->references('id')->on('film');
         });
     }
 

@@ -19,13 +19,11 @@ class CreateFilmTable extends Migration
             $table->string('picture', 50);
             $table->unsignedBigInteger('director_id');
             $table->string('style', 50);
-            $table->string('type', 50);
             $table->integer('age_limit');
             $table->text('summary');
             $table->integer('duration');
             $table->integer('year');
-            $table->boolean('is_booked')->default(false);
-            $table->boolean('is_borrowed')->default(false);
+            $table->unsignedTinyInteger('copy_number');
             $table->timestamps();
 
             $table->foreign('director_id')->references('id')->on('director');

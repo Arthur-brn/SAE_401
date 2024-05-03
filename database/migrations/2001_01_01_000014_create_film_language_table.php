@@ -13,7 +13,7 @@ class CreateFilmLanguageTable extends Migration
      */
     public function up()
     {
-        Schema::create('film_language', function (Blueprint $table) {
+        Schema::create('audio_language', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('film_id');
             $table->unsignedBigInteger('language_id');
