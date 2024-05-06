@@ -23,6 +23,6 @@ class Subtitle extends Model
 
     public function langage()
     {
-        return $this->belongsTo(Langage::class);
+        return $this->belongsTo(Language::class);
     }
 }

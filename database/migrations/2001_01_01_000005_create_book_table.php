@@ -31,6 +31,7 @@ class CreateBookTable extends Migration
 
             $table->foreign('author_id')->references('id')->on('author');
             $table->foreign('editor_id')->references('id')->on('editor');
+            $table->foreign('language_id')->references('id')->on('language');
         });
     }
 

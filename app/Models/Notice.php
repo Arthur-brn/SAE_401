@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BookLoan extends Model
+class Notice extends Model
 {
     use HasFactory;
 
-    protected $table = 'book_loan';
+    protected $table = 'notice';
 
     protected $fillable = [
+        'notice_content',
+        'notice_mark',
         'user_id',
-        'book_id',
-        'loan_date',
-        'return_date',
+        'film_id',
     ];
 
     public function user()
@@ -23,8 +23,8 @@ class BookLoan extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function book()
+    public function film()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Film::class);
     }
 }

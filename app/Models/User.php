@@ -18,35 +18,26 @@ class User extends Model
         'password',
         'address',
         'birthday',
+        'status',
     ];
 
-    public function bookBookings()
+    public function noticeFilms()
     {
-        return $this->hasMany(BookBooking::class);
+        return $this->belongsToMany(Film::class, 'notice', 'user_id', 'film_id');
     }
 
-    public function filmBookings()
+    public function loanFilms()
     {
-        return $this->hasMany(FilmBooking::class);
+        return $this->belongsToMany(Film::class, 'loan', 'user_id', 'film_id');
     }
 
-    public function bookLoans()
+    public function noticeBooks()
     {
-        return $this->hasMany(BookLoan::class);
+        return $this->belongsToMany(Book::class, 'notice', 'user_id', 'film_id');
     }
 
-    public function filmLoans()
+    public function loanBooks()
     {
-        return $this->hasMany(FilmLoan::class);
-    }
-
-    public function bookNotices()
-    {
-        return $this->hasMany(BookNotice::class);
-    }
-
-    public function filmNotices()
-    {
-        return $this->hasMany(FilmNotice::class);
+        return $this->belongsToMany(Book::class, 'loan', 'user_id', 'film_id');
     }
 }

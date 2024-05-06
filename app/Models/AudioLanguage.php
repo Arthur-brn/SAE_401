@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FilmLangage extends Model
+class AudioLanguage extends Model
 {
     use HasFactory;
 
-    protected $table = 'film_langage';
+    protected $table = 'audio_language';
 
     protected $fillable = [
         'film_id',
-        'langage_id',
+        'language_id',
     ];
 
     public function film()
@@ -21,8 +21,8 @@ class FilmLangage extends Model
         return $this->belongsTo(Film::class);
     }
 
-    public function langage()
+    public function language()
     {
-        return $this->belongsTo(Langage::class);
+        return $this->belongsTo(Language::class);
     }
 }

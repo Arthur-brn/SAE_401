@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Carbon;
 
-class CreateBookNoticeTable extends Migration
+class CreateNoticeTable extends Migration
 {
     /**
      * Run the migrations.
