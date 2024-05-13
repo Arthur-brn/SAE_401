@@ -18,5 +18,12 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/header', function () {
+    $style= "header";
+
+    return view('header');
+});
+
 Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
 Route::post('/book', [BookController::class, 'store'])->name('book.store');
+
