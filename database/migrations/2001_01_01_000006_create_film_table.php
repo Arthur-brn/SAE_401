@@ -18,7 +18,7 @@ class CreateFilmTable extends Migration
             $table->string('title', 50);
             $table->string('picture', 50);
             $table->unsignedBigInteger('director_id');
-            $table->string('style', 50);
+            $table->enum('style', ['fantastique', 'romantique', 'science-fiction', 'policier', 'aventure', 'historique', 'horreur', 'humoristique', 'fantasy épique', 'drame', 'thriller', 'mystère', 'biographie', 'autobiographie', 'essai', 'poésie', 'conte de fées', 'nouvelle', 'roman graphique']);
             $table->integer('age_limit');
             $table->text('summary');
             $table->integer('duration');

@@ -18,5 +18,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
-Route::post('/book', [BookController::class, 'store'])->name('book.store');
+Route::get('/books', [BookController::class, 'index']);
+Route::get('/books/{id}', [BookController::class, 'show']);
+Route::post('/books', [BookController::class, 'store']);
+Route::put('/books/{id}', [BookController::class, 'update']);
+Route::delete('/books/{id}', [BookController::class, 'destroy']);
