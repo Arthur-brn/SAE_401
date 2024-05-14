@@ -21,7 +21,7 @@ class CreateUserTable extends Migration
             $table->string('password');
             $table->string('address');
             $table->date('birthday');
-            $table->string('status');
+            $table->enum('status', ['customer', 'admin']);
             $table->timestamps();
         });
     }
