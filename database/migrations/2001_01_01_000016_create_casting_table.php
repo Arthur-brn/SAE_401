@@ -14,13 +14,14 @@ class CreateCastingTable extends Migration
     public function up()
     {
         Schema::create('casting', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('actor_id');
             $table->unsignedBigInteger('film_id');
+            $table->unsignedBigInteger('actor_id');
             $table->timestamps();
 
-            $table->foreign('actor_id')->references('id')->on('actor');
+            $table->primary(['film_id', 'actor_id']);
+
             $table->foreign('film_id')->references('id')->on('film');
+            $table->foreign('actor_id')->references('id')->on('actor');
         });
     }
 

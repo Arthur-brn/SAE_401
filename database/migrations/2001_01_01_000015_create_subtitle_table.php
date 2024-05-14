@@ -14,10 +14,11 @@ class CreateSubtitleTable extends Migration
     public function up()
     {
         Schema::create('subtitle', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('film_id');
             $table->unsignedBigInteger('language_id');
             $table->timestamps();
+
+            $table->primary(['film_id', 'language_id']);
 
             $table->foreign('film_id')->references('id')->on('film');
             $table->foreign('language_id')->references('id')->on('language');
