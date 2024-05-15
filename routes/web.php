@@ -15,7 +15,14 @@ use App\Http\Controllers\BookController;
 */
 
 Route::get('/', function () {
-    return view('home');
+
+    return view('home', [
+        'fileCss' => ('home')
+    ]);
+});
+
+Route::get('/header', function () {
+    return view('header');
 });
 
 Route::get('/books', [BookController::class, 'index']);

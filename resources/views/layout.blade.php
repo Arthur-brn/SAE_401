@@ -4,8 +4,9 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>header</title>
-        <link rel="stylesheet" href="{{ asset('css/header.css') }}" />
-        <link rel="stylesheet" href="../css/app.css" />
+        <link rel="stylesheet" href="./css/header.css" />
+        <link rel="stylesheet" href="./css/{{ $fileCss }}.css" />
+        <link rel="stylesheet" href="./css/app.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -25,24 +26,15 @@
             </div>
             <div id="topR">
                 <a href="#">
-                    <i
-                        class="fa-regular fa-user fa-lg"
-                        style="color: #6887f6"
-                    ></i>
+                    <img class="icon" src="./assets/icons/user.png" alt="">
                     <p>COMPTE</p>
                 </a>
                 <a href="#">
-                    <i
-                        class="fa-regular fa-heart fa-lg"
-                        style="color: #6887f6"
-                    ></i>
+                    <img class="icon" src="./assets/icons/heart.png" alt="">
                     <p>FAVORIS</p>
                 </a>
                 <a href="#">
-                    <i
-                        class="fa-solid fa-cart-shopping fa-lg"
-                        style="color: #6887f6"
-                    ></i>
+                    <img class="icon" src="./assets/icons/cart.png" alt="">
                     <p>PANIER</p>
                 </a>
             </div>
@@ -56,5 +48,11 @@
             <a href="#">TENDANCES</a>
             <a href="#">CONTACTEZ-NOUS</a>
         </div>
+        <section>
+            @yield('content')
+        </section>
+        <footer>
+
+        </footer>
     </body>
 </html>
