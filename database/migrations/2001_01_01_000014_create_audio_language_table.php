@@ -16,7 +16,6 @@ class CreateAudioLanguageTable extends Migration
         Schema::create('audio_language', function (Blueprint $table) {
             $table->unsignedBigInteger('film_id');
             $table->unsignedBigInteger('language_id');
-            $table->timestamps();
 
             $table->primary(['film_id', 'language_id']);
 
@@ -32,6 +31,6 @@ class CreateAudioLanguageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('film_language');
+        Schema::dropIfExists('audio_language');
     }
 }
