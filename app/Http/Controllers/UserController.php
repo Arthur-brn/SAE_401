@@ -42,4 +42,18 @@ class UserController extends Controller
         User::findOrFail($id)->delete();
         return response()->json(null, 204);
     }
+
+    public function login(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        // Vérifier si l'utilisateur existe et le mot de passe est correct
+        if ($user && $request->password == $user->password) {
+            // L'utilisateur existe et le mot de passe est correct
+            return response()->json($user, 200);
+        } else {
+            // L'utilisateur n'existe pas ou le mot de passe est incorrect
+            return response()->json($user, 401);
+        }
+    }
 }

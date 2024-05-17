@@ -27,3 +27,7 @@ Route::get('/header', function () {
 Route::get('/books', function () {
     return view('books.index');
 });
+
+Route::get('/connect', function () {
+    return view('connect');
+});
