@@ -27,10 +27,15 @@ Route::get('/litterature', function () {
 });
 
 
-Route::get('/header', function () {
-    return view('header');
+Route::get('/layout', function () {
+    return view('layout', [
+        'fileCss' => ('layout')
+    ]);
 });
 
 Route::get('/books', function () {
-    return view('books.index');
+
+    return view('books.index', [
+        'fileCss' => ('books')
+    ]);
 });
