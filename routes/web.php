@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,12 @@ Route::get('/books', function () {
         'fileCss' => ('books')
     ]);
 });
+
+Route::get('/search', function () {
+    return view('search.index', [
+        'fileCss' => 'Recherche'
+    ]);
+})->name('search');
+
+// Route pour traiter la requête de recherche
+Route::get('/search/results', [SearchController::class, 'search'])->name('search.results');
