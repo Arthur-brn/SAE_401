@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Book; // Remplacez par votre modèle
+use App\Models\Book;
 
 class SearchController extends Controller
 {
