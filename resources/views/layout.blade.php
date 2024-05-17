@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>header</title>
+        <title>{{ $fileCss }}</title>
         <link rel="stylesheet" href="./css/header.css" />
         <link rel="stylesheet" href="./css/{{ $fileCss }}.css" />
         <link rel="stylesheet" href="./css/app.css" />
@@ -48,9 +48,9 @@
             <a href="#">TENDANCES</a>
             <a href="#">CONTACTEZ-NOUS</a>
         </div>
-        <section>
+        <main>
             @yield('content')
-        </section>
+        </main>
         <footer>
 
         </footer>
