@@ -19,6 +19,13 @@ Route::get('/', function () {
         'fileCss' => ('home')
     ]);
 });
+Route::get('/litterature', function () {
+
+    return view('litterature', [
+        'fileCss' => ('litterature')
+    ]);
+});
+
 
 Route::get('/header', function () {
     return view('header');
