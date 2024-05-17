@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -50,6 +51,7 @@ class UserController extends Controller
         // Vérifier si l'utilisateur existe et le mot de passe est correct
         if ($user && $request->password == $user->password) {
             // L'utilisateur existe et le mot de passe est correct
+            Session::put('userId', $user->id);
             return response()->json($user, 200);
         } else {
             // L'utilisateur n'existe pas ou le mot de passe est incorrect
