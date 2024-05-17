@@ -25,5 +25,8 @@ Route::get('/header', function () {
 });
 
 Route::get('/books', function () {
-    return view('books.index');
+
+    return view('books.index', [
+        'fileCss' => ('books')
+    ]);
 });
