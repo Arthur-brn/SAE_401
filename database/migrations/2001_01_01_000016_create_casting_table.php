@@ -16,6 +16,7 @@ class CreateCastingTable extends Migration
         Schema::create('casting', function (Blueprint $table) {
             $table->unsignedBigInteger('film_id');
             $table->unsignedBigInteger('actor_id');
+            $table->timestamps();
 
             $table->primary(['film_id', 'actor_id']);
 

@@ -16,6 +16,7 @@ class CreateLanguageTable extends Migration
         Schema::create('language', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->timestamps();
         });
     }
 
