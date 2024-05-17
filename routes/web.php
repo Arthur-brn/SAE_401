@@ -20,8 +20,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/header', function () {
-    return view('header');
+Route::get('/layout', function () {
+    return view('layout', [
+        'fileCss' => ('layout')
+    ]);
 });
 
 Route::get('/books', function () {
