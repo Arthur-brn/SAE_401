@@ -20,7 +20,7 @@ class CreateBookTable extends Migration
             $table->unsignedBigInteger('author_id');
             $table->unsignedBigInteger('editor_id');
             $table->unsignedBigInteger('language_id');
-          
+
             $table->enum('style', ['fantastique', 'romantique', 'science-fiction', 'policier', 'aventure', 'historique', 'horreur', 'humoristique', 'fantasy épique', 'drame', 'thriller', 'mystère', 'biographie', 'autobiographie', 'essai', 'poésie', 'conte de fées', 'nouvelle', 'roman graphique']);
             $table->enum('type', ['comics', 'paper back', 'pocket book', 'illustrated album']);
 
@@ -29,7 +29,6 @@ class CreateBookTable extends Migration
             $table->unsignedInteger('edition_year');
             $table->unsignedTinyInteger('copy_number');
             $table->unsignedInteger('loan_number')->default(0);
-            $table->timestamps();
 
             $table->foreign('author_id')->references('id')->on('author');
             $table->foreign('editor_id')->references('id')->on('editor');

@@ -19,7 +19,6 @@ class CreateLoanTable extends Migration
             $table->unsignedBigInteger('film_id')->nullable();
             $table->date('start_date');
             $table->enum('status', ['pending', 'reserved', 'returned']);
-            $table->timestamps();
 
             $table->primary(['user_id', 'book_id', 'film_id']);
 
@@ -36,6 +35,6 @@ class CreateLoanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_loan');
+        Schema::dropIfExists('loan');
     }
 }
