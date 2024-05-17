@@ -73,6 +73,7 @@ footer {
         rgba(245, 255, 254, 1) 62%,
         rgba(245, 255, 254, 1) 100%
     );
+    width: 100%;
 }
 
 footer > div {
@@ -107,4 +108,8 @@ footer > div > div {
 footer a {
     font-weight: 500;
     font-size: 14px;
+}
+
+#footer_bot{
+    justify-content: space-around;
 }
