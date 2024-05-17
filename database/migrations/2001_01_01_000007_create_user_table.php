@@ -22,6 +22,7 @@ class CreateUserTable extends Migration
             $table->string('address');
             $table->date('birthday');
             $table->enum('status', ['customer', 'admin']);
+            $table->timestamps();
         });
     }
 

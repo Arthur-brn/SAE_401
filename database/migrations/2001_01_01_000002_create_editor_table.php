@@ -17,6 +17,7 @@ class CreateEditorTable extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('picture', 50);
+            $table->timestamps();
         });
     }
 

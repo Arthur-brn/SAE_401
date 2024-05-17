@@ -21,6 +21,7 @@ class CreateNoticeTable extends Migration
             $table->text('notice_content');
             $table->unsignedTinyInteger('notice_mark');
             $table->date('post_date')->default(Carbon::now());
+            $table->timestamps();
 
             $table->primary(['user_id', 'book_id', 'film_id']);
 
