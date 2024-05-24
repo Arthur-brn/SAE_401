@@ -103,3 +103,40 @@
 #left_cine {
     padding: 0 70px;
 }
+
+#faq{
+    padding:50px 70px;
+}
+
+#faq div {
+    align-items: baseline;
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+#faq>div {
+    align-items: center;
+}
+
+
+#faq div div {
+    flex-direction: column;
+    width: 100%;
+}
+
+#faq>div>div{
+    padding: 10px;
+}
+
+#questions button{
+    width: 100%;
+    border: #FF625C solid 1px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+#answer{
+    padding: 0 10px;
+}
