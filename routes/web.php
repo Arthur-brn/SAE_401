@@ -31,3 +31,7 @@ Route::get('/books', function () {
 Route::get('/connect', function () {
     return view('connect');
 });
+
+Route::get('/account', function () {
+    return view('account');
+});

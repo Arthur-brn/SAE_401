@@ -32,3 +32,6 @@ Route::put('/books/{id}', [BookController::class, 'update']);
 Route::delete('/books/{id}', [BookController::class, 'destroy']);
 
 Route::post('/connect', [UserController::class, 'login']);
+
+Route::get('/account/{id}', [UserController::class, 'getCustomerInfo']);
+Route::get('/account/loan/{id}', [UserController::class, 'getCustomerLoan']);

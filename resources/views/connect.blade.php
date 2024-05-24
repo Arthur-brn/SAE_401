@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Connexion</title>
 </head>
 <body>
     <form id="connect-form">
@@ -28,8 +28,9 @@
                         body: formData
                     })
                     .then(response => response.json())
-                    .then(user => {
-                        console.log('User found successfully :', user);
+                    .then(userId => {
+                        sessionStorage.setItem('userId', userId);
+                        window.location.href = './account';
                     })
                     .catch(error => {
                         console.error('Error finding user :', error);
