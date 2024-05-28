@@ -87,22 +87,24 @@ class UserController extends Controller
         foreach ($userLoans as $loan) {
             $loanStartDate = $loan->start_date;
             $loanStatus = $loan->status;
+            $booking_number = $loan->booking_number;
             
-            if ($loan->book_id == 0 && $loan->film_id != 0) 
+            if ($loan->loanable_type == "film") 
             {
-                $film = Film::find($loan->film_id);
+                $film = Film::find($loan->loanable_id);
                 $articleName = $film ? $film->title : 'Film not found';
             } 
             else 
             {
-                $book = Book::find($loan->book_id);
+                $book = Book::find($loan->loanable_id);
                 $articleName = $book ? $book->title : 'Book not found';
             }
 
             $results[] = [
                 'start_date' => $loanStartDate,
                 'status' => $loanStatus,
-                'article_name' => $articleName
+                'article_name' => $articleName,
+                'booking_number' => $booking_number
             ];
         }
 

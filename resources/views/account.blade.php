@@ -11,21 +11,25 @@
         <p><b>Historique des réservations :</b></p>
         <p>Emprûnts en cours :</p>
         <table id="currentTable">
-            <th>
-                <td>Nom du document</td>
-                <td>Date de réservation</td>
-                <td>Date de rendu</td>
-                <td>Numéro de réservation</td>
-            </th>
+            <thead>
+                <tr>
+                    <td>Nom du document</td>
+                    <td>Date de réservation</td>
+                    <td>Date de rendu</td>
+                    <td>Numéro de réservation</td>
+                </tr>
+            </thead>
         </table>
         <p>Emprûnts passées :</p>
         <table id="passedTable">
-            <th>
-                <td>Nom du document</td>
-                <td>Date de réservation</td>
-                <td>Date de rendu</td>
-                <td>Numéro de réservation</td>
-            </th>
+            <thead>
+                <tr>
+                    <td>Nom du document</td>
+                    <td>Date de réservation</td>
+                    <td>Date de rendu</td>
+                    <td>Numéro de réservation</td>
+                </tr>
+            </thead>
         </table>
     </div>
     <div>
@@ -34,7 +38,7 @@
         <p id="userMail"></p>       <!-- mais NE PAS MODIFIER LES ID ! -->
         <p id="userAddress"></p>
         <button>Editer</button>
-        <button>Me déconnecter</button>
+        <button id="deconnect">Me déconnecter</button>
     </div>
 
     <script>
@@ -47,8 +51,14 @@
                 const userName = document.getElementById('userName');
                 const userMail = document.getElementById('userMail');
                 const userAddress = document.getElementById('userAddress');
+                const decoButton = document.getElementById('deconnect');
                 
                 const bodyData = JSON.stringify({ userId: parseInt(userId) });
+
+                decoButton.addEventListener('click', function(){
+                    sessionStorage.clear();
+                    window.location.href = './account';
+                });
 
                 fetch('/api/account/'+userId)
                     .then(response => response.json())
@@ -64,7 +74,36 @@
                 fetch('/api/account/loan/'+userId)
                     .then(response => response.json())
                     .then(loans => {
-                        console.log(loans);
+                        loans.forEach((loan) => {
+                            line = document.createElement("tr");
+
+                            currentDate = new Date();
+                            loanDate = new Date(loan.start_date);
+                            returnDate = new Date();
+                            returnDate.setDate(loanDate.getDate() + 7);
+
+                            productName = document.createElement("td");
+                            productName.innerHTML = loan.article_name;
+                            startDate = document.createElement("td");
+                            startDate.innerHTML = loanDate.getDate()+" - "+(loanDate.getMonth()+1)+" - "+loanDate.getFullYear();
+                            endDate = document.createElement("td");
+                            endDate.innerHTML = returnDate.getDate()+" - "+(returnDate.getMonth()+1)+" - "+returnDate.getFullYear();;
+                            bookingNumber = document.createElement("td");
+                            bookingNumber.innerHTML = loan.booking_number;
+
+                            line.appendChild(productName);
+                            line.appendChild(startDate);
+                            line.appendChild(endDate);
+                            line.appendChild(bookingNumber);
+                            if(currentDate > returnDate)
+                            {
+                                passedTable.appendChild(line);
+                            }
+                            else
+                            {
+                                currentTable.appendChild(line);
+                            }
+                        });
                     })
                     .catch(error => {
                         console.error('Error fetching data:', error);
