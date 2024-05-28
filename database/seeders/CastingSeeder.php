@@ -16,20 +16,20 @@ class CastingSeeder extends Seeder
     {
         DB::table('casting')->insert([
             [
-                'film_id' => 1, // Assurez-vous que le film avec cet ID existe
-                'actor_id' => 1, // Assurez-vous que l'acteur avec cet ID existe
+                'film_id' => 1,
+                'actor_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'film_id' => 1, // Assurez-vous que le film avec cet ID existe
-                'actor_id' => 2, // Assurez-vous que l'acteur avec cet ID existe
+                'film_id' => 1,
+                'actor_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'film_id' => 2, // Assurez-vous que le film avec cet ID existe
-                'actor_id' => 2, // Assurez-vous que l'acteur avec cet ID existe
+                'film_id' => 2,
+                'actor_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

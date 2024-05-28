@@ -18,9 +18,9 @@ class BookSeeder extends Seeder
             [
                 'title' => 'Harry Potter and the Sorcerer\'s Stone',
                 'picture' => 'hp_sorcerers_stone.jpg',
-                'author_id' => 1, // Assurez-vous que l'auteur avec cet ID existe
-                'editor_id' => 1, // Assurez-vous que l'éditeur avec cet ID existe
-                'language_id' => 1, // Assurez-vous que la langue avec cet ID existe
+                'author_id' => 1,
+                'editor_id' => 1,
+                'language_id' => 1,
                 'style' => 'fantastique',
                 'type' => 'paper back',
                 'summary' => 'A young boy discovers he is a wizard and attends a magical school, where he makes friends and enemies and uncovers a dark secret.',
@@ -34,9 +34,9 @@ class BookSeeder extends Seeder
             [
                 'title' => 'A Game of Thrones',
                 'picture' => 'game_of_thrones.jpg',
-                'author_id' => 2, // Assurez-vous que l'auteur avec cet ID existe
-                'editor_id' => 2, // Assurez-vous que l'éditeur avec cet ID existe
-                'language_id' => 1, // Assurez-vous que la langue avec cet ID existe
+                'author_id' => 2,
+                'editor_id' => 2,
+                'language_id' => 1,
                 'style' => 'fantasy épique',
                 'type' => 'paper back',
                 'summary' => 'Noble families vie for control of the Iron Throne as an ancient enemy rises in the north.',
@@ -50,9 +50,9 @@ class BookSeeder extends Seeder
             [
                 'title' => 'The Hobbit',
                 'picture' => 'the_hobbit.jpg',
-                'author_id' => 3, // Assurez-vous que l'auteur avec cet ID existe
-                'editor_id' => 1, // Assurez-vous que l'éditeur avec cet ID existe
-                'language_id' => 1, // Assurez-vous que la langue avec cet ID existe
+                'author_id' => 3,
+                'editor_id' => 1,
+                'language_id' => 1,
                 'style' => 'fantasy épique',
                 'type' => 'paper back',
                 'summary' => 'A hobbit embarks on a journey with a group of dwarves to reclaim their mountain home from a dragon.',

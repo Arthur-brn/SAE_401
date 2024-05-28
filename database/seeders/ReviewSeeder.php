@@ -16,9 +16,9 @@ class ReviewSeeder extends Seeder
     {
         DB::table('review')->insert([
             [
-                'reviewable_type' => 'App\Models\Film', // Assurez-vous de remplacer le chemin de classe par celui de votre modèle de film
-                'reviewable_id' => 1, // Assurez-vous que le film avec cet ID existe
-                'user_id' => 1, // Assurez-vous que l'utilisateur avec cet ID existe
+                'reviewable_type' => 'App\Models\Film',
+                'reviewable_id' => 1,
+                'user_id' => 1,
                 'review_content' => 'Great movie, highly recommended!',
                 'review_mark' => 5,
                 'post_date' => '2024-05-10',
@@ -26,9 +26,9 @@ class ReviewSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'reviewable_type' => 'App\Models\Book', // Assurez-vous de remplacer le chemin de classe par celui de votre modèle de livre
-                'reviewable_id' => 1, // Assurez-vous que le livre avec cet ID existe
-                'user_id' => 2, // Assurez-vous que l'utilisateur avec cet ID existe
+                'reviewable_type' => 'App\Models\Book',
+                'reviewable_id' => 1,
+                'user_id' => 2,
                 'review_content' => 'Amazing book, couldn\'t put it down!',
                 'review_mark' => 5,
                 'post_date' => '2024-05-12',

@@ -18,7 +18,7 @@ class FilmSeeder extends Seeder
             [
                 'title' => 'Inception',
                 'picture' => 'inception.jpg',
-                'director_id' => 2, // Assurez-vous que le directeur avec cet ID existe
+                'director_id' => 2,
                 'style' => 'science-fiction',
                 'age_limit' => 13,
                 'summary' => 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
@@ -32,7 +32,7 @@ class FilmSeeder extends Seeder
             [
                 'title' => 'Schindler\'s List',
                 'picture' => 'schindlers_list.jpg',
-                'director_id' => 1, // Assurez-vous que le directeur avec cet ID existe
+                'director_id' => 1,
                 'style' => 'historique',
                 'age_limit' => 16,
                 'summary' => 'In German-occupied Poland during World War II, Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.',
@@ -46,7 +46,7 @@ class FilmSeeder extends Seeder
             [
                 'title' => 'Pulp Fiction',
                 'picture' => 'pulp_fiction.jpg',
-                'director_id' => 3, // Assurez-vous que le directeur avec cet ID existe
+                'director_id' => 3,
                 'style' => 'policier',
                 'age_limit' => 18,
                 'summary' => 'The lives of two mob hitmen, a boxer, a gangster, and his wife intertwine in four tales of violence and redemption.',
