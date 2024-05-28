@@ -58,6 +58,7 @@ button {
     background-color: transparent;
     border-radius: 7px;
     line-height: 220%;
+    cursor: pointer;
 }
 
 p {

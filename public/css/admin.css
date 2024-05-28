@@ -1,0 +1,72 @@
+main{
+    padding: 0 6.7%;
+    width: 100%;
+}
+
+main > div{
+    padding-bottom: 50px;
+}
+
+.container{
+    width: 100%;
+    margin: auto;
+}
+
+#tabs{
+    display: flex;
+    box-sizing: border-box;
+    margin-top: 6px;
+    width: 100%;
+}
+
+#tabs li{
+    margin-right: 1px;
+}
+
+.tab_selected{
+    background-color: #6887F625;
+    border-bottom: none;
+    border-top-left-radius: 0.25rem ;
+    border-top-right-radius: 0.25rem ;
+    color: black;
+}
+
+li a{
+    display: inline-block;
+    color: #000000;
+    height: 100%;
+    padding:1rem ;
+    line-height: 180%;
+}
+.content{
+    background-color: #6887F610;
+    width: 100%;
+    padding: 1rem;
+}
+
+.content div form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.content div form div{
+    margin: 10px 0;
+}
+
+.content div form input{
+    padding: 3px;
+}
+
+table{
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #B9B9B9;
+    text-align: left;
+    padding: 8px;
+  }

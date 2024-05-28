@@ -39,3 +39,28 @@ Route::get('/books', function () {
         'fileCss' => ('books')
     ]);
 });
+
+Route::get('/admin', function () {
+
+    return view('admin', [
+        'fileCss' => ('admin')
+    ]);
+});
+
+Route::get('/cinema', function () {
+    return view('cinema', [
+        'fileCss' => 'cinema'
+    ]);
+});
+
+Route::get('/tendances', function () {
+    return view('tendances', [
+        'fileCss' => 'tendances'
+    ]);
+});
+
+Route::get('/contact', function () {
+    return view('contact', [
+        'fileCss' => 'contact'
+    ]);
+});
