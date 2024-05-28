@@ -12,9 +12,6 @@ class Loan extends Model
     protected $table = 'loan';
 
     protected $fillable = [
-        'user_id',
-        'book_id',
-        'film_id',
         'start_date',
         'status',
     ];
@@ -22,10 +19,5 @@ class Loan extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function film()
-    {
-        return $this->belongsTo(Film::class);
     }
 }

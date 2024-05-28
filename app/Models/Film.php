@@ -34,23 +34,23 @@ class Film extends Model
         return $this->belongsTo(Director::class);
     }
 
-    public function audioLangages()
+    public function audioLanguages()
     {
         return $this->belongsToMany(Language::class, 'audio_language', 'film_id', 'language_id');
     }
 
-    public function subtitleLangages()
+    public function subtitleLanguages()
     {
         return $this->belongsToMany(Language::class, 'subtitle', 'film_id', 'language_id');
     }
 
-    public function noticeUsers()
+    public function loans()
     {
-        return $this->belongsToMany(User::class, 'notice', 'film_id', 'user_id');
+        return $this->morphToMany(User::class, 'loanable');
     }
 
-    public function loanUsers()
+    public function reviews()
     {
-        return $this->belongsToMany(User::class, 'loan', 'film_id', 'user_id');
+        return $this->morphToMany(User::class, 'reviewable');
     }
 }
