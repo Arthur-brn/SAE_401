@@ -16,26 +16,26 @@ class SubtitleSeeder extends Seeder
     {
         DB::table('subtitle')->insert([
             [
-                'film_id' => 1, // Assurez-vous que le film avec cet ID existe
-                'language_id' => 1, // Assurez-vous que la langue avec cet ID existe
+                'film_id' => 1,
+                'language_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'film_id' => 1, // Assurez-vous que le film avec cet ID existe
-                'language_id' => 2, // Assurez-vous que la langue avec cet ID existe
+                'film_id' => 1,
+                'language_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'film_id' => 2, // Assurez-vous que le film avec cet ID existe
-                'language_id' => 1, // Assurez-vous que la langue avec cet ID existe
+                'film_id' => 2,
+                'language_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'film_id' => 2, // Assurez-vous que le film avec cet ID existe
-                'language_id' => 3, // Assurez-vous que la langue avec cet ID existe
+                'film_id' => 2,
+                'language_id' => 3,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

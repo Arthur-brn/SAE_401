@@ -16,9 +16,9 @@ class LoanSeeder extends Seeder
     {
         DB::table('loan')->insert([
             [
-                'loanable_type' => 'App\Models\Film', // Assurez-vous de remplacer le chemin de classe par celui de votre modèle de film
-                'loanable_id' => 1, // Assurez-vous que le film avec cet ID existe
-                'user_id' => 1, // Assurez-vous que l'utilisateur avec cet ID existe
+                'loanable_type' => 'App\Models\Film',
+                'loanable_id' => 1,
+                'user_id' => 1,
                 'booking_number' => 'ABCD1234',
                 'start_date' => '2024-05-01',
                 'status' => 'booked',
@@ -26,9 +26,9 @@ class LoanSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'loanable_type' => 'App\Models\Book', // Assurez-vous de remplacer le chemin de classe par celui de votre modèle de livre
-                'loanable_id' => 1, // Assurez-vous que le livre avec cet ID existe
-                'user_id' => 2, // Assurez-vous que l'utilisateur avec cet ID existe
+                'loanable_type' => 'App\Models\Book',
+                'loanable_id' => 1,
+                'user_id' => 2,
                 'booking_number' => 'EFGH5678',
                 'start_date' => '2024-05-05',
                 'status' => 'booked',
