@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(BookSeeder::class);
         $this->call(LoanSeeder::class);
-        $this->call(NoticeSeeder::class);
+        $this->call(ReviewSeeder::class);
         $this->call(AudioLanguageSeeder::class);
         $this->call(SubtitleSeeder::class);
         $this->call(CastingSeeder::class);

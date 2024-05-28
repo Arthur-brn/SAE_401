@@ -29,13 +29,13 @@ class CastingSeeder extends Seeder
             ],
             [
                 'film_id' => 2, // Assurez-vous que le film avec cet ID existe
-                'actor_id' => 3, // Assurez-vous que l'acteur avec cet ID existe
+                'actor_id' => 2, // Assurez-vous que l'acteur avec cet ID existe
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'film_id' => 2, // Assurez-vous que le film avec cet ID existe
-                'actor_id' => 4, // Assurez-vous que l'acteur avec cet ID existe
+                'actor_id' => 3, // Assurez-vous que l'acteur avec cet ID existe
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
