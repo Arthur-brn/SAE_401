@@ -38,12 +38,11 @@
     </div>
     <hr />
     <div id="headerBot">
-        <a href="#" class="select">ACCUEIL</a>
-        <a href="#">LITTÉRATURE</a>
-        <a href="#">CINÉMA</a>
-        <a href="#">MUSIQUES</a>
-        <a href="#">TENDANCES</a>
-        <a href="#">CONTACTEZ-NOUS</a>
+        <a href="/" class="{{ Request::is('/') ? 'select' : '' }}">ACCUEIL</a>
+        <a href="/litterature" class="{{ Request::is('litterature') ? 'select' : '' }}">LITTÉRATURE</a>
+        <a href="/cinema" class="{{ Request::is('cinema') ? 'select' : '' }}">CINÉMA</a>
+        <a href="/tendances" class="{{ Request::is('tendances') ? 'select' : '' }}">TENDANCES</a>
+        <a href="/contact" class="{{ Request::is('contact') ? 'select' : '' }}">CONTACTEZ-NOUS</a>
     </div>
     <main>
         @yield('content')
