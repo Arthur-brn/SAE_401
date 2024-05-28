@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Carbon;
 
-class CreateNoticeTable extends Migration
+class CreateReviewTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,20 +14,17 @@ class CreateNoticeTable extends Migration
      */
     public function up()
     {
-        Schema::create('notice', function (Blueprint $table) {
+        Schema::create('review', function (Blueprint $table) {
+            $table->morphs('reviewable');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('book_id')->nullable();
-            $table->unsignedBigInteger('film_id')->nullable();
-            $table->text('notice_content');
-            $table->unsignedTinyInteger('notice_mark');
+            $table->text('review_content');
+            $table->unsignedTinyInteger('review_mark');
             $table->date('post_date')->default(Carbon::now());
             $table->timestamps();
 
-            $table->primary(['user_id', 'book_id', 'film_id']);
+            $table->primary(['user_id', 'reviewable_id', 'reviewable_type']);
 
             $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('book_id')->references('id')->on('book');
-            $table->foreign('film_id')->references('id')->on('film');
         });
     }
 
@@ -38,6 +35,6 @@ class CreateNoticeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notice');
+        Schema::dropIfExists('review');
     }
 }

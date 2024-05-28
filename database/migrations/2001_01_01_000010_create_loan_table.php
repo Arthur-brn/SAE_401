@@ -14,18 +14,16 @@ class CreateLoanTable extends Migration
     public function up()
     {
         Schema::create('loan', function (Blueprint $table) {
+            $table->morphs('loanable');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('book_id')->nullable();
-            $table->unsignedBigInteger('film_id')->nullable();
+            $table->string('booking_number', 10);
             $table->date('start_date');
-            $table->enum('status', ['pending', 'reserved', 'returned']);
+            $table->enum('status', ['booked', 'loaned', 'returned']);
             $table->timestamps();
 
-            $table->primary(['user_id', 'book_id', 'film_id']);
+            $table->primary(['user_id', 'loanable_id', 'loanable_type']);
 
             $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('book_id')->references('id')->on('book');
-            $table->foreign('film_id')->references('id')->on('film');
         });
     }
 

@@ -14,30 +14,28 @@ class User extends Model
     protected $fillable = [
         'first_name',
         'last_name',
-        'email',
-        'password',
         'address',
         'birthday',
         'status',
     ];
 
-    public function noticeFilms()
+    public function filmLoans()
     {
-        return $this->belongsToMany(Film::class, 'notice', 'user_id', 'film_id');
+        return $this->morphByMany(Film::class, 'loanable');
     }
 
-    public function loanFilms()
+    public function bookLoans()
     {
-        return $this->belongsToMany(Film::class, 'loan', 'user_id', 'film_id');
+        return $this->morphByMany(Book::class, 'loanable');
     }
 
-    public function noticeBooks()
+    public function filmReviews()
     {
-        return $this->belongsToMany(Book::class, 'notice', 'user_id', 'film_id');
+        return $this->morphByMany(Film::class, 'reviewable');
     }
 
-    public function loanBooks()
+    public function bookReviews()
     {
-        return $this->belongsToMany(Book::class, 'loan', 'user_id', 'film_id');
+        return $this->morphByMany(Book::class, 'reviewable');
     }
 }
