@@ -64,3 +64,11 @@ Route::get('/contact', function () {
         'fileCss' => 'contact'
     ]);
 });
+
+Route::get('/connect', function () {
+    return view('connect');
+});
+
+Route::get('/account', function () {
+    return view('account');
+});
