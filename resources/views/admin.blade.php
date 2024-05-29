@@ -28,11 +28,11 @@
                 <tr>
                     <th>Titre</th>
                     <th>Type de document</th>
-                    <th>Auteur/réalisateur</th>
+                    <th>Artiste</th>
                     <th>Nombre d'exemplaire</th>
                     <th>Nombre disponible</th>
-                    <th>Date d'enregistrement</th>
-                    <th>Suppression</th>
+                    <th>Enregisté le</th>
+                    <th></th>
                 </tr>
                 <tr>
                     <td>Titanic</td>
@@ -40,15 +40,6 @@
                     <td>James Cameron</td>
                     <td>3</td>
                     <td>2</td>
-                    <td>27/05/2024</td>
-                    <td><i class="fa-solid fa-trash" style="color: #ff0000;"></i></td>
-                </tr>
-                <tr>
-                    <td>Harry Potter</td>
-                    <td>Livre</td>
-                    <td>JK Rowling</td>
-                    <td>4</td>
-                    <td>1</td>
                     <td>27/05/2024</td>
                     <td><i class="fa-solid fa-trash" style="color: #ff0000;"></i></td>
                 </tr>
@@ -156,12 +147,6 @@
                     <label for="year">Année du film :</label>
                     <input type="number" id="year" name="year">
                 </div>
-                <!--
-                <div>
-                    <label for="language_id">Langue:</label>
-                    <input type="number" id="language_id" name="language_id">
-                </div>
-                -->
                 <div>
                     <label for="copy_number">Copy Number:</label>
                     <input type="number" id="copy_number" name="copy_number">
@@ -210,13 +195,13 @@
             </div>
             <table>
                 <tr>
-                    <th>Numéro de la réservation</th>
+                    <th>Numéro</th>
                     <th>Nom</th>
                     <th>Document(s)</th>
                     <th>Date de réservation</th>
                     <th>Date de retour</th>
-                    <th>Statut de la réservation</th>
-                    <th>Suppression</th>
+                    <th>Statut</th>
+                    <th></th>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -232,20 +217,6 @@
                     <td>A venir</td>
                     <td><i class="fa-solid fa-trash" style="color: #ff0000;"></i></td>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Dupont</td>
-                    <td>
-                        <ul>
-                            <li>Titanic</li>
-                            <li>Harry Potter</li>
-                        </ul>
-                    </td>
-                    <td>23 - 04 - 2024</td>
-                    <td>30 - 04 - 2024</td>
-                    <td>En cours</td>
-                    <td><i class="fa-solid fa-trash" style="color: #ff0000;"></i></td>
-                </tr>
             </table>
         </div>
         <div x-show="tab === 'tab2'">
@@ -255,13 +226,13 @@
             </div>
             <table>
                 <tr>
-                    <th>Numéro de la réservation</th>
+                    <th>Numéro</th>
                     <th>Nom</th>
                     <th>Document(s)</th>
                     <th>Date de réservation</th>
                     <th>Date de retour</th>
-                    <th>Statut de la réservation</th>
-                    <th>Suppression</th>
+                    <th>Statut</th>
+                    <th></th>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -286,13 +257,13 @@
             </div>
             <table>
                 <tr>
-                    <th>Numéro de la réservation</th>
+                    <th>Numéro</th>
                     <th>Nom</th>
                     <th>Document(s)</th>
                     <th>Date de réservation</th>
                     <th>Date de retour</th>
-                    <th>Statut de la réservation</th>
-                    <th>Suppression</th>
+                    <th>Statut</th>
+                    <th></th>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -313,7 +284,7 @@
         <div x-show="tab === 'tab4'">
             <form action="">
                 <div>
-                    <label for="loan_number">Numéro de réservation:</label>
+                    <label for="loan_number">Numéro :</label>
                     <input type="number" name="loan_number" id="loan_number">
                 </div>
                 <div>

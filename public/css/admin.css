@@ -69,4 +69,11 @@ td, th {
     border: 1px solid #B9B9B9;
     text-align: left;
     padding: 8px;
-  }
+}
+
+@media only screen and (max-width: 750px) {
+    main{
+        padding: 0 0.5vw;
+        padding-top: 50px;
+    }
+}
