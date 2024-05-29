@@ -22,6 +22,7 @@
             <p>TELOCULTURE</p>
         </div>
         <div id="topR">
+            <i class="fa-solid fa-bars fa-xl" style="color: #6887f6;"></i>
             <a href="#">
                 <img class="icon" src="./assets/icons/heart.png" alt="">
                 <p>FAVORIS</p>
@@ -30,7 +31,7 @@
                 <img class="icon" src="./assets/icons/cart.png" alt="">
                 <p>PANIER</p>
             </a>
-            <a href="#">
+            <a href="/account">
                 <img class="icon" src="./assets/icons/user.png" alt="">
                 <p>COMPTE</p>
             </a>
@@ -60,12 +61,14 @@
                 </div>
             </div>
             <div id="footer_right">
-                <p id="footer_title">Catégories</p>
-                <a href="#">ACCUEIL</a>
-                <a href="#">LITTÉRATURE</a>
-                <a href="#">CINÉMA</a>
-                <a href="#">CONTACT</a>
-                <a href="#">CONTACTEZ-NOUS</a>
+                <div>
+                    <p id="footer_title">Catégories</p>
+                    <a href="#">ACCUEIL</a>
+                    <a href="#">LITTÉRATURE</a>
+                    <a href="#">CINÉMA</a>
+                    <a href="#">CONTACT</a>
+                    <a href="#">CONTACTEZ-NOUS</a>
+                </div>
             </div>
         </div>
         <div id="footer_bot">
