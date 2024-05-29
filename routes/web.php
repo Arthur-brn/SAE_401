@@ -75,7 +75,10 @@ Route::get('/contact', function () {
 });
 
 Route::get('/connect', function () {
-    return view('connect');
+    return view('connect', [
+        'fileCss' => 'connect',
+        'fileJS' => 'connection'
+    ]);
 });
 
 Route::get('/account', function () {
