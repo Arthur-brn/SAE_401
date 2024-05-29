@@ -70,5 +70,7 @@ Route::get('/connect', function () {
 });
 
 Route::get('/account', function () {
-    return view('account');
+    return view('account', [
+        'fileCss' => ('account')
+    ]);
 });
