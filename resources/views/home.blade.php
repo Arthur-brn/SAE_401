@@ -4,7 +4,7 @@
 <section id="top_page">
     <div id="top_left">
         <h1>Nos dernières pépites</h1>
-        <p class="p1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.</p>
+        <p class="p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.</p>
         <button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
     </div>
     <div id="top_right">
