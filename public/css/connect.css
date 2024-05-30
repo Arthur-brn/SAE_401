@@ -1,0 +1,41 @@
+main{
+    display: flex;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 17vw;
+    padding: 0.7vw;
+}
+
+label{
+    width: 100%;
+    font-weight: 600;
+}
+
+input{
+    border: 1px solid #E5E3DA;
+    border-radius: 5px;
+    padding: 10px 5px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 750px) {
+    form{
+        width: 100%;
+        padding: 10vw;
+    }
+
+    main, section{
+        width: 100%;
+    }
+
+  }

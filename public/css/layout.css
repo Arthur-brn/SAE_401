@@ -1,8 +1,14 @@
-/*<uniquifier>: Use a unique and descriptive class name
-<weight>: Use a value from 100 to 900*/
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
 }
 
 body > div {
@@ -28,7 +34,6 @@ hr {
 #topL {
     width: 100%;
     display: flex;
-    gap: 20px;
     padding: 10px;
 }
 
@@ -61,8 +66,23 @@ hr {
     width: 20px;
 }
 
+#burger{
+    position:absolute;
+    top: 0;
+    right: 0;
+    background-color: #d0daff;
+    height: 100%;
+    width: 40%;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: baseline;
+}
+
 main {
     padding: 0 0 50px 0;
+    flex: 1;
 }
 
 footer {
@@ -83,7 +103,7 @@ footer > div {
 }
 
 footer > div > div {
-    align-items: baseline;
+    align-items: center;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -91,11 +111,14 @@ footer > div > div {
 
 #footer_left {
     gap: 30px;
+    align-items: baseline;
 }
 
-#footer_right {
+#footer_right div {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
     gap: 15px;
-    align-items: center;
 }
 
 #footer_title {
@@ -113,3 +136,39 @@ footer a {
 #footer_bot{
     justify-content: space-around;
 }
+
+@media only screen and (max-width: 750px) {
+    #topR a{
+        display: none;
+    }
+
+    #headerBot{
+        display: none;
+    }
+
+    #headerTop{
+        padding: 10px 3%;
+    }
+
+    hr{
+        width: 100%;
+    }
+
+    footer a {
+        font-size: 12px;
+    }
+
+    footer p {
+        font-size: 12px;
+    }
+
+    footer > div {
+        padding: 10px 3%;
+    }
+  }
+
+  @media only screen and (min-width: 750px) {
+    #topR i{
+        display: none;
+    }
+  }
