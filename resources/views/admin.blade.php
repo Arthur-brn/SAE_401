@@ -24,38 +24,21 @@
                 <p>Rechercher un document :</p>
                 <input type="text" name="" id="" placeholder="Titre du document">
             </div>
-            <table>
-                <tr>
-                    <th>Titre</th>
-                    <th>Type de document</th>
-                    <th>Auteur/réalisateur</th>
-                    <th>Nombre d'exemplaire</th>
-                    <th>Nombre disponible</th>
-                    <th>Date d'enregistrement</th>
-                    <th>Suppression</th>
-                </tr>
-                <tr>
-                    <td>Titanic</td>
-                    <td>Film</td>
-                    <td>James Cameron</td>
-                    <td>3</td>
-                    <td>2</td>
-                    <td>27/05/2024</td>
-                    <td><i class="fa-solid fa-trash" style="color: #ff0000;"></i></td>
-                </tr>
-                <tr>
-                    <td>Harry Potter</td>
-                    <td>Livre</td>
-                    <td>JK Rowling</td>
-                    <td>4</td>
-                    <td>1</td>
-                    <td>27/05/2024</td>
-                    <td><i class="fa-solid fa-trash" style="color: #ff0000;"></i></td>
-                </tr>
+            <table id="itemList">
+                <thead>
+                    <tr>
+                        <td>Titre</td>
+                        <td>Type de document</td>
+                        <td>Auteur/réalisateur</td>
+                        <td>Nombre d'exemplaire</td>
+                        <td>Nombre disponible</td>
+                        <td>Suppression</td>
+                    </tr>
+                </thead>
             </table>
         </div>
         <div x-show="tab === 'tab2'">
-            <form action="">
+            <form id="addBookForm">
                 <div>
                     <label for="title">Titre du livre :</label>
                     <input type="text" id="title" name="title">
@@ -118,7 +101,7 @@
             </form>
         </div>
         <div x-show="tab === 'tab3'">
-            <form action="">
+            <form id="addFilmForm">
                 <div>
                     <label for="title">Titre du film :</label>
                     <input type="text" id="title" name="title">
@@ -325,3 +308,99 @@
     </div>
 </div>
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const itemList = document.getElementById('itemList');
+
+        fetch('/api/books')
+            .then(response => response.json())
+            .then(books => {
+                books.forEach((book) => {
+                    line = document.createElement("tr");
+
+                    title = document.createElement('td');
+                    title.innerHTML = book.title;
+
+                    type = document.createElement('td');
+                    type.innerHTML = 'Livre';
+
+                    author = document.createElement('td');
+                    fetch('/api/author/'+book.author_id)
+                        .then(response => response.json())
+                        .then(authorName => {
+                            author.innerHTML = authorName.name;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching data:', error);
+                        });
+
+                    number = document.createElement('td');
+                    number.innerHTML = book.copy_number;
+
+                    available = document.createElement('td');
+                    available.innerHTML = '';
+
+                    suppr = document.createElement('td');
+                    suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
+
+                    line.appendChild(title);
+                    line.appendChild(type);
+                    line.appendChild(author);
+                    line.appendChild(number);
+                    line.appendChild(available);
+                    line.appendChild(suppr);
+
+                    itemList.appendChild(line);
+                })
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+        
+        fetch('/api/films')
+            .then(response => response.json())
+            .then(films => {
+                films.forEach((film) => {
+                    line = document.createElement("tr");
+
+                    title = document.createElement('td');
+                    title.innerHTML = film.title;
+
+                    type = document.createElement('td');
+                    type.innerHTML = 'Film';
+
+                    director = document.createElement('td');
+                    fetch('/api/director/'+film.director_id)
+                        .then(response => response.json())
+                        .then(directorName => {
+                            director.innerHTML = directorName.name;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching data:', error);
+                        });
+
+                    number = document.createElement('td');
+                    number.innerHTML = film.copy_number;
+
+                    available = document.createElement('td');
+                    available.innerHTML = '';
+
+                    suppr = document.createElement('td');
+                    suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
+
+                    line.appendChild(title);
+                    line.appendChild(type);
+                    line.appendChild(director);
+                    line.appendChild(number);
+                    line.appendChild(available);
+                    line.appendChild(suppr);
+
+                    itemList.appendChild(line);
+                })
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+        });
+</script>

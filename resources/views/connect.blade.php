@@ -28,8 +28,9 @@
                         body: formData
                     })
                     .then(response => response.json())
-                    .then(userId => {
-                        sessionStorage.setItem('userId', userId);
+                    .then(user => {
+                        sessionStorage.setItem('userId', user.user_id);
+                        sessionStorage.setItem('userStatus', user.status);
                         window.location.href = './account';
                     })
                     .catch(error => {

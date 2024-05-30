@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 // Controller
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\DirectorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,12 @@ Route::get('/books/{id}', [BookController::class, 'show']);
 Route::post('/books', [BookController::class, 'store']);
 Route::put('/books/{id}', [BookController::class, 'update']);
 Route::delete('/books/{id}', [BookController::class, 'destroy']);
+
+Route::get('/author/{id}', [AuthorController::class, 'show']);
+
+Route::get('/films', [FilmController::class, 'index']);
+
+Route::get('/director/{id}', [DirectorController::class, 'show']);
 
 Route::post('/connect', [UserController::class, 'login']);
 
