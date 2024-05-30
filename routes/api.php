@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controller
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -29,3 +30,8 @@ Route::get('/books/{id}', [BookController::class, 'show']);
 Route::post('/books', [BookController::class, 'store']);
 Route::put('/books/{id}', [BookController::class, 'update']);
 Route::delete('/books/{id}', [BookController::class, 'destroy']);
+
+Route::post('/connect', [UserController::class, 'login']);
+
+Route::get('/account/{id}', [UserController::class, 'getCustomerInfo']);
+Route::get('/account/loan/{id}', [UserController::class, 'getCustomerLoan']);

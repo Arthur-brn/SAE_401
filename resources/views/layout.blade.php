@@ -13,15 +13,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/cc30acfb71.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.8/dist/alpine.js" defer></script>
+    <script src="./js/{{ $fileJS }}.js"></script>
+
 </head>
 
-<body>
+<body x-data="{burgerOpen: false}">
     <div id="headerTop">
         <div id="topL">
             <img src="../assets/img/logo.png" alt="" />
             <p>TELOCULTURE</p>
         </div>
         <div id="topR">
+            <i @click="burgerOpen = true" class="fa-solid fa-bars fa-xl" style="color: #6887f6;"></i>
             <a href="#">
                 <img class="icon" src="./assets/icons/heart.png" alt="">
                 <p>FAVORIS</p>
@@ -30,7 +33,7 @@
                 <img class="icon" src="./assets/icons/cart.png" alt="">
                 <p>PANIER</p>
             </a>
-            <a href="#">
+            <a href="/account">
                 <img class="icon" src="./assets/icons/user.png" alt="">
                 <p>COMPTE</p>
             </a>
@@ -38,12 +41,53 @@
     </div>
     <hr />
     <div id="headerBot">
-        <a href="#" class="select">ACCUEIL</a>
-        <a href="#">LITTÉRATURE</a>
-        <a href="#">CINÉMA</a>
-        <a href="#">MUSIQUES</a>
-        <a href="#">TENDANCES</a>
-        <a href="#">CONTACTEZ-NOUS</a>
+        <a href="/" class="{{ Request::is('/') ? 'select' : '' }}">ACCUEIL</a>
+        <a href="/litterature" class="{{ Request::is('litterature') ? 'select' : '' }}">LITTÉRATURE</a>
+        <a href="/cinema" class="{{ Request::is('cinema') ? 'select' : '' }}">CINÉMA</a>
+        <a href="/tendances" class="{{ Request::is('tendances') ? 'select' : '' }}">TENDANCES</a>
+        <a href="/contact" class="{{ Request::is('contact') ? 'select' : '' }}">CONTACTEZ-NOUS</a>
+    </div>
+    <div id="burger" x-show="burgerOpen" @click.away="burgerOpen = false">
+        <div>
+            <i @click="burgerOpen = false" class="fa-solid fa-xmark fa-lg"></i>
+        </div>
+        <ul>
+            <li>
+                <a href="">
+                    <p>FAVORIS</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <p>PANIER</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <p>COMPTE</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <p>LITTÉRATURE</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <p>CINÉMA</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <p>TENDANCES</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <p>CONTACTEZ</p>
+                </a>
+            </li>
+        </ul>
     </div>
     <main>
         @yield('content')
@@ -61,12 +105,14 @@
                 </div>
             </div>
             <div id="footer_right">
-                <p id="footer_title">Catégories</p>
-                <a href="#">ACCUEIL</a>
-                <a href="#">LITTÉRATURE</a>
-                <a href="#">CINÉMA</a>
-                <a href="#">CONTACT</a>
-                <a href="#">CONTACTEZ-NOUS</a>
+                <div>
+                    <p id="footer_title">Catégories</p>
+                    <a href="#">ACCUEIL</a>
+                    <a href="#">LITTÉRATURE</a>
+                    <a href="#">CINÉMA</a>
+                    <a href="#">CONTACT</a>
+                    <a href="#">CONTACTEZ-NOUS</a>
+                </div>
             </div>
         </div>
         <div id="footer_bot">

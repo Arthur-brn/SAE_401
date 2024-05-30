@@ -41,13 +41,13 @@ class Book extends Model
         return $this->belongsTo(Language::class);
     }
 
-    public function noticeUsers()
+    public function loans()
     {
-        return $this->belongsToMany(User::class, 'notice', 'book_id', 'user_id');
+        return $this->morphToMany(User::class, 'loanable');
     }
 
-    public function loanUsers()
+    public function reviews()
     {
-        return $this->belongsToMany(User::class, 'loan', 'book_id', 'user_id');
+        return $this->morphToMany(User::class, 'reviewable');
     }
 }
