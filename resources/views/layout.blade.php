@@ -17,14 +17,14 @@
 
 </head>
 
-<body>
+<body x-data="{burgerOpen: false}">
     <div id="headerTop">
         <div id="topL">
             <img src="../assets/img/logo.png" alt="" />
             <p>TELOCULTURE</p>
         </div>
         <div id="topR">
-            <i class="fa-solid fa-bars fa-xl" style="color: #6887f6;"></i>
+            <i @click="burgerOpen = true" class="fa-solid fa-bars fa-xl" style="color: #6887f6;"></i>
             <a href="#">
                 <img class="icon" src="./assets/icons/heart.png" alt="">
                 <p>FAVORIS</p>
@@ -46,6 +46,48 @@
         <a href="/cinema" class="{{ Request::is('cinema') ? 'select' : '' }}">CINÉMA</a>
         <a href="/tendances" class="{{ Request::is('tendances') ? 'select' : '' }}">TENDANCES</a>
         <a href="/contact" class="{{ Request::is('contact') ? 'select' : '' }}">CONTACTEZ-NOUS</a>
+    </div>
+    <div id="burger" x-show="burgerOpen" @click.away="burgerOpen = false">
+        <div>
+            <i @click="burgerOpen = false" class="fa-solid fa-xmark fa-lg"></i>
+        </div>
+        <ul>
+            <li>
+                <a href="">
+                    <p>FAVORIS</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <p>PANIER</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <p>COMPTE</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <p>LITTÉRATURE</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <p>CINÉMA</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <p>TENDANCES</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <p>CONTACTEZ</p>
+                </a>
+            </li>
+        </ul>
     </div>
     <main>
         @yield('content')
