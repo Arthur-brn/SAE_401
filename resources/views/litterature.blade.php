@@ -19,7 +19,6 @@
 
 <section id="nouveautes" class="splide" aria-label="Splide Basic HTML Example">
     <h2>Nouveautés !</h2>
-
     <div class="splide__track">
         <ul class="splide__list">
             <li class="splide__slide">
