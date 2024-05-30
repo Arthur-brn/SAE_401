@@ -66,6 +66,20 @@ hr {
     width: 20px;
 }
 
+#burger{
+    position:absolute;
+    top: 0;
+    right: 0;
+    background-color: #d0daff;
+    height: 100%;
+    width: 40%;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: baseline;
+}
+
 main {
     padding: 0 0 50px 0;
     flex: 1;
