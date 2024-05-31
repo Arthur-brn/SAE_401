@@ -28,7 +28,7 @@
                 <img class="icon" src="./assets/icons/heart.png" alt="">
                 <p>FAVORIS</p>
             </a>
-            <a href="#">
+            <a href="/panier">
                 <img class="icon" src="./assets/icons/cart.png" alt="">
                 <p>PANIER</p>
             </a>
