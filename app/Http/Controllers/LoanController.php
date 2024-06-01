@@ -42,4 +42,24 @@ class LoanController extends Controller
         Loan::findOrFail($id)->delete();
         return response()->json(null, 204);
     }
+
+    public function countBook($id)
+    {
+        $loans = Loan::where('loanable_type', 'book')
+                     ->where('loanable_id', $id)
+                     ->where('status', '!=', 'returned')
+                     ->count();
+
+        return response()->json($loans, 201);
+    }
+
+    public function countFilm($id)
+    {
+        $loans = Loan::where('loanable_type', 'film')
+                     ->where('loanable_id', $id)
+                     ->where('status', '!=', 'returned')
+                     ->count();
+
+        return response()->json($loans, 201);
+    }
 }

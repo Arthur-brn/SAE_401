@@ -7,8 +7,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\EditorController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\DirectorController;
+use App\Http\Controllers\LoanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,10 +39,21 @@ Route::delete('/books/{id}', [BookController::class, 'destroy']);
 Route::get('/author/{id}', [AuthorController::class, 'show']);
 
 Route::get('/films', [FilmController::class, 'index']);
+Route::post('/films', [FilmController::class, 'store']);
 
+Route::get('/directors', [DirectorController::class, 'index']);
 Route::get('/director/{id}', [DirectorController::class, 'show']);
+
+Route::get('/bookLoans/{id}', [LoanController::class, 'countBook']);
+Route::get('/filmLoans/{id}', [LoanController::class, 'countFilm']);
 
 Route::post('/connect', [UserController::class, 'login']);
 
 Route::get('/account/{id}', [UserController::class, 'getCustomerInfo']);
 Route::get('/account/loan/{id}', [UserController::class, 'getCustomerLoan']);
+
+Route::get('/authors', [AuthorController::class, 'index']);
+
+Route::get('/editors', [EditorController::class, 'index']);
+
+Route::get('/languages', [LanguageController::class, 'index']);
