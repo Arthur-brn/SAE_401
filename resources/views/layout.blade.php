@@ -12,9 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/cc30acfb71.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.8/dist/alpine.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="./js/{{ $fileJS }}.js"></script>
-
 </head>
 
 <body x-data="{burgerOpen: false}">
@@ -29,7 +28,7 @@
                 <img class="icon" src="./assets/icons/heart.png" alt="">
                 <p>FAVORIS</p>
             </a>
-            <a href="#">
+            <a href="/panier">
                 <img class="icon" src="./assets/icons/cart.png" alt="">
                 <p>PANIER</p>
             </a>
@@ -47,9 +46,9 @@
         <a href="/tendances" class="{{ Request::is('tendances') ? 'select' : '' }}">TENDANCES</a>
         <a href="/contact" class="{{ Request::is('contact') ? 'select' : '' }}">CONTACTEZ-NOUS</a>
     </div>
-    <div id="burger" x-show="burgerOpen" @click.away="burgerOpen = false">
+    <div id="burger" x-show="burgerOpen" x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90" @click.away="burgerOpen = false">
         <div>
-            <i @click="burgerOpen = false" class="fa-solid fa-xmark fa-lg"></i>
+            <i @click="burgerOpen = false" class="fa-solid fa-xmark fa-xl" style="color: #6887f6;"></i>
         </div>
         <ul>
             <li>
