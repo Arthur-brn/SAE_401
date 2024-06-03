@@ -151,4 +151,6 @@
     </section>
 </div>
 
+<script src="./js/catalogue.js"></script>
+
 @endsection
