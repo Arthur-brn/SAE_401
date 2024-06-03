@@ -39,6 +39,7 @@ Route::delete('/books/{id}', [BookController::class, 'destroy']);
 Route::get('/author/{id}', [AuthorController::class, 'show']);
 
 Route::get('/films', [FilmController::class, 'index']);
+Route::get('/films/{id}', [FilmController::class, 'show']);
 Route::post('/films', [FilmController::class, 'store']);
 
 Route::get('/directors', [DirectorController::class, 'index']);
@@ -46,9 +47,11 @@ Route::get('/director/{id}', [DirectorController::class, 'show']);
 
 Route::get('/bookLoans/{id}', [LoanController::class, 'countBook']);
 Route::get('/filmLoans/{id}', [LoanController::class, 'countFilm']);
+Route::get('/loans', [LoanController::class, 'index']);
 
 Route::post('/connect', [UserController::class, 'login']);
 
+Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/account/{id}', [UserController::class, 'getCustomerInfo']);
 Route::get('/account/loan/{id}', [UserController::class, 'getCustomerLoan']);
 

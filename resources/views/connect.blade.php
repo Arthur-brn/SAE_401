@@ -29,7 +29,7 @@
                     })
                     .then(response => response.json())
                     .then(user => {
-                        sessionStorage.setItem('userId', user.user_id);
+                        sessionStorage.setItem('userId', user.id);
                         sessionStorage.setItem('userStatus', user.status);
                         window.location.href = './account';
                     })

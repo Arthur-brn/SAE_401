@@ -192,43 +192,17 @@
                 <input type="number" name="" id="" placeholder="N° de la réservation">
             </div>
             <table id="allBookings">
-                <tr>
-                    <th>Numéro de la réservation</th>
-                    <th>Nom</th>
-                    <th>Document(s)</th>
-                    <th>Date de réservation</th>
-                    <th>Date de retour</th>
-                    <th>Statut de la réservation</th>
-                    <th>Suppression</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Dupont</td>
-                    <td>
-                        <ul>
-                            <li>Titanic</li>
-                            <li>Harry Potter</li>
-                        </ul>
-                    </td>
-                    <td>23 - 04 - 2024</td>
-                    <td>30 - 04 - 2024</td>
-                    <td>A venir</td>
-                    <td><i class="fa-solid fa-trash" style="color: #ff0000;"></i></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Dupont</td>
-                    <td>
-                        <ul>
-                            <li>Titanic</li>
-                            <li>Harry Potter</li>
-                        </ul>
-                    </td>
-                    <td>23 - 04 - 2024</td>
-                    <td>30 - 04 - 2024</td>
-                    <td>En cours</td>
-                    <td><i class="fa-solid fa-trash" style="color: #ff0000;"></i></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Numéro de la réservation</th>
+                        <th>Nom</th>
+                        <th>Document(s)</th>
+                        <th>Date de réservation</th>
+                        <th>Date de retour</th>
+                        <th>Statut de la réservation</th>
+                        <th>Suppression</th>
+                    </tr>
+                </thead>
             </table>
         </div>
         <div x-show="tab === 'tab2'">
@@ -237,29 +211,17 @@
                 <input type="text" name="" id="" placeholder="Titre du document">
             </div>
             <table id="futureBookings">
-                <tr>
-                    <th>Numéro de la réservation</th>
-                    <th>Nom</th>
-                    <th>Document(s)</th>
-                    <th>Date de réservation</th>
-                    <th>Date de retour</th>
-                    <th>Statut de la réservation</th>
-                    <th>Suppression</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Dupont</td>
-                    <td>
-                        <ul>
-                            <li>Titanic</li>
-                            <li>Harry Potter</li>
-                        </ul>
-                    </td>
-                    <td>23 - 04 - 2024</td>
-                    <td>30 - 04 - 2024</td>
-                    <td>A venir</td>
-                    <td><i class="fa-solid fa-trash" style="color: #ff0000;"></i></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Numéro de la réservation</th>
+                        <th>Nom</th>
+                        <th>Document(s)</th>
+                        <th>Date de réservation</th>
+                        <th>Date de retour</th>
+                        <th>Statut de la réservation</th>
+                        <th>Suppression</th>
+                    </tr>
+                </thead>
             </table>
         </div>
         <div x-show="tab === 'tab3'">
@@ -268,29 +230,17 @@
                 <input type="text" name="" id="" placeholder="Titre du document">
             </div>
             <table id="currentBookings">
-                <tr>
-                    <th>Numéro de la réservation</th>
-                    <th>Nom</th>
-                    <th>Document(s)</th>
-                    <th>Date de réservation</th>
-                    <th>Date de retour</th>
-                    <th>Statut de la réservation</th>
-                    <th>Suppression</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Dupont</td>
-                    <td>
-                        <ul>
-                            <li>Titanic</li>
-                            <li>Harry Potter</li>
-                        </ul>
-                    </td>
-                    <td>23 - 04 - 2024</td>
-                    <td>30 - 04 - 2024</td>
-                    <td>En cours</td>
-                    <td><i class="fa-solid fa-trash" style="color: #ff0000;"></i></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Numéro de la réservation</th>
+                        <th>Nom</th>
+                        <th>Document(s)</th>
+                        <th>Date de réservation</th>
+                        <th>Date de retour</th>
+                        <th>Statut de la réservation</th>
+                        <th>Suppression</th>
+                    </tr>
+                </thead>
             </table>
         </div>
         <div x-show="tab === 'tab4'">
@@ -496,14 +446,102 @@
 
         async function fetchBookingsAndDisplay(){
             try {
-                const response = await fetch('api/languages');
-                const languages = await response.json();
+                const response = await fetch('api/loans');
+                const loans = await response.json();
+                const sortedLoans = loans.sort((a, b) => {
+                    if (a.booking_number < b.booking_number) {
+                        return -1;
+                    }
+                    if (a.booking_number > b.booking_number) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                const remadeLoans = {};
 
-                languages.forEach(language => {
-                    const languageOption = document.createElement('option');
-                    languageOption.innerHTML = language.name;
-                    languageOption.setAttribute('value', language.id);
-                    bookLanguage.appendChild(languageOption);
+                sortedLoans.forEach(booking => {
+                    if (!remadeLoans[booking.booking_number]) {
+                        remadeLoans[booking.booking_number] = {
+                            booking_number: booking.booking_number,
+                            user_id: booking.user_id,
+                            start_date: booking.start_date,
+                            loanable: [{ type: booking.loanable_type, id: booking.loanable_id }]
+                        };
+                    } else {
+                        remadeLoans[booking.booking_number].loanable.push({ type: booking.loanable_type, id: booking.loanable_id });
+                    }
+                }); 
+
+                const usedLoans = Object.values(remadeLoans);
+
+                usedLoans.forEach(async (loan) => {
+                    const line = document.createElement('tr');
+                    const bookingNumber = document.createElement('td');
+                    bookingNumber.innerHTML = loan.booking_number;
+                    const userName = document.createElement('td');
+                    try {
+                        const userResponse = await fetch('/api/user/'+loan.user_id);
+                        const userData = await userResponse.json();
+                        userName.innerHTML = userData.first_name + " " + userData.last_name;
+                    } catch (error) {
+                        console.error('Error fetching author data:', error);
+                        userName.innerHTML = 'Error fetching user';
+                    }
+                    const items = document.createElement('td');
+                    const itemList = document.createElement('ul');
+                    loan.loanable.forEach(async (item) => {
+                        const itemName = document.createElement('li');
+                        if(item.type == "book"){
+                            fetchUrl = '/api/books/'+item.id;
+                        }
+                        else{
+                            fetchUrl = '/api/films/'+item.id;
+                        }
+                        try {
+                            const itemResponse = await fetch(fetchUrl);
+                            const itemData = await itemResponse.json();
+                            itemName.innerHTML = itemData.title;
+                        } catch (error) {
+                            console.error('Error fetching author data:', error);
+                            itemName.innerHTML = 'Error fetching item';
+                        }
+                        itemList.appendChild(itemName);
+                    });
+
+                    currentDate = new Date();
+                    loanDate = new Date(loan.start_date);
+                    returnDate = new Date();
+                    returnDate.setDate(loanDate.getDate() + 7);
+                    startDate = document.createElement("td");
+                    startDate.innerHTML = loanDate.getDate()+" - "+(loanDate.getMonth()+1)+" - "+loanDate.getFullYear();
+                    endDate = document.createElement("td");
+                    endDate.innerHTML = returnDate.getDate()+" - "+(returnDate.getMonth())+" - "+returnDate.getFullYear();
+
+                    const loanStatus = document.createElement('td');
+                    if(currentDate < returnDate && currentDate > loanDate)
+                    {
+                        loanStatus.innerHTML = "En cours";
+                    }
+                    else if(currentDate < loanDate)
+                    {
+                        loanStatus.innerHTML = "A venir";
+                    }
+                    else{
+                        loanStatus.innerHTML = "Passée";
+                    }
+                    suppr = document.createElement('td');
+                    suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
+
+                    line.appendChild(bookingNumber);
+                    line.appendChild(userName);
+                    items.appendChild(itemList);
+                    line.appendChild(items);
+                    line.appendChild(startDate);
+                    line.appendChild(endDate);
+                    line.appendChild(loanStatus);
+                    line.appendChild(suppr);
+
+                    bookingList.appendChild(line);
                 });
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -516,6 +554,7 @@
         fetchEditorsAndPopulateSelect();
         fetchDirectorsAndPopulateSelect();
         fetchLanguagesAndPopulateSelect();
+        fetchBookingsAndDisplay();
 
         addBookForm.addEventListener('submit', function(event) {
             event.preventDefault();

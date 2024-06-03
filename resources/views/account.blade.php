@@ -87,7 +87,7 @@
                             startDate = document.createElement("td");
                             startDate.innerHTML = loanDate.getDate()+" - "+(loanDate.getMonth()+1)+" - "+loanDate.getFullYear();
                             endDate = document.createElement("td");
-                            endDate.innerHTML = returnDate.getDate()+" - "+(returnDate.getMonth()+1)+" - "+returnDate.getFullYear();;
+                            endDate.innerHTML = returnDate.getDate()+" - "+(returnDate.getMonth())+" - "+returnDate.getFullYear();
                             bookingNumber = document.createElement("td");
                             bookingNumber.innerHTML = loan.booking_number;
 

@@ -55,7 +55,7 @@ class UserController extends Controller
         if ($user && $request->password == $user->password) 
         {
             // L'utilisateur existe et le mot de passe est correct
-            return response()->json($user->id, 200);
+            return response()->json($user, 200);
         } 
         else 
         {
