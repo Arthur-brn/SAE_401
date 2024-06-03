@@ -191,7 +191,7 @@
                 <p>Rechercher une réservation :</p>
                 <input type="number" name="" id="" placeholder="N° de la réservation">
             </div>
-            <table>
+            <table id="allBookings">
                 <tr>
                     <th>Numéro de la réservation</th>
                     <th>Nom</th>
@@ -236,7 +236,7 @@
                 <p>Rechercher une réservation :</p>
                 <input type="text" name="" id="" placeholder="Titre du document">
             </div>
-            <table>
+            <table id="futureBookings">
                 <tr>
                     <th>Numéro de la réservation</th>
                     <th>Nom</th>
@@ -267,7 +267,7 @@
                 <p>Rechercher une réservation :</p>
                 <input type="text" name="" id="" placeholder="Titre du document">
             </div>
-            <table>
+            <table id="currentBookings">
                 <tr>
                     <th>Numéro de la réservation</th>
                     <th>Nom</th>
@@ -318,6 +318,9 @@
         const bookLanguage = document.getElementById('language_id');
         const addBookForm = document.getElementById('addBookForm');
         const addFilmForm = document.getElementById('addFilmForm');
+        const bookingList = document.getElementById('allBookings');
+        const futureBooking = document.getElementById('futureBookings');
+        const currentBooking = document.getElementById('currentBookings');
 
         async function fetchBooksAndDisplay() {
             try {
@@ -476,6 +479,22 @@
         }
 
         async function fetchLanguagesAndPopulateSelect() {
+            try {
+                const response = await fetch('api/languages');
+                const languages = await response.json();
+
+                languages.forEach(language => {
+                    const languageOption = document.createElement('option');
+                    languageOption.innerHTML = language.name;
+                    languageOption.setAttribute('value', language.id);
+                    bookLanguage.appendChild(languageOption);
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        async function fetchBookingsAndDisplay(){
             try {
                 const response = await fetch('api/languages');
                 const languages = await response.json();

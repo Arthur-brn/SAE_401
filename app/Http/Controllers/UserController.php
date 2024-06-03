@@ -55,8 +55,7 @@ class UserController extends Controller
         if ($user && $request->password == $user->password) 
         {
             // L'utilisateur existe et le mot de passe est correct
-            $_SESSION['userId'] = $user->id;
-            return response()->json($_SESSION['userId'], 200);
+            return response()->json($user->id, 200);
         } 
         else 
         {
