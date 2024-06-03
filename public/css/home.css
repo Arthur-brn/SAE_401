@@ -15,10 +15,8 @@
     width: 100%;
 }
 
-.img {
-    background-color: gray;
-    width: 611px;
-    height: 443.45px;
+#top_right img {
+    width: 40vw;
 }
 
 #top_left {
@@ -40,6 +38,7 @@
     flex-direction: column;
     align-items: center;
     gap: 50px;
+    max-width: 100vw;
 }
 
 #literature > div {
@@ -62,17 +61,36 @@
 
 #books_categories {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
-#books_categories .img {
+#books_categories ul{
+    display: flex;
     width: 100%;
-    height: 277.46px;
+    scroll-snap-type: x var(--tw-scroll-snap-strictness);
+    --tw-scroll-snap-strictness: mandatory;
+    overflow-x: scroll;
+    gap: 5%;
+}
+
+#books_categories ul li{
+    display: flex;
+    width: 30%;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+#books_categories img {
+    width: 100%;
     border-radius: 10px;
 }
 
 #literature #books_categories > div {
-    width: 30%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -96,10 +114,91 @@
     gap: 10px;
 }
 
-#cinema div .img {
-    height: 555px;
+#cinema div img {
+    width: 100%;
 }
 
 #left_cine {
-    padding: 0 70px;
+    padding: 10px 70px;
+}
+
+#faq{
+    padding:50px 70px 0;
+}
+
+#faq div {
+    align-items: baseline;
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+#faq>div {
+    align-items: center;
+}
+
+
+#faq div div {
+    flex-direction: column;
+    width: 100%;
+}
+
+#faq>div>div{
+    padding: 10px;
+}
+
+#questions button{
+    width: 100%;
+    border: #FF625C solid 1px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+#answer{
+    padding: 0 10px;
+}
+
+@media only screen and (max-width: 750px) {
+    #top_page {
+        flex-direction: column;
+        gap: 30px;
+        padding: 9vw 3vw;
+    }
+
+    #top_page img {
+        width: 70%;
+    }
+
+    #top_right {
+        align-items: center;
+    }
+
+    #cinema{
+        flex-direction: column;
+    }
+
+    #left_cine {
+        padding: 50px 10px 10px;
+    }
+
+    #literature > div {
+        flex-direction: column;
+    }
+
+    #literature{
+        padding: 50px 10px;
+    }
+
+    #faq {
+        padding:50px 10px 0;
+    }
+
+    #faq>div {
+        flex-direction: column;
+    }
+    
+    #books_categories ul li{
+        width: 100%;
+    }
 }

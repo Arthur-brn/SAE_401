@@ -24,7 +24,7 @@ class CreateFilmTable extends Migration
             $table->integer('duration');
             $table->integer('year');
             $table->unsignedTinyInteger('copy_number');
-            $table->unsignedInteger('loan_number');
+            $table->unsignedInteger('loan_number')->default(0);
             $table->timestamps();
 
             $table->foreign('director_id')->references('id')->on('director');

@@ -4,11 +4,11 @@
 <section id="top_page">
     <div id="top_left">
         <h1>Nos dernières pépites</h1>
-        <p class="p1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.</p>
-        <button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
+        <p class="p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.</p>
+        <button>VOIR PLUS <i class="fa-solid fa-arrow-right " style="color: #6887f6;"></i></button>
     </div>
     <div id="top_right">
-        <div class="img"></div>
+        <img src="./assets/img/booksHome.png" alt="">
     </div>
 </section>
 <section id="literature">
@@ -40,34 +40,111 @@
         </div>
     </div>
     <div id="books_categories">
-        <div class="categorie">
-            <div class="img"></div>
-            <h3>Roman</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
-        </div>
-        <div class="categorie">
-            <div class="img"></div>
-            <h3>Roman</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
-        </div>
-        <div class="categorie">
-            <div class="img"></div>
-            <h3>Roman</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
-        </div>
+        <ul>
+            <li>
+                <div id="books_categories">
+                    <div class="categorie">
+                        <img src="./assets/img/roman.png" alt="">
+                        <h3>Roman</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div id="books_categories">
+                    <div class="categorie">
+                        <img src="./assets/img/roman.png" alt="">
+                        <h3>Roman</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div id="books_categories">
+                    <div class="categorie">
+                        <img src="./assets/img/roman.png" alt="">
+                        <h3>Roman</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div id="books_categories">
+                    <div class="categorie">
+                        <img src="./assets/img/roman.png" alt="">
+                        <h3>Roman</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div id="books_categories">
+                    <div class="categorie">
+                        <img src="./assets/img/roman.png" alt="">
+                        <h3>Roman</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div id="books_categories">
+                    <div class="categorie">
+                        <img src="./assets/img/roman.png" alt="">
+                        <h3>Roman</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
     <button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
 </section>
 <section id="cinema">
     <div id="left_cine">
-        <span>-Littérature</span>
+        <span>-Cinéma</span>
         <h2>Les dernières sorties au cinéma en DVD !</h2>
-        <p class="p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum..</p>
+        <p class="p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         <button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
     </div>
     <div id="right_cine">
-        <div class="img">
-
+        <img src="./assets/img/cinema.png" alt="">
+    </div>
+</section>
+<section id="faq">
+    <span>-FAQ</span>
+    <div>
+        <div id="questions" x-data="{
+            faqs: [
+                {
+                    question : 'Ceci est la première question ?',
+                    answer : 'Ceci est la réponse à la première question.',
+                    isOpen : false,
+                },
+                {
+                    question : 'Ceci est la deuxième question ?',
+                    answer : 'Ceci est la réponse à la deuxième question.',
+                    isOpen : false,
+                },
+                {
+                    question : 'Ceci est la troisième question ?',
+                    answer : 'Ceci est la réponse à la troisième question.',
+                    isOpen : false,
+                },
+            ]
+        }">
+            <template x-for="faq in faqs" :key="faq.question">
+                <div>
+                    <button @click="faq.isOpen = !faq.isOpen">
+                        <div x-text="faq.question"></div>
+                    </button>
+                    <div id="answer" x-text="faq.answer" x-show="faq.isOpen"></div>
+                </div>
+            </template>
+        </div>
+        <div>
+            <h2>Qui sommes nous ?</h2>
+            <p class="p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum..</p>
+            <button>CONTACT <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
         </div>
     </div>
 </section>
