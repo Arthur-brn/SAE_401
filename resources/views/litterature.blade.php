@@ -13,7 +13,7 @@
         <button class="voir_plus">VOIR PLUS -></button>
     </div>
     <div class=" img">
-        <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+        <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
     </div>
 </section>
 
@@ -23,7 +23,7 @@
         <ul class="splide__list">
             <li class="splide__slide">
                 <div>
-                    <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
                     <div class="infos">
                         <h5>Paradoxe. 1</h5>
                         <h6>MARAZANO, RICHARD</h6>
@@ -32,7 +32,7 @@
             </li>
             <li class="splide__slide">
                 <div>
-                    <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
                     <div class="infos">
                         <h5>Paradoxe. 2</h5>
                         <h6>MARAZANO, RICHARD</h6>
@@ -41,7 +41,7 @@
             </li>
             <li class="splide__slide">
                 <div>
-                    <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
                     <div class="infos">
                         <h5>Paradoxe. 3</h5>
                         <h6>MARAZANO, RICHARD</h6>
@@ -50,7 +50,7 @@
             </li>
             <li class="splide__slide">
                 <div>
-                    <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
                     <div class="infos">
                         <h5>Paradoxe. 4</h5>
                         <h6>MARAZANO, RICHARD</h6>
@@ -59,7 +59,7 @@
             </li>
             <li class="splide__slide">
                 <div>
-                    <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
                     <div class="infos">
                         <h5>Paradoxe. 5</h5>
                         <h6>MARAZANO, RICHARD</h6>
@@ -68,7 +68,7 @@
             </li>
             <li class="splide__slide">
                 <div>
-                    <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
                     <div class="infos">
                         <h5>Paradoxe. 6</h5>
                         <h6>MARAZANO, RICHARD</h6>
@@ -79,10 +79,10 @@
     </div>
     <div class="splide__arrows">
         <div class="splide__arrow splide__arrow--prev">
-            <img src="./img/fleche_droite.svg" alt="TeloCulture">
+            <img src="./assets/img/fleche_droite.svg" alt="TeloCulture">
         </div>
         <div class="splide__arrow splide__arrow--next">
-            <img src="./img/fleche_gauche.svg" alt="TeloCulture">
+            <img src="./assets/img/fleche_gauche.svg" alt="TeloCulture">
         </div>
     </div>
 
@@ -96,7 +96,7 @@
         <ul class="splide__list">
             <li class="splide__slide">
                 <div>
-                    <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
                     <div class="infos">
                         <h5>Paradoxe. 1</h5>
                         <h6>MARAZANO, RICHARD</h6>
@@ -105,7 +105,7 @@
             </li>
             <li class="splide__slide">
                 <div>
-                    <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
                     <div class="infos">
                         <h5>Paradoxe. 2</h5>
                         <h6>MARAZANO, RICHARD</h6>
@@ -114,7 +114,7 @@
             </li>
             <li class="splide__slide">
                 <div>
-                    <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
                     <div class="infos">
                         <h5>Paradoxe. 3</h5>
                         <h6>MARAZANO, RICHARD</h6>
@@ -123,7 +123,7 @@
             </li>
             <li class="splide__slide">
                 <div>
-                    <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
                     <div class="infos">
                         <h5>Paradoxe. 4</h5>
                         <h6>MARAZANO, RICHARD</h6>
@@ -132,7 +132,7 @@
             </li>
             <li class="splide__slide">
                 <div>
-                    <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
                     <div class="infos">
                         <h5>Paradoxe. 5</h5>
                         <h6>MARAZANO, RICHARD</h6>
@@ -141,7 +141,7 @@
             </li>
             <li class="splide__slide">
                 <div>
-                    <img src="./img/top-page_litterature.jpg" alt="TeloCulture">
+                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
                     <div class="infos">
                         <h5>Paradoxe. 6</h5>
                         <h6>MARAZANO, RICHARD</h6>
@@ -152,10 +152,10 @@
     </div>
     <div class="splide__arrows">
         <div class="splide__arrow splide__arrow--prev">
-            <img src="./img/fleche_droite.svg" alt="TeloCulture">
+            <img src="./assets/img/fleche_droite.svg" alt="TeloCulture">
         </div>
         <div class="splide__arrow splide__arrow--next">
-            <img src="./img/fleche_gauche.svg" alt="TeloCulture">
+            <img src="./assets/img/fleche_gauche.svg" alt="TeloCulture">
         </div>
     </div>
     <button class="voir_plus">VOIR PLUS -></button>
