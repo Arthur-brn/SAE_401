@@ -87,3 +87,10 @@ Route::get('/account', function () {
         'fileJS' => 'userAccount'
     ]);
 });
+
+Route::get('/panier', function () {
+    return view('panier', [
+        'fileCss' => 'panier',
+        'fileJS' => ''
+    ]);
+});

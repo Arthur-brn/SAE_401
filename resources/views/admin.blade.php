@@ -181,7 +181,7 @@
             <a href="#" @click.prevent="tab = 'tab2' " :class="{ 'tab_selected' : tab === 'tab2' }">Réservations à venir </a>
         </li>
         <li>
-            <a href="#" @click.prevent="tab = 'tab3'" :class="{ 'tab_selected' : tab === 'tab3' }">réservations en cours</a>
+            <a href="#" @click.prevent="tab = 'tab3'" :class="{ 'tab_selected' : tab === 'tab3' }">Réservations en cours</a>
         </li>
         <li>
             <a href="#" @click.prevent="tab = 'tab4'" :class="{ 'tab_selected' : tab === 'tab4' }">Modifier une réservation</a>
