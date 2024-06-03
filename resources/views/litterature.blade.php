@@ -190,6 +190,7 @@
     </div>
 </section>
 
+<<<<<<< HEAD
 <script src="./js/splide-4.1.3/dist/js/splide.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -217,5 +218,8 @@
         });
     });
 </script>
+=======
+<script src="./js/litterature.js"></script>
+>>>>>>> origin/develop
 
 @endsection
