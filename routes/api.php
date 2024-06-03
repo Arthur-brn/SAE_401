@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 // Controller
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\LoanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +35,7 @@ Route::post('/connect', [UserController::class, 'login']);
 
 Route::get('/account/{id}', [UserController::class, 'getCustomerInfo']);
 Route::get('/account/loan/{id}', [UserController::class, 'getCustomerLoan']);
+
+
+Route::get('/api/panier', [LoanController::class, 'index']);
+Route::post('/api/panier/add', [LoanController::class, 'add']);
