@@ -50,5 +50,6 @@
         </div>
     </div>
 </section>
+<script src="./js/details_article.js"></script>
 
 @endsection
