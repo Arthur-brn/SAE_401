@@ -190,7 +190,6 @@
     </div>
 </section>
 
-<script src="./js/splide-4.1.3/dist/js/splide.min.js"></script>
-<script src="./js/splide.js"></script>
+<script src="./js/litterature.js"></script>
 
 @endsection
