@@ -10,7 +10,7 @@
             hac.
             Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.
         </p>
-        <button class="voir_plus">VOIR PLUS -></button>
+        <button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button>
     </div>
     <div class=" img">
         <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
@@ -19,6 +19,7 @@
 
 <section id="nouveautes" class="splide" aria-label="Splide Basic HTML Example">
     <h2>Nouveautés !</h2>
+
     <div class="splide__track">
         <ul class="splide__list">
             <li class="splide__slide">
@@ -86,7 +87,7 @@
         </div>
     </div>
 
-    <button class="voir_plus">VOIR PLUS -></button>
+    <button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button>
 </section>
 
 <section id="coups_de_coeur" class="splide" aria-label="Splide Basic HTML Example">
@@ -158,7 +159,7 @@
             <img src="./assets/img/fleche_gauche.svg" alt="TeloCulture">
         </div>
     </div>
-    <button class="voir_plus">VOIR PLUS -></button>
+    <button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button>
 </section>
 
 <section id="genre">
