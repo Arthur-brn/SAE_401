@@ -311,6 +311,29 @@
 
                     const suppr = document.createElement('td');
                     suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
+                    suppr.addEventListener('click', async function(){
+                        try{
+                            const response = await fetch('/api/checkBook/'+book.id);
+                            const data = await response.json();
+                            console.log(data);
+                            if(data.loanable_id)
+                            {
+                                suppr.innerHTML = "Suppression impossible !";
+                            }
+                            else
+                            {
+                                try{
+                                    const response = await fetch('/api/removeBook/'+book.id);
+                                    const data = await response.json();
+                                    window.location.href = "./admin";
+                                }catch (error) {
+                                    console.error('Error fetching data:', error);
+                                }
+                            } 
+                        } catch (error) {
+                            console.error('Error fetching data:', error);
+                        }
+                    });
 
                     line.appendChild(title);
                     line.appendChild(type);
@@ -365,6 +388,29 @@
 
                     const suppr = document.createElement('td');
                     suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
+                    suppr.addEventListener('click', async function(){
+                        try{
+                            const response = await fetch('/api/checkFilm/'+film.id);
+                            const data = await response.json();
+                            console.log(data);
+                            if(data.loanable_id)
+                            {
+                                suppr.innerHTML = "Suppression impossible !";
+                            }
+                            else
+                            {
+                                try{
+                                    const response = await fetch('/api/removeFilm/'+film.id);
+                                    const data = await response.json();
+                                    window.location.href = "./admin";
+                                }catch (error) {
+                                    console.error('Error fetching data:', error);
+                                }
+                            } 
+                        } catch (error) {
+                            console.error('Error fetching data:', error);
+                        }
+                    });
 
                     line.appendChild(title);
                     line.appendChild(type);
@@ -521,6 +567,15 @@
                     
                     suppr = document.createElement('td');
                     suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
+                    suppr.addEventListener('click', async function(){
+                        try{
+                            const response = await fetch('api/removeLoan/'+loan.booking_number);
+                            const data = await response.json();
+                            window.location.href = "./admin";
+                        } catch (error) {
+                            console.error('Error fetching data:', error);
+                        }
+                    });
 
                     line.appendChild(bookingNumber);
                     line.appendChild(userName);
@@ -550,7 +605,7 @@
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
-        }  
+        }
         
         fetchBooksAndDisplay();
         fetchFilmsAndDisplay();
