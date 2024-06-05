@@ -173,13 +173,13 @@
 <div class="container" x-data="{ tab : 'tab1' }">
     <ul id="tabs">
         <li>
-            <a href="#" @click.prevent="tab = 'tab1'" :class="{ 'tab_selected' : tab === 'tab1' }">Toutes les réservations</a>
+            <a href="#" @click.prevent="tab = 'tab1'" :class="{ 'tab_selected' : tab === 'tab1' }">Réservations en cours</a>
         </li>
         <li>
             <a href="#" @click.prevent="tab = 'tab2' " :class="{ 'tab_selected' : tab === 'tab2' }">Réservations à venir </a>
         </li>
         <li>
-            <a href="#" @click.prevent="tab = 'tab3'" :class="{ 'tab_selected' : tab === 'tab3' }">réservations en cours</a>
+            <a href="#" @click.prevent="tab = 'tab3'" :class="{ 'tab_selected' : tab === 'tab3' }">Réservations passées</a>
         </li>
         <li>
             <a href="#" @click.prevent="tab = 'tab4'" :class="{ 'tab_selected' : tab === 'tab4' }">Modifier une réservation</a>
@@ -191,7 +191,7 @@
                 <p>Rechercher une réservation :</p>
                 <input type="number" name="" id="" placeholder="N° de la réservation">
             </div>
-            <table id="allBookings">
+            <table id="currentBookings">
                 <thead>
                     <tr>
                         <th>Numéro de la réservation</th>
@@ -229,7 +229,7 @@
                 <p>Rechercher une réservation :</p>
                 <input type="text" name="" id="" placeholder="Titre du document">
             </div>
-            <table id="currentBookings">
+            <table id="passedBookings">
                 <thead>
                     <tr>
                         <th>Numéro de la réservation</th>
@@ -268,7 +268,7 @@
         const bookLanguage = document.getElementById('language_id');
         const addBookForm = document.getElementById('addBookForm');
         const addFilmForm = document.getElementById('addFilmForm');
-        const bookingList = document.getElementById('allBookings');
+        const passedBooking = document.getElementById('passedBookings');
         const futureBooking = document.getElementById('futureBookings');
         const currentBooking = document.getElementById('currentBookings');
 
@@ -510,25 +510,15 @@
 
                     currentDate = new Date();
                     loanDate = new Date(loan.start_date);
-                    returnDate = new Date();
+                    returnDate = new Date(loanDate);
                     returnDate.setDate(loanDate.getDate() + 7);
                     startDate = document.createElement("td");
                     startDate.innerHTML = loanDate.getDate()+" - "+(loanDate.getMonth()+1)+" - "+loanDate.getFullYear();
                     endDate = document.createElement("td");
-                    endDate.innerHTML = returnDate.getDate()+" - "+(returnDate.getMonth())+" - "+returnDate.getFullYear();
+                    endDate.innerHTML = returnDate.getDate()+" - "+(returnDate.getMonth()+1)+" - "+returnDate.getFullYear();
 
                     const loanStatus = document.createElement('td');
-                    if(currentDate < returnDate && currentDate > loanDate)
-                    {
-                        loanStatus.innerHTML = "En cours";
-                    }
-                    else if(currentDate < loanDate)
-                    {
-                        loanStatus.innerHTML = "A venir";
-                    }
-                    else{
-                        loanStatus.innerHTML = "Passée";
-                    }
+                    
                     suppr = document.createElement('td');
                     suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
 
@@ -540,13 +530,27 @@
                     line.appendChild(endDate);
                     line.appendChild(loanStatus);
                     line.appendChild(suppr);
+                    if(currentDate < returnDate && currentDate > loanDate)
+                    {
+                        loanStatus.innerHTML = "En cours";
+                        currentBooking.appendChild(line);
+                    }
+                    else if(currentDate < loanDate)
+                    {
+                        loanStatus.innerHTML = "A venir";
+                        futureBooking.appendChild(line);
+                    }
+                    else{
+                        loanStatus.innerHTML = "Passée";
+                        passedBooking.appendChild(line);
+                    }
 
-                    bookingList.appendChild(line);
                 });
+
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
-        }
+        }  
         
         fetchBooksAndDisplay();
         fetchFilmsAndDisplay();
