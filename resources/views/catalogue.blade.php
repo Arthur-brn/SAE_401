@@ -8,21 +8,21 @@
         <div class="all_filtres">
             <div class="filtre">
                 <h6>Filtres rapides</h6>
-                <img src="./img/fleche_bas.svg" alt="Teloculture">
+                <img src="./assets/img/fleche_bas.svg" alt="Teloculture">
             </div>
             <div class="choix">
                 <p>choix filtres</p>
             </div>
             <div class="filtre">
                 <h6>Filtres rapides</h6>
-                <img src="./img/fleche_bas.svg" alt="Teloculture">
+                <img src="./assets/img/fleche_bas.svg" alt="Teloculture">
             </div>
             <div class="choix">
                 <p>choix filtres</p>
             </div>
             <div class="filtre">
                 <h6>Filtres rapides</h6>
-                <img src="./img/fleche_bas.svg" alt="Teloculture">
+                <img src="./assets/img/fleche_bas.svg" alt="Teloculture">
             </div>
             <div class="choix">
                 <p>choix filtres</p>
@@ -38,7 +38,7 @@
             </div>
             <div class="type">
                 <p>NOUVEAUTES</p>
-                <img src="./img/croix.svg" alt="Teloculture">
+                <img src="./assets/img/croix.svg" alt="Teloculture">
             </div>
         </div>
         <div class="resultat">
@@ -47,21 +47,21 @@
                 <h6 class="totale_resultat">20</h6>
             </div>
             <div class="droite">
-                <img src="./img/fleche_gauche.svg" alt="Teloculture" class="pagination-nav" data-page="prev">
+                <img src="./assets/img/fleche_gauche.svg" alt="Teloculture" class="pagination-nav" data-page="prev">
                 <p class="active" data-page="1">1</p>
                 <p class="passive" data-page="2">2</p>
                 <p class="passive" data-page="3">3</p>
                 <p class="reduit">...</p>
                 <p class="passive totale_page" data-page="10">10</p>
-                <img src="./img/fleche_droite.svg" alt="Teloculture" class="pagination-nav" data-page="next">
+                <img src="./assets/img/fleche_droite.svg" alt="Teloculture" class="pagination-nav" data-page="next">
             </div>
         </div>
         <div class="all_articles">
             <div class="article" data-article="1">
                 <div class="gauche_article">
-                    <img class="img_article" src="./img/catalogue.jpg" alt="TeloCulture">
+                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
                     <div class="plus_infos">
-                        <img src="./img/Info.svg" alt="TeloCulture">
+                        <img src="./assets/img/Info.svg" alt="TeloCulture">
                         <h5>Plus d'informations</h5>
                     </div>
                 </div>
@@ -77,9 +77,9 @@
             </div>
             <div class="article" data-article="2">
                 <div class="gauche_article">
-                    <img class="img_article" src="./img/catalogue.jpg" alt="TeloCulture">
+                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
                     <div class="plus_infos">
-                        <img src="./img/Info.svg" alt="TeloCulture">
+                        <img src="./assets/img/Info.svg" alt="TeloCulture">
                         <h5>Plus d'informations</h5>
                     </div>
                 </div>
@@ -95,9 +95,9 @@
             </div>
             <div class="article" data-article="3">
                 <div class="gauche_article">
-                    <img class="img_article" src="./img/catalogue.jpg" alt="TeloCulture">
+                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
                     <div class="plus_infos">
-                        <img src="./img/Info.svg" alt="TeloCulture">
+                        <img src="./assets/img/Info.svg" alt="TeloCulture">
                         <h5>Plus d'informations</h5>
                     </div>
                 </div>
@@ -113,9 +113,9 @@
             </div>
             <div class="article" data-article="4">
                 <div class="gauche_article">
-                    <img class="img_article" src="./img/catalogue.jpg" alt="TeloCulture">
+                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
                     <div class="plus_infos">
-                        <img src="./img/Info.svg" alt="TeloCulture">
+                        <img src="./assets/img/Info.svg" alt="TeloCulture">
                         <h5>Plus d'informations</h5>
                     </div>
                 </div>
@@ -131,9 +131,9 @@
             </div>
             <div class="article" data-article="5">
                 <div class="gauche_article">
-                    <img class="img_article" src="./img/catalogue.jpg" alt="TeloCulture">
+                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
                     <div class="plus_infos">
-                        <img src="./img/Info.svg" alt="TeloCulture">
+                        <img src="./assets/img/Info.svg" alt="TeloCulture">
                         <h5>Plus d'informations</h5>
                     </div>
                 </div>
@@ -149,9 +149,9 @@
             </div>
             <div class="article hidden" data-article="6">
                 <div class="gauche_article">
-                    <img class="img_article" src="./img/catalogue.jpg" alt="TeloCulture">
+                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
                     <div class="plus_infos">
-                        <img src="./img/Info.svg" alt="TeloCulture">
+                        <img src="./assets/img/Info.svg" alt="TeloCulture">
                         <h5>Plus d'informations</h5>
                     </div>
                 </div>
@@ -167,9 +167,9 @@
             </div>
             <div class="article hidden" data-article="7">
                 <div class="gauche_article">
-                    <img class="img_article" src="./img/catalogue.jpg" alt="TeloCulture">
+                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
                     <div class="plus_infos">
-                        <img src="./img/Info.svg" alt="TeloCulture">
+                        <img src="./assets/img/Info.svg" alt="TeloCulture">
                         <h5>Plus d'informations</h5>
                     </div>
                 </div>
@@ -185,9 +185,9 @@
             </div>
             <div class="article hidden" data-article="8">
                 <div class="gauche_article">
-                    <img class="img_article" src="./img/catalogue.jpg" alt="TeloCulture">
+                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
                     <div class="plus_infos">
-                        <img src="./img/Info.svg" alt="TeloCulture">
+                        <img src="./assets/img/Info.svg" alt="TeloCulture">
                         <h5>Plus d'informations</h5>
                     </div>
                 </div>
