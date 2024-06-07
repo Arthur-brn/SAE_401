@@ -21,11 +21,22 @@ Route::get('/', function () {
 
     ]);
 });
+
 Route::get('/litterature', function () {
 
     return view('litterature', [
         'fileCss' => 'litterature',
         'fileJS' => ''
+    ]);
+});
+
+Route::get('/litterature-{id}', function ($id) {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
+        'fileJS' => '',
+        'id' => $id,
+        'type' => 'book'
     ]);
 });
 
