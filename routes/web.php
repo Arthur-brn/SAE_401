@@ -17,7 +17,7 @@ Route::get('/', function () {
 
     return view('home', [
         'fileCss' => 'home',
-        'fileJS' => ''
+        'fileJS' => 'home'
 
     ]);
 });
