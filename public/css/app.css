@@ -51,6 +51,7 @@
   }
   
   button {
+    display: flex;
     padding: 5px;
     gap: 8px;
     border: 1px solid;

@@ -98,7 +98,7 @@
         <div>
             <div id="footer_left">
                 <p>TELOCULTURE</p>
-                <p>Nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                <p>Nos coordonnées et informations de contact ici. Suivez-nous sur les réseaux sociaux pour rester informé des dernières nouvelles et événements.</p>
                 <div id="icons">
                     <i class="fa-brands fa-facebook fa-3x" style="color: #ff625c;"></i>
                     <i class="fa-brands fa-linkedin fa-3x" style="color: #ff625c;"></i>
