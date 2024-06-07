@@ -11,7 +11,15 @@
                 <img src="./assets/img/fleche_bas.svg" alt="Teloculture">
             </div>
             <div class="choix">
-                <p>choix filtres</p>
+                <div class="filtre_rapides">
+                    <label name="nouveautes">Nouveautes</label>
+                    <input type="checkbox" name="nouveautes">
+                </div>
+                <div class="filtre_rapides">
+                    <label name="coup_de_coeur">Coup de coeur</label>
+                    <input type="checkbox" name="coup_de_coeur">
+                </div>
+
             </div>
             <div class="filtre">
                 <h6>Filtres rapides</h6>
@@ -47,13 +55,13 @@
                 <h6 class="totale_resultat">20</h6>
             </div>
             <div class="droite">
-                <img src="./assets/img/fleche_gauche.svg" alt="Teloculture" class="pagination-nav" data-page="prev">
+                <img src="./assets/img/fleche_back_catalogue.svg" alt="Teloculture" class="pagination-nav" data-page="prev">
                 <p class="active" data-page="1">1</p>
                 <p class="passive" data-page="2">2</p>
                 <p class="passive" data-page="3">3</p>
                 <p class="reduit">...</p>
                 <p class="passive totale_page" data-page="10">10</p>
-                <img src="./assets/img/fleche_droite.svg" alt="Teloculture" class="pagination-nav" data-page="next">
+                <img src="./assets/img/fleche_forward_catalogue.svg" alt="Teloculture" class="pagination-nav" data-page="next">
             </div>
         </div>
         <div class="all_articles">

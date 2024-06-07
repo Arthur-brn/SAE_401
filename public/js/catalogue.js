@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const choix = this.nextElementSibling;
             choix.style.display =
-                choix.style.display === "block" ? "none" : "block";
+                choix.style.display === "flex" ? "none" : "flex";
         });
     });
 
