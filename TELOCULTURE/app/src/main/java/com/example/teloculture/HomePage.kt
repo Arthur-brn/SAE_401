@@ -2,14 +2,18 @@ package com.example.teloculture
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -26,13 +30,16 @@ fun HomePage(navController: NavController) {
             .padding(16.dp)
     ) {
         item {
-            SectionTitle("La littérature", Color.Red)
+            TopBar()
+        }
+        item {
+            SectionTitle("La littérature", Color(0xFFFF625C))
         }
         item {
             CategoriesRow()
         }
         item {
-            SectionTitle("Livres populaires", Color.Blue)
+            SectionTitle("Livres populaires", Color(0xFF6887F6))
         }
         item {
             BooksRow()
@@ -41,11 +48,37 @@ fun HomePage(navController: NavController) {
             MoreButton("Voir plus")
         }
         item {
-            SectionTitle("Le cinéma", Color.Red)
+            SectionTitle("Le cinéma", Color(0xFFFF625C))
         }
         item {
             CinemaSection()
         }
+    }
+}
+
+@Composable
+fun TopBar() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            painter = painterResource(id = R.drawable.user),
+            contentDescription = null,
+            modifier = Modifier.size(40.dp)
+        )
+        Image(
+            painter = painterResource(id = R.drawable.logo), // Remplacez par votre logo
+            contentDescription = null,
+            modifier = Modifier.size(60.dp)
+        )
+        Icon(
+            painter = painterResource(id = R.drawable.menu),
+            contentDescription = null,
+            modifier = Modifier.size(40.dp)
+        )
     }
 }
 
@@ -121,40 +154,61 @@ fun MoreButton(text: String) {
         onClick = { /* Handle click */ },
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Transparent,
-            contentColor = Color.Blue
+            contentColor = Color(0xFF6887F6)
         ),
-        modifier = Modifier.padding(vertical = 8.dp)
+        modifier = Modifier
+            .padding(vertical = 8.dp)
+            .border(width = 1.dp, color = Color(0xFF6887F6), shape = RoundedCornerShape(4.dp))
     ) {
         Text(text)
     }
 }
 
+
 @Composable
 fun CinemaSection() {
+    val gradient = Brush.linearGradient(
+        colors = listOf(
+            Color(0xFFFFE5E5),
+            Color(0xFFF5FFFE),
+            Color(0xFFFFFFFF),
+        ),
+        start = Offset.Zero, // Début du dégradé (coin en haut à gauche)
+        end = Offset.Infinite, // Fin du dégradé (coin en bas à droite)
+    )
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color(0xFFE0F7FA))
+            .background(brush = gradient) // Appliquer le dégradé en tant que background
             .padding(16.dp)
     ) {
-        Column {
-            Text(
-                text = "Les dernières sorties en DVD !",
-                fontSize = 18.sp,
-                color = Color.Blue
-            )
-            Text(
-                text = "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et.",
-                fontSize = 14.sp,
-                color = Color.Gray,
-                modifier = Modifier.padding(vertical = 8.dp)
-            )
-            MoreButton("Voir plus")
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                Text(
+                    text = "Les dernières sorties en DVD !",
+                    fontSize = 18.sp,
+                    color = Color.Blue
+                )
+                Text(
+                    text = "Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et.",
+                    fontSize = 14.sp,
+                    color = Color.Gray,
+                    modifier = Modifier.padding(vertical = 8.dp)
+                )
+                MoreButton("Voir plus")
+            }
+            Spacer(modifier = Modifier.width(16.dp)) // Ajout d'un Spacer pour l'espacement
             Image(
-                painter = painterResource(id = R.drawable.imgbook), // Replace with your actual drawable resource ID
+                painter = painterResource(id = R.drawable.imgbook), // Remplacez par l'ID de votre image
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxHeight() // La hauteur maximale de l'image
             )
         }
     }
