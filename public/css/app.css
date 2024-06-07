@@ -51,6 +51,7 @@
   }
   
   button {
+    display: flex;
     padding: 5px;
     gap: 8px;
     border: 1px solid;
@@ -58,6 +59,7 @@
     background-color: transparent;
     border-radius: 7px;
     line-height: 220%;
+    cursor: pointer;
   }
   
   p {
@@ -79,3 +81,13 @@
     letter-spacing: 0;
   }
   
+  @media only screen and (max-width: 750px) {
+    h1{
+      font-size: 36px;
+    }
+
+    h2{
+      font-size: 24px;
+      line-height: normal;
+    }
+  }

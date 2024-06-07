@@ -1,0 +1,222 @@
+/* Styles généraux */
+h2 {
+    font-size: 50px;
+    color: #6887f6;
+}
+
+p {
+    font-size: 20px;
+}
+
+/* Styles pour la section #top-page */
+#top-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background: rgb(255, 229, 229);
+    background: linear-gradient(
+        90deg,
+        rgb(255, 229, 229) 20%,
+        rgb(255, 255, 255) 100%
+    );
+}
+
+#top-page div {
+    display: flex;
+    justify-content: baseline;
+    align-items: baseline;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#top-page .img {
+    border-radius: 5px;
+    width: 50%;
+    padding: 0 150px;
+}
+
+/* Styles pour Splide */
+.splide {
+    padding: 50px;
+}
+
+.splide__track {
+    display: flex;
+}
+
+.splide__list {
+    display: flex;
+    gap: 50px;
+    list-style: none;
+    width: 80%;
+}
+
+.splide__slide {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.splide__slide div {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.splide__slide img {
+    width: 80%;
+}
+
+.splide__slide .infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: baseline;
+}
+
+.splide__slide .infos h5 {
+    font-size: 18px;
+}
+
+.splide__slide .infos h6 {
+    font-size: 14px;
+    color: #8c8c8c;
+}
+
+/* Styles pour les flèches de navigation */
+.splide__arrow {
+    border-radius: 50%;
+    width: 50px !important;
+    height: 50px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    border: 1px solid #8c8c8c !important;
+    opacity: 100% !important;
+}
+
+.splide__arrow--prev {
+    background-color: #ffffff !important;
+}
+
+.splide__arrow--next {
+    background-color: #ff625c !important;
+    border-color: #ff625c !important;
+}
+
+/* Styles pour la pagination active */
+.splide__pagination__page.is-active {
+    background-color: #ff625c !important;
+}
+
+/* Styles pour la section #genre */
+#genre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    gap: 25px;
+}
+
+#genre div {
+    display: flex;
+    justify-content: baseline;
+    align-items: baseline;
+    flex-direction: column;
+    gap: 40px;
+}
+
+#genre div .allGenre div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#genre div .allGenre div .genre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 250px;
+    background-image: url(https://picsum.photos/400/250);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#genre div .allGenre div .genre h3 {
+    color: #ffffff;
+    font-size: 30px;
+}
+
+/* Styles pour les petits écrans */
+@media screen and (max-width: 480px) {
+    h2 {
+        font-size: 20px;
+        color: #6887f6;
+    }
+
+    p {
+        font-size: 10px;
+    }
+
+    #top-page {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    #top-page div {
+        gap: 20px;
+        width: 100%;
+    }
+
+    #top-page .img {
+        width: 75%;
+        padding: 0;
+    }
+
+    #top-page .img img {
+        width: 100%;
+    }
+
+    .splide {
+        padding: 20px;
+    }
+
+    .splide__list {
+        gap: 10px;
+    }
+
+    .splide__slide {
+        margin: 0 10px;
+    }
+
+    .splide__arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    #genre {
+        padding: 20px;
+        gap: 10px;
+    }
+
+    #genre div {
+        gap: 10px;
+    }
+
+    #genre div .allGenre div .genre {
+        width: 150px;
+        height: 100px;
+    }
+
+    #genre div .allGenre div .genre h3 {
+        font-size: 15px;
+    }
+}

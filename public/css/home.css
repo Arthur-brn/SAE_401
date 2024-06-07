@@ -141,6 +141,7 @@
 #faq div div {
     flex-direction: column;
     width: 100%;
+    text-align: start;
 }
 
 #faq>div>div{
