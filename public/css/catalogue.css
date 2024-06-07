@@ -1,11 +1,14 @@
 #main {
     margin: 50px;
     display: flex;
+    align-items: flex-start !important;
+    align-items: center;
     flex-direction: row;
     gap: 100px;
 }
 #main #filtre {
     display: flex;
+    align-items: baseline;
     flex-direction: column;
     gap: 25px;
 }
@@ -41,11 +44,26 @@
 }
 #main #filtre .all_filtres .choix {
     display: none;
-    padding: 20px;
+    padding: 10px;
     border-bottom: 1px solid #8c8c8c;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 20px;
 }
+
+#main #filtre .all_filtres .choix .filtre_rapides {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
 #main #resultat {
     display: flex;
+    justify-content: baseline;
+    align-items: baseline;
     flex-direction: column;
     gap: 30px;
 }
@@ -79,6 +97,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
 }
 #main #resultat .resultat .gauche {
     display: flex;
@@ -139,12 +158,16 @@
     flex-direction: row;
     align-items: center;
     background-color: #ff625c;
-    color: white;
     border-radius: 5px;
     gap: 10px;
     padding: 10px;
     cursor: pointer;
 }
+
+#main #resultat .all_articles .article .gauche_article .plus_infos h5 {
+    color: white;
+}
+
 #main #resultat .all_articles .article .infos {
     display: flex;
     flex-direction: column;
