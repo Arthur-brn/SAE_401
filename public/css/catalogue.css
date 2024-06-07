@@ -1,0 +1,197 @@
+#main {
+    margin: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+#main #filtre {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+#main #filtre h2 {
+    font-size: 25px;
+    color: #6887f6;
+}
+#main #filtre .all_filtres {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+#main #filtre .all_filtres .filtre {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #8c8c8c;
+    padding: 20px;
+    cursor: pointer;
+    align-items: center;
+}
+#main #filtre .all_filtres .filtre h6 {
+    font-size: 14px;
+}
+#main #filtre .all_filtres .filtre img {
+    transform: rotate(-90deg);
+}
+#main #filtre .all_filtres .filtre.active + .choix {
+    display: block;
+}
+#main #filtre .all_filtres .filtre img.rotate {
+    transform: rotate(0deg);
+}
+#main #filtre .all_filtres .choix {
+    display: none;
+    padding: 20px;
+    border-bottom: 1px solid #8c8c8c;
+}
+#main #resultat {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+#main #resultat h1 {
+    font-size: 28px;
+    color: #6887f6;
+}
+#main #resultat .ma_recherche {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+}
+#main #resultat .ma_recherche p {
+    font-size: 12px;
+}
+#main #resultat .ma_recherche .type {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background-color: #ff625c;
+    color: white;
+    gap: 5px;
+    border-radius: 5px;
+}
+#main #resultat .ma_recherche .type img {
+    height: 17px;
+    cursor: pointer;
+}
+#main #resultat .resultat {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#main #resultat .resultat .gauche {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+#main #resultat .resultat .gauche h6 {
+    font-size: 12px;
+}
+#main #resultat .resultat .gauche .totale_resultat {
+    color: #8c8c8c;
+}
+#main #resultat .resultat .droite {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 12px;
+    gap: 10px;
+}
+#main #resultat .resultat .droite .active {
+    font-size: 14px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+#main #resultat .resultat .droite .passive,
+#main #resultat .resultat .droite .totale_page {
+    cursor: pointer;
+}
+#main #resultat .resultat .droite img {
+    cursor: pointer;
+}
+#main #resultat .all_articles {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#main #resultat .all_articles .hidden {
+    display: none !important;
+}
+#main #resultat .all_articles .article {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+#main #resultat .all_articles .article .gauche_article {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#main #resultat .all_articles .article .gauche_article .img_article {
+    width: 190px;
+    height: 250px;
+}
+#main #resultat .all_articles .article .gauche_article .plus_infos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #ff625c;
+    color: white;
+    border-radius: 5px;
+    gap: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+#main #resultat .all_articles .article .infos {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 20px;
+    max-width: 60%;
+}
+#main #resultat .all_articles .article .infos .type {
+    font-size: 14px;
+    color: #ff625c;
+}
+#main #resultat .all_articles .article .infos h2 {
+    font-size: 20px;
+}
+#main #resultat .all_articles .article .infos h3 {
+    font-size: 16px;
+    color: #8c8c8c;
+}
+
+@media screen and (max-width: 480px) {
+    #main {
+        flex-direction: column-reverse;
+        margin: 10px;
+        gap: 25px;
+    }
+    #main #resultat h1 {
+        font-size: 20px;
+    }
+    #main #resultat .resultat .gauche h6 {
+        font-size: 10px;
+    }
+    #main #resultat .all_articles .article {
+        flex-direction: column;
+    }
+    #main #resultat .all_articles .article .gauche_article {
+        align-items: center;
+    }
+    #main .ma_recherche {
+        flex-wrap: wrap;
+    }
+    #main .ma_recherche p {
+        font-size: 10px;
+    }
+    #main .article {
+        flex-direction: column;
+    }
+    #main .article .infos {
+        max-width: 100%;
+    }
+} /*# sourceMappingURL=catalogue.css.map */
