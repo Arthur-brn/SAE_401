@@ -21,6 +21,7 @@ Route::get('/', function () {
 
     ]);
 });
+
 Route::get('/litterature', function () {
 
     return view('litterature', [
@@ -29,6 +30,13 @@ Route::get('/litterature', function () {
     ]);
 });
 
+Route::get('/catalogue', function () {
+
+    return view('catalogue', [
+        'fileCss' => 'catalogue',
+        'fileJS' => ''
+    ]);
+});
 
 Route::get('/layout', function () {
     return view('layout', [
