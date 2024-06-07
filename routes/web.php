@@ -17,7 +17,7 @@ Route::get('/', function () {
 
     return view('home', [
         'fileCss' => 'home',
-        'fileJS' => ''
+        'fileJS' => 'home'
 
     ]);
 });
@@ -85,5 +85,12 @@ Route::get('/account', function () {
     return view('account', [
         'fileCss' => 'account',
         'fileJS' => 'userAccount'
+    ]);
+});
+
+Route::get('/panier', function () {
+    return view('panier', [
+        'fileCss' => 'panier',
+        'fileJS' => ''
     ]);
 });

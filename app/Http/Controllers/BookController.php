@@ -40,6 +40,6 @@ class BookController extends Controller
     public function destroy($id)
     {
         Book::findOrFail($id)->delete();
-        return response()->json(null, 204);
+        return response()->json(null, 201);
     }
 }
