@@ -43,17 +43,17 @@
         </div>
         <div class="resultat">
             <div class="gauche">
-                <h6>Résultats 1 - 10 / </h6>
-                <h6 class="totale_resultat">132</h6>
+                <h6>Résultats 1 - 5 / </h6>
+                <h6 class="totale_resultat">20</h6>
             </div>
             <div class="droite">
-                <img src="./img/fleche_gauche.svg" alt="Teloculture">
+                <img src="./img/fleche_gauche.svg" alt="Teloculture" class="pagination-nav" data-page="prev">
                 <p class="active" data-page="1">1</p>
                 <p class="passive" data-page="2">2</p>
                 <p class="passive" data-page="3">3</p>
                 <p class="reduit">...</p>
-                <p class="passive totale_page" data-page="140">140</p>
-                <img src="./img/fleche_droite.svg" alt="Teloculture">
+                <p class="passive totale_page" data-page="10">10</p>
+                <img src="./img/fleche_droite.svg" alt="Teloculture" class="pagination-nav" data-page="next">
             </div>
         </div>
         <div class="all_articles">
@@ -140,6 +140,60 @@
                 <div class="infos">
                     <h6 class="type">- BD ou manga</h6>
                     <h2>Paradoxe. 5</h2>
+                    <h3>MARAZANO, RICHARD</h3>
+                    <p>Collection - 2023</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
+                        hendrerit urna.
+                        Pellentesque sit amet sapien fringilla, ...</p>
+                </div>
+            </div>
+            <div class="article hidden" data-article="6">
+                <div class="gauche_article">
+                    <img class="img_article" src="./img/catalogue.jpg" alt="TeloCulture">
+                    <div class="plus_infos">
+                        <img src="./img/Info.svg" alt="TeloCulture">
+                        <h5>Plus d'informations</h5>
+                    </div>
+                </div>
+                <div class="infos">
+                    <h6 class="type">- BD ou manga</h6>
+                    <h2>Paradoxe. 6</h2>
+                    <h3>MARAZANO, RICHARD</h3>
+                    <p>Collection - 2023</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
+                        hendrerit urna.
+                        Pellentesque sit amet sapien fringilla, ...</p>
+                </div>
+            </div>
+            <div class="article hidden" data-article="7">
+                <div class="gauche_article">
+                    <img class="img_article" src="./img/catalogue.jpg" alt="TeloCulture">
+                    <div class="plus_infos">
+                        <img src="./img/Info.svg" alt="TeloCulture">
+                        <h5>Plus d'informations</h5>
+                    </div>
+                </div>
+                <div class="infos">
+                    <h6 class="type">- BD ou manga</h6>
+                    <h2>Paradoxe. 7</h2>
+                    <h3>MARAZANO, RICHARD</h3>
+                    <p>Collection - 2023</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
+                        hendrerit urna.
+                        Pellentesque sit amet sapien fringilla, ...</p>
+                </div>
+            </div>
+            <div class="article hidden" data-article="8">
+                <div class="gauche_article">
+                    <img class="img_article" src="./img/catalogue.jpg" alt="TeloCulture">
+                    <div class="plus_infos">
+                        <img src="./img/Info.svg" alt="TeloCulture">
+                        <h5>Plus d'informations</h5>
+                    </div>
+                </div>
+                <div class="infos">
+                    <h6 class="type">- BD ou manga</h6>
+                    <h2>Paradoxe. 8</h2>
                     <h3>MARAZANO, RICHARD</h3>
                     <p>Collection - 2023</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
