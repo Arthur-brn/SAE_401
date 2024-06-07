@@ -40,6 +40,6 @@ class FilmController extends Controller
     public function destroy($id)
     {
         Film::findOrFail($id)->delete();
-        return response()->json(null, 204);
+        return response()->json(null, 201);
     }
 }
