@@ -1,47 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Compte</title>
-</head>
-<body>
-    <div>
-        <h2>Mon Compte</h2>
-        <p><b>Historique des réservations :</b></p>
-        <p>Emprûnts en cours :</p>
-        <table id="currentTable">
-            <thead>
-                <tr>
-                    <td>Nom du document</td>
-                    <td>Date de réservation</td>
-                    <td>Date de rendu</td>
-                    <td>Numéro de réservation</td>
-                </tr>
-            </thead>
-        </table>
-        <p>Emprûnts passées :</p>
-        <table id="passedTable">
-            <thead>
-                <tr>
-                    <td>Nom du document</td>
-                    <td>Date de réservation</td>
-                    <td>Date de rendu</td>
-                    <td>Numéro de réservation</td>
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <div>
-        <h2>Détails du compte</h2>
-        <p id="userName"></p>       <!-- peut modifier le type de balise -->
-        <p id="userMail"></p>       <!-- mais NE PAS MODIFIER LES ID ! -->
-        <p id="userAddress"></p>
-        <button>Editer</button>
-        <button id="deconnect">Me déconnecter</button>
-    </div>
+@extends('layout')
 
-    <script>
+@section('content')
+<div>
+    <h2>Mon Compte</h2>
+    <p><b>Historique des réservations :</b></p>
+    <p>Emprûnts en cours :</p>
+    <table id="currentTable">
+        <thead>
+            <tr>
+                <td>Nom du document</td>
+                <td>Date de réservation</td>
+                <td>Date de rendu</td>
+                <td>Numéro de réservation</td>
+            </tr>
+        </thead>
+    </table>
+    <p>Emprûnts passées :</p>
+    <table id="passedTable">
+        <thead>
+            <tr>
+                <td>Nom du document</td>
+                <td>Date de réservation</td>
+                <td>Date de rendu</td>
+                <td>Numéro de réservation</td>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div>
+    <h2>Détails du compte</h2>
+    <p id="userName"></p>
+    <p id="userMail"></p>
+    <p id="userAddress"></p>
+    <button>Editer</button>
+    <button id="deconnect">Me déconnecter</button>
+</div>
+<script>
         document.addEventListener('DOMContentLoaded', function() {
             const userId = sessionStorage.getItem('userId');
             const userStatus = sessionStorage.getItem('userStatus');
@@ -123,5 +117,5 @@
             }
         });
     </script>
-</body>
-</html>
+@endsection
+

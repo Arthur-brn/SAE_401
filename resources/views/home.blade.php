@@ -4,11 +4,12 @@
 <section id="top_page">
     <div id="top_left">
         <h1>Nos dernières pépites</h1>
-        <p class="p1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.</p>
-        <button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
+        <p class="p2">Découvrez les dernières nouveautés de notre médiathèque ! Que vous soyez passionné par la littérature, le cinéma ou les tendances culturelles, nous avons quelque chose pour vous. Plongez dans un monde de découvertes et laissez-vous inspirer par nos sélections soigneusement choisies.
+        </p>
+        <button>VOIR PLUS <i class="fa-solid fa-arrow-right " style="color: #6887f6;"></i></button>
     </div>
     <div id="top_right">
-        <div class="img"></div>
+        <img src="./assets/img/booksHome.png" alt="">
     </div>
 </section>
 <section id="literature">
@@ -36,39 +37,78 @@
             </div>
         </div>
         <div>
-            <p class="p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum..</p>
+            <p class="p2">Explorez notre collection de livres dans diverses catégories littéraires. Que vous aimiez les romans classiques, les œuvres contemporaines ou les nouveaux talents, nous avons quelque chose pour chaque lecteur.</p>
         </div>
     </div>
     <div id="books_categories">
-        <div class="categorie">
-            <div class="img"></div>
-            <h3>Roman</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
-        </div>
-        <div class="categorie">
-            <div class="img"></div>
-            <h3>Roman</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
-        </div>
-        <div class="categorie">
-            <div class="img"></div>
-            <h3>Roman</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
-        </div>
+        <ul>
+            <li>
+                <div id="books_categories">
+                    <div class="categorie">
+                        <img src="./assets/img/roman.png" alt="">
+                        <h3>Roman</h3>
+                        <p>Découvrez notre sélection de romans incontournables. Plongez dans des histoires captivantes et laissez-vous emporter par des récits fascinants.</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div id="books_categories">
+                    <div class="categorie">
+                        <img src="./assets/img/roman.png" alt="">
+                        <h3>Roman</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div id="books_categories">
+                    <div class="categorie">
+                        <img src="./assets/img/roman.png" alt="">
+                        <h3>Roman</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div id="books_categories">
+                    <div class="categorie">
+                        <img src="./assets/img/roman.png" alt="">
+                        <h3>Roman</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div id="books_categories">
+                    <div class="categorie">
+                        <img src="./assets/img/roman.png" alt="">
+                        <h3>Roman</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div id="books_categories">
+                    <div class="categorie">
+                        <img src="./assets/img/roman.png" alt="">
+                        <h3>Roman</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
     <button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
 </section>
 <section id="cinema">
     <div id="left_cine">
-        <span>-Littérature</span>
+        <span>-Cinéma</span>
         <h2>Les dernières sorties au cinéma en DVD !</h2>
-        <p class="p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum..</p>
+        <p class="p2">Ne manquez pas les dernières sorties de films en DVD. Que vous soyez fan de blockbusters, de films indépendants ou de documentaires, notre sélection vous garantit des heures de divertissement.</p>
         <button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
     </div>
     <div id="right_cine">
-        <div class="img">
-
-        </div>
+        <img src="./assets/img/cinema.png" alt="">
     </div>
 </section>
 <section id="faq">
@@ -77,18 +117,18 @@
         <div id="questions" x-data="{
             faqs: [
                 {
-                    question : 'Ceci est la première question ?',
-                    answer : 'Ceci est la réponse à la première question.',
+                    question : 'Comment puis-je m\'inscrire et accéder aux ressources de la bibliothèque numérique ?',
+                    answer : 'Pour vous inscrire, il suffit de se rendre à l\'accueil de votre médiathèque, demander à vous créer un compte. Les identifiants vous seront ensuite transmis par mail. Une fois inscrit, vous pourrez accéder à toutes nos ressources en vous connectant avec votre identifiant et votre mot de passe.',
                     isOpen : false,
                 },
                 {
-                    question : 'Ceci est la deuxième question ?',
-                    answer : 'Ceci est la réponse à la deuxième question.',
+                    question : 'Comment puis-je emprunter des livres numériques ou des films ?',
+                    answer : 'Pour emprunter un livre ou un film, naviguez jusqu\'à la section souhaitée (Littérature ou Cinéma), puis cliquez sur le titre qui vous intéresse. Ensuite, cliquez sur le bouton \'Réserver\'. Suite à cela, vous pourrez aller chercher votre ressources directement à la médiathèque.',
                     isOpen : false,
                 },
                 {
-                    question : 'Ceci est la troisième question ?',
-                    answer : 'Ceci est la réponse à la troisième question.',
+                    question : 'Que faire si j\'ai des problèmes techniques ou des questions supplémentaires ?',
+                    answer : 'Si vous rencontrez des problèmes techniques ou si vous avez des questions supplémentaires, vous pouvez nous contacter via la section \'Contactez-nous\' de notre site. Remplissez le formulaire de contact avec une description détaillée de votre problème ou question, et notre équipe de support vous répondra dans les plus brefs délais.',
                     isOpen : false,
                 },
             ]
@@ -104,7 +144,7 @@
         </div>
         <div>
             <h2>Qui sommes nous ?</h2>
-            <p class="p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum..</p>
+            <p class="p2">Bienvenue sur Teloculture, votre médiathèque en ligne dédiée à la promotion de la culture sous toutes ses formes. Nous sommes passionnés par la littérature, le cinéma et les tendances culturelles. Notre mission est de vous offrir une plateforme riche en contenus diversifiés et de qualité, accessible à tous. Rejoignez notre communauté et partagez votre amour pour la culture avec nous.</p>
             <button>CONTACT <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
         </div>
     </div>

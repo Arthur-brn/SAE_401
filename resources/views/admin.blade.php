@@ -139,12 +139,6 @@
                     <label for="year">Année du film :</label>
                     <input type="number" id="year" name="year">
                 </div>
-                <!--
-                <div>
-                    <label for="language_id">Langue:</label>
-                    <input type="number" id="language_id" name="language_id">
-                </div>
-                -->
                 <div>
                     <label for="copy_number">Copy Number:</label>
                     <input type="number" id="copy_number" name="copy_number">
@@ -246,7 +240,7 @@
         <div x-show="tab === 'tab4'">
             <form action="">
                 <div>
-                    <label for="loan_number">Numéro de réservation:</label>
+                    <label for="loan_number">Numéro :</label>
                     <input type="number" name="loan_number" id="loan_number">
                 </div>
                 <div>
