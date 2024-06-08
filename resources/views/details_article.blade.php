@@ -26,7 +26,6 @@
 <section id="secondaire_infos">
     <div class="choix">
         <button id="btn-description" class="active">Description</button>
-        <button id="btn-sujet">Sujet</button>
     </div>
     <div id="description">
         <div class="content_description">
@@ -44,12 +43,6 @@
             </div>
         </div>
     </div>
-    <div id="sujet" class="hidden">
-        <div class="content_sujet">
-            <h1>Partie sujet !!!</h1>
-        </div>
-    </div>
 </section>
-<script src="./js/details_article.js"></script>
 
 @endsection
