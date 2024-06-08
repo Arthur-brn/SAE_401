@@ -145,7 +145,9 @@
         <div>
             <h2>Qui sommes nous ?</h2>
             <p class="p2">Bienvenue sur Teloculture, votre médiathèque en ligne dédiée à la promotion de la culture sous toutes ses formes. Nous sommes passionnés par la littérature, le cinéma et les tendances culturelles. Notre mission est de vous offrir une plateforme riche en contenus diversifiés et de qualité, accessible à tous. Rejoignez notre communauté et partagez votre amour pour la culture avec nous.</p>
-            <button>CONTACT <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
+            <a href="/contact">
+                <button>CONTACT <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
+            </a>
         </div>
     </div>
 </section>

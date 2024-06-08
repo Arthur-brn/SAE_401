@@ -61,6 +61,14 @@ Route::get('/admin', function () {
     ]);
 });
 
+Route::get('/details_article', function () {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
+        'fileJS' => ''
+    ]);
+});
+
 Route::get('/cinema', function () {
     return view('cinema', [
         'fileCss' => 'cinema',
