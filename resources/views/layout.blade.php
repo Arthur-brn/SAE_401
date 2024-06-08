@@ -109,11 +109,10 @@
             <div id="footer_right">
                 <div>
                     <p id="footer_title">Catégories</p>
-                    <a href="#">ACCUEIL</a>
-                    <a href="#">LITTÉRATURE</a>
-                    <a href="#">CINÉMA</a>
-                    <a href="#">CONTACT</a>
-                    <a href="#">CONTACTEZ-NOUS</a>
+                    <a href="/">ACCUEIL</a>
+                    <a href="/litterature">LITTÉRATURE</a>
+                    <a href="/cinema">CINÉMA</a>
+                    <a href="/contact">CONTACT</a>
                 </div>
             </div>
         </div>
