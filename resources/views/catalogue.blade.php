@@ -22,18 +22,48 @@
 
             </div>
             <div class="filtre">
-                <h6>Filtres rapides</h6>
+                <h6>Types</h6>
                 <img src="./assets/img/fleche_bas.svg" alt="Teloculture">
             </div>
             <div class="choix">
-                <p>choix filtres</p>
+                <div class="type">
+                    <label name="livre">Livre</label>
+                    <input type="checkbox" name="livre">
+                </div>
+                <div class="type">
+                    <label name="film">Film</label>
+                    <input type="checkbox" name="film">
+                </div>
             </div>
             <div class="filtre">
-                <h6>Filtres rapides</h6>
+                <h6>Genres</h6>
                 <img src="./assets/img/fleche_bas.svg" alt="Teloculture">
             </div>
             <div class="choix">
-                <p>choix filtres</p>
+                <div class="genre">
+                    <label name="romans">Romans</label>
+                    <input type="checkbox" name="romans">
+                </div>
+                <div class="genre">
+                    <label name="bd_mangas">BD et Mangas</label>
+                    <input type="checkbox" name="bd_mangas">
+                </div>
+                <div class="genre">
+                    <label name="jeunesse">Jeunesse</label>
+                    <input type="checkbox" name="jeunesse">
+                </div>
+                <div class="genre">
+                    <label name="poesie">Poésie</label>
+                    <input type="checkbox" name="poesie">
+                </div>
+                <div class="genre">
+                    <label name="biographie">Biographie</label>
+                    <input type="checkbox" name="biographie">
+                </div>
+                <div class="genre">
+                    <label name="actualites">Actualités</label>
+                    <input type="checkbox" name="actualites">
+                </div>
             </div>
         </div>
     </section>
