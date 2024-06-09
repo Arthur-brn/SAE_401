@@ -5,12 +5,8 @@
 <section id="top-page">
     <div>
         <h2>Le top du top</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim
-            pharetra
-            hac.
-            Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.
-        </p>
-        <button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button>
+        <p>Découvrez des œuvres littéraires incontournables, sélectionnées pour leur qualité et leur profondeur.</p>
+        <a href="/catalogue"><button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button></a>
     </div>
     <div class=" img">
         <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
@@ -87,7 +83,7 @@
         </div>
     </div>
 
-    <button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button>
+    <a href="/catalogue"><button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button></a>
 </section>
 
 <section id="coups_de_coeur" class="splide" aria-label="Splide Basic HTML Example">
@@ -159,7 +155,7 @@
             <img src="./assets/img/fleche_gauche.svg" alt="TeloCulture">
         </div>
     </div>
-    <button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button>
+    <a href="/catalogue"><button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button></a>
 </section>
 
 <section id="genre">
@@ -168,22 +164,22 @@
 
         <div class="allGenre">
             <div>
-                <div class="genre">
+                <div class="genre romans">
                     <h3>Romans</h3>
                 </div>
-                <div class="genre">
+                <div class="genre bd_mangas">
                     <h3>BD et mangas</h3>
                 </div>
-                <div class="genre">
+                <div class="genre jeunesse">
                     <h3>Jeunesse</h3>
                 </div>
-                <div class="genre">
+                <div class="genre poesie">
                     <h3>Poésie</h3>
                 </div>
-                <div class="genre">
+                <div class="genre biographie">
                     <h3>Biographie</h3>
                 </div>
-                <div class="genre">
+                <div class="genre actualites">
                     <h3>Actualités</h3>
                 </div>
             </div>

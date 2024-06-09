@@ -22,15 +22,13 @@
 <body x-data="{burgerOpen: false}">
     <div id="headerTop">
         <div id="topL">
-            <img src="../assets/img/logo.png" alt="" />
-            <p>TELOCULTURE</p>
+            <a href="/">
+                <img src="../assets/img/logo.png" alt="" />
+                <p>TELOCULTURE</p>
+            </a>
         </div>
         <div id="topR">
             <i @click="burgerOpen = true" class="fa-solid fa-bars fa-xl" style="color: #6887f6;"></i>
-            <a href="#">
-                <img class="icon" src="./assets/icons/heart.png" alt="">
-                <p>FAVORIS</p>
-            </a>
             <a href="/panier">
                 <img class="icon" src="./assets/icons/cart.png" alt="">
                 <p>PANIER</p>
@@ -46,7 +44,7 @@
         <a href="/" class="{{ Request::is('/') ? 'select' : '' }}">ACCUEIL</a>
         <a href="/litterature" class="{{ Request::is('litterature') ? 'select' : '' }}">LITTÉRATURE</a>
         <a href="/cinema" class="{{ Request::is('cinema') ? 'select' : '' }}">CINÉMA</a>
-        <a href="/tendances" class="{{ Request::is('tendances') ? 'select' : '' }}">TENDANCES</a>
+        <a href="/catalogue" class="{{ Request::is('catalogue') ? 'select' : '' }}">CATALOGUE</a>
         <a href="/contact" class="{{ Request::is('contact') ? 'select' : '' }}">CONTACTEZ-NOUS</a>
     </div>
     <div id="burger" x-show="burgerOpen" x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90" @click.away="burgerOpen = false">
@@ -55,37 +53,32 @@
         </div>
         <ul>
             <li>
-                <a href="">
-                    <p>FAVORIS</p>
-                </a>
-            </li>
-            <li>
-                <a href="">
+                <a href="/panier">
                     <p>PANIER</p>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="/account">
                     <p>COMPTE</p>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="/litterature">
                     <p>LITTÉRATURE</p>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="/cinema">
                     <p>CINÉMA</p>
                 </a>
             </li>
             <li>
-                <a href="">
-                    <p>TENDANCES</p>
+                <a href="/catalogue">
+                    <p>CATALOGUE</p>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="/contact">
                     <p>CONTACTEZ</p>
                 </a>
             </li>
@@ -97,7 +90,10 @@
     <footer>
         <div>
             <div id="footer_left">
-                <p>TELOCULTURE</p>
+                <a href="/">
+                    <img src="../assets/img/logo.png" alt="" />
+                    <p>TELOCULTURE</p>
+                </a>
                 <p>Nos coordonnées et informations de contact ici. Suivez-nous sur les réseaux sociaux pour rester informé des dernières nouvelles et événements.</p>
                 <div id="icons">
                     <i class="fa-brands fa-facebook fa-3x" style="color: #ff625c;"></i>
@@ -109,11 +105,10 @@
             <div id="footer_right">
                 <div>
                     <p id="footer_title">Catégories</p>
-                    <a href="#">ACCUEIL</a>
-                    <a href="#">LITTÉRATURE</a>
-                    <a href="#">CINÉMA</a>
-                    <a href="#">CONTACT</a>
-                    <a href="#">CONTACTEZ-NOUS</a>
+                    <a href="/">ACCUEIL</a>
+                    <a href="/litterature">LITTÉRATURE</a>
+                    <a href="/cinema">CINÉMA</a>
+                    <a href="/contact">CONTACT</a>
                 </div>
             </div>
         </div>

@@ -30,6 +30,7 @@ Route::get('/litterature', function () {
     ]);
 });
 
+
 Route::get('/litterature-{id}', function ($id) {
 
     return view('details_article', [
@@ -40,6 +41,13 @@ Route::get('/litterature-{id}', function ($id) {
     ]);
 });
 
+Route::get('/catalogue', function () {
+
+    return view('catalogue', [
+        'fileCss' => 'catalogue',
+        'fileJS' => ''
+    ]);
+});
 
 Route::get('/layout', function () {
     return view('layout', [
@@ -60,6 +68,14 @@ Route::get('/admin', function () {
 
     return view('admin', [
         'fileCss' => 'admin',
+        'fileJS' => ''
+    ]);
+});
+
+Route::get('/details_article', function () {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
         'fileJS' => ''
     ]);
 });

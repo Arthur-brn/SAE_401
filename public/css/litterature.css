@@ -144,9 +144,28 @@ p {
     align-items: center;
     width: 350px;
     height: 250px;
-    background-image: url(https://picsum.photos/400/250);
     border-radius: 10px;
     cursor: pointer;
+}
+
+#genre div .allGenre div .romans {
+    background-image: url(../assets/img/roman.png);
+}
+
+#genre div .allGenre div .bd_mangas {
+    background-image: url(../assets/img/type_bd_mangas.jpg);
+}
+#genre div .allGenre div .jeunesse {
+    background-image: url(../assets/img/type_jeunesse.jpg);
+}
+#genre div .allGenre div .poesie {
+    background-image: url(../assets/img/type_poesie.jpg);
+}
+#genre div .allGenre div .biographie {
+    background-image: url(../assets/img/type_biographie.jpg);
+}
+#genre div .allGenre div .actualites {
+    background-image: url(../assets/img/type_actualites.jpg);
 }
 
 #genre div .allGenre div .genre h3 {

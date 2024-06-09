@@ -37,6 +37,16 @@ hr {
     padding: 10px;
 }
 
+#topL a {
+    gap: 20px; 
+    display: flex;
+    padding: 10px;
+}
+
+#topL img{
+    width: 29px;
+}
+
 #topR {
     display: flex;
     gap: 35px;
@@ -46,6 +56,10 @@ hr {
 #topR a {
     display: flex;
     gap: 10px;
+    color: #6887f6;
+}
+
+#topR p{
     color: #6887f6;
 }
 
@@ -148,6 +162,20 @@ footer > div > div {
 #footer_left {
     gap: 30px;
     align-items: baseline;
+}
+
+#footer_left a{
+    gap: 20px; 
+    display: flex;
+    padding: 10px;
+}
+
+#footer_left a p{
+    font-weight: 500;
+}
+
+#footer_left img{
+    width: 29px;
 }
 
 #footer_right div {
