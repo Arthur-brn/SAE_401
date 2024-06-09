@@ -26,7 +26,7 @@ Route::get('/litterature', function () {
 
     return view('litterature', [
         'fileCss' => 'litterature',
-        'fileJS' => ''
+        'fileJS' => 'litterature'
     ]);
 });
 

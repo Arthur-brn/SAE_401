@@ -6,76 +6,20 @@
     <div>
         <h2>Le top du top</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim
-            pharetra
-            hac.
-            Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.
+            pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.
         </p>
         <button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button>
     </div>
-    <div class=" img">
+    <div class="img">
         <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
     </div>
 </section>
 
 <section id="nouveautes" class="splide" aria-label="Splide Basic HTML Example">
     <h2>Nouveautés !</h2>
-
     <div class="splide__track">
-        <ul class="splide__list">
-            <li class="splide__slide">
-                <div>
-                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
-                    <div class="infos">
-                        <h5>Paradoxe. 1</h5>
-                        <h6>MARAZANO, RICHARD</h6>
-                    </div>
-                </div>
-            </li>
-            <li class="splide__slide">
-                <div>
-                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
-                    <div class="infos">
-                        <h5>Paradoxe. 2</h5>
-                        <h6>MARAZANO, RICHARD</h6>
-                    </div>
-                </div>
-            </li>
-            <li class="splide__slide">
-                <div>
-                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
-                    <div class="infos">
-                        <h5>Paradoxe. 3</h5>
-                        <h6>MARAZANO, RICHARD</h6>
-                    </div>
-                </div>
-            </li>
-            <li class="splide__slide">
-                <div>
-                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
-                    <div class="infos">
-                        <h5>Paradoxe. 4</h5>
-                        <h6>MARAZANO, RICHARD</h6>
-                    </div>
-                </div>
-            </li>
-            <li class="splide__slide">
-                <div>
-                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
-                    <div class="infos">
-                        <h5>Paradoxe. 5</h5>
-                        <h6>MARAZANO, RICHARD</h6>
-                    </div>
-                </div>
-            </li>
-            <li class="splide__slide">
-                <div>
-                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
-                    <div class="infos">
-                        <h5>Paradoxe. 6</h5>
-                        <h6>MARAZANO, RICHARD</h6>
-                    </div>
-                </div>
-            </li>
+        <ul class="splide__list" id="nouveautes-list">
+            <!-- Les nouveautés seront insérées ici par JavaScript -->
         </ul>
     </div>
     <div class="splide__arrows">
@@ -86,69 +30,14 @@
             <img src="./assets/img/fleche_gauche.svg" alt="TeloCulture">
         </div>
     </div>
-
     <button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button>
 </section>
 
 <section id="coups_de_coeur" class="splide" aria-label="Splide Basic HTML Example">
     <h2>Coups de coeur !</h2>
-
     <div class="splide__track">
-        <ul class="splide__list">
-            <li class="splide__slide">
-                <div>
-                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
-                    <div class="infos">
-                        <h5>Paradoxe. 1</h5>
-                        <h6>MARAZANO, RICHARD</h6>
-                    </div>
-                </div>
-            </li>
-            <li class="splide__slide">
-                <div>
-                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
-                    <div class="infos">
-                        <h5>Paradoxe. 2</h5>
-                        <h6>MARAZANO, RICHARD</h6>
-                    </div>
-                </div>
-            </li>
-            <li class="splide__slide">
-                <div>
-                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
-                    <div class="infos">
-                        <h5>Paradoxe. 3</h5>
-                        <h6>MARAZANO, RICHARD</h6>
-                    </div>
-                </div>
-            </li>
-            <li class="splide__slide">
-                <div>
-                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
-                    <div class="infos">
-                        <h5>Paradoxe. 4</h5>
-                        <h6>MARAZANO, RICHARD</h6>
-                    </div>
-                </div>
-            </li>
-            <li class="splide__slide">
-                <div>
-                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
-                    <div class="infos">
-                        <h5>Paradoxe. 5</h5>
-                        <h6>MARAZANO, RICHARD</h6>
-                    </div>
-                </div>
-            </li>
-            <li class="splide__slide">
-                <div>
-                    <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
-                    <div class="infos">
-                        <h5>Paradoxe. 6</h5>
-                        <h6>MARAZANO, RICHARD</h6>
-                    </div>
-                </div>
-            </li>
+        <ul class="splide__list" id="coups_de_coeur-list">
+            <!-- Les coups de coeur seront insérés ici par JavaScript -->
         </ul>
     </div>
     <div class="splide__arrows">
@@ -165,7 +54,6 @@
 <section id="genre">
     <div>
         <h2>Selon le genre</h2>
-
         <div class="allGenre">
             <div>
                 <div class="genre">
