@@ -45,14 +45,6 @@ Route::get('/layout', function () {
     ]);
 });
 
-Route::get('/books', function () {
-
-    return view('books.index', [
-        'fileCss' => 'books',
-        'fileJS' => ''
-    ]);
-});
-
 Route::get('/admin', function () {
 
     return view('admin', [

@@ -30,12 +30,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-Route::get('/books', [BookController::class, 'index']);
-Route::get('/books/{id}', [BookController::class, 'show']);
-Route::post('/books', [BookController::class, 'store']);
-Route::put('/books/{id}', [BookController::class, 'update']);
-Route::get('/removeBook/{id}', [BookController::class, 'destroy']);
-
 Route::get('/author/{id}', [AuthorController::class, 'show']);
 
 Route::get('/films', [FilmController::class, 'index']);
