@@ -71,6 +71,16 @@ Route::get('/cinema', function () {
     ]);
 });
 
+Route::get('/cinema-{id}', function ($id) {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
+        'fileJS' => '',
+        'id' => $id,
+        'type' => 'film'
+    ]);
+});
+
 Route::get('/tendances', function () {
     return view('tendances', [
         'fileCss' => 'tendances',
