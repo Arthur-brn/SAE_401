@@ -6,10 +6,10 @@
         <h1>Nos dernières pépites</h1>
         <p class="p2">Découvrez les dernières nouveautés de notre médiathèque ! Que vous soyez passionné par la littérature, le cinéma ou les tendances culturelles, nous avons quelque chose pour vous. Plongez dans un monde de découvertes et laissez-vous inspirer par nos sélections soigneusement choisies.
         </p>
-        <button>VOIR PLUS <i class="fa-solid fa-arrow-right " style="color: #6887f6;"></i></button>
+        <a href="/#"><button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button></a>
     </div>
     <div id="top_right">
-        <img src="./assets/img/booksHome.png" alt="">
+        <img src="./assets/img/booksHome.png" alt="Teloculture">
     </div>
 </section>
 <section id="literature">
@@ -45,7 +45,7 @@
             <li>
                 <div id="books_categories">
                     <div class="categorie">
-                        <img src="./assets/img/roman.png" alt="">
+                        <img src="./assets/img/roman.png" alt="Teloculture">
                         <h3>Roman</h3>
                         <p>Découvrez notre sélection de romans incontournables. Plongez dans des histoires captivantes et laissez-vous emporter par des récits fascinants.</p>
                     </div>
@@ -54,61 +54,61 @@
             <li>
                 <div id="books_categories">
                     <div class="categorie">
-                        <img src="./assets/img/roman.png" alt="">
-                        <h3>Roman</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                        <img src="./assets/img/roman.png" alt="Teloculture">
+                        <h3>BD et Mangas</h3>
+                        <p>Explorez nos incontournables BD et mangas ! Découvrez des récits palpitants et des dessins captivants pour une immersion totale.</p>
                     </div>
                 </div>
             </li>
             <li>
                 <div id="books_categories">
                     <div class="categorie">
-                        <img src="./assets/img/roman.png" alt="">
-                        <h3>Roman</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                        <img src="./assets/img/roman.png" alt="Teloculture">
+                        <h3>Jeunesse</h3>
+                        <p>Explorez notre catégorie jeunesse ! Des livres qui éveillent l'imagination, des aventures palpitantes et des personnages attachants vous attendent.</p>
                     </div>
                 </div>
             </li>
             <li>
                 <div id="books_categories">
                     <div class="categorie">
-                        <img src="./assets/img/roman.png" alt="">
-                        <h3>Roman</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                        <img src="./assets/img/roman.png" alt="Teloculture">
+                        <h3>Poésie</h3>
+                        <p>Plongez dans la magie de la poésie ! Laissez-vous envoûter par des vers qui captent l'amour, la nature et les émotions humaines avec une intensité saisissante.</p>
                     </div>
                 </div>
             </li>
             <li>
                 <div id="books_categories">
                     <div class="categorie">
-                        <img src="./assets/img/roman.png" alt="">
-                        <h3>Roman</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                        <img src="./assets/img/roman.png" alt="Teloculture">
+                        <h3>Biographie</h3>
+                        <p>Découvrez notre sélection de biographies ! Des récits captivants qui vous plongent dans la vie fascinante de personnalités inspirantes.</p>
                     </div>
                 </div>
             </li>
             <li>
                 <div id="books_categories">
                     <div class="categorie">
-                        <img src="./assets/img/roman.png" alt="">
-                        <h3>Roman</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut mat,</p>
+                        <img src="./assets/img/roman.png" alt="Teloculture">
+                        <h3>Actualités</h3>
+                        <p>Explorez notre rubrique Actualités ! Restez à jour sur les événements récents, les tendances et les sujets d'actualité qui façonnent le monde contemporain.</p>
                     </div>
                 </div>
             </li>
         </ul>
     </div>
-    <button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
+    <a href="/litterature"><button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button></a>
 </section>
 <section id="cinema">
     <div id="left_cine">
         <span>-Cinéma</span>
         <h2>Les dernières sorties au cinéma en DVD !</h2>
         <p class="p2">Ne manquez pas les dernières sorties de films en DVD. Que vous soyez fan de blockbusters, de films indépendants ou de documentaires, notre sélection vous garantit des heures de divertissement.</p>
-        <button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
+        <a href="/#"><button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button></a>
     </div>
     <div id="right_cine">
-        <img src="./assets/img/cinema.png" alt="">
+        <img src="./assets/img/cinema.png" alt="Teloculture">
     </div>
 </section>
 <section id="faq">
@@ -145,7 +145,9 @@
         <div>
             <h2>Qui sommes nous ?</h2>
             <p class="p2">Bienvenue sur Teloculture, votre médiathèque en ligne dédiée à la promotion de la culture sous toutes ses formes. Nous sommes passionnés par la littérature, le cinéma et les tendances culturelles. Notre mission est de vous offrir une plateforme riche en contenus diversifiés et de qualité, accessible à tous. Rejoignez notre communauté et partagez votre amour pour la culture avec nous.</p>
-            <button>CONTACT <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
+            <a href="/contact">
+                <button>CONTACT <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button>
+            </a>
         </div>
     </div>
 </section>

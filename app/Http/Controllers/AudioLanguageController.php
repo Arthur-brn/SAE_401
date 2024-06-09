@@ -40,6 +40,11 @@ class AudioLanguageController extends Controller
     public function destroy($id)
     {
         AudioLanguage::findOrFail($id)->delete();
-        return response()->json(null, 204);
+        return response()->json(null, 201);
+    }
+
+    public function getFilmLanguages($id){
+        $languages = AudioLanguage::where('film_id', $id)->get();
+        return response()->json($languages, 201);
     }
 }

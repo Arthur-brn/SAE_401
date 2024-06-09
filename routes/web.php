@@ -30,6 +30,17 @@ Route::get('/litterature', function () {
     ]);
 });
 
+
+Route::get('/litterature-{id}', function ($id) {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
+        'fileJS' => '',
+        'id' => $id,
+        'type' => 'book'
+    ]);
+});
+
 Route::get('/catalogue', function () {
 
     return view('catalogue', [
@@ -53,10 +64,28 @@ Route::get('/admin', function () {
     ]);
 });
 
+Route::get('/details_article', function () {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
+        'fileJS' => ''
+    ]);
+});
+
 Route::get('/cinema', function () {
     return view('cinema', [
         'fileCss' => 'cinema',
         'fileJS' => ''
+    ]);
+});
+
+Route::get('/cinema-{id}', function ($id) {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
+        'fileJS' => '',
+        'id' => $id,
+        'type' => 'film'
     ]);
 });
 
