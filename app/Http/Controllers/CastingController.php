@@ -42,4 +42,9 @@ class CastingController extends Controller
         Casting::findOrFail($id)->delete();
         return response()->json(null, 204);
     }
+
+    public function getFilmCasting($id){
+        $cast = Casting::where('film_id', $id)->get();
+        return response()->json($cast, 201);
+    }
 }

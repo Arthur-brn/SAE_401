@@ -42,4 +42,9 @@ class SubtitleController extends Controller
         Subtitle::findOrFail($id)->delete();
         return response()->json(null, 204);
     }
+
+    public function getFilmSubtitles($id){
+        $subs = Subtitle::where('film_id', $id)->get();
+        return response()->json($subs, 201);
+    }
 }
