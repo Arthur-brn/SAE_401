@@ -26,7 +26,7 @@ Route::get('/litterature', function () {
 
     return view('litterature', [
         'fileCss' => 'litterature',
-        'fileJS' => ''
+        'fileJS' => 'litterature'
     ]);
 });
 
@@ -52,14 +52,6 @@ Route::get('/catalogue', function () {
 Route::get('/layout', function () {
     return view('layout', [
         'fileCss' => 'layout',
-        'fileJS' => ''
-    ]);
-});
-
-Route::get('/books', function () {
-
-    return view('books.index', [
-        'fileCss' => 'books',
         'fileJS' => ''
     ]);
 });

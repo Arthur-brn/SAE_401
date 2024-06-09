@@ -32,14 +32,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
-Route::get('/books', [BookController::class, 'index']);
-Route::get('/books/{id}', [BookController::class, 'show']);
-Route::post('/books', [BookController::class, 'store']);
-Route::put('/books/{id}', [BookController::class, 'update']);
-Route::get('/removeBook/{id}', [BookController::class, 'destroy']);
-
 Route::get('/author/{id}', [AuthorController::class, 'show']);
 
 Route::get('/actor/{id}', [ActorController::class, 'show']);
@@ -48,6 +40,11 @@ Route::get('/films', [FilmController::class, 'index']);
 Route::get('/films/{id}', [FilmController::class, 'show']);
 Route::post('/films', [FilmController::class, 'store']);
 Route::get('/removeFilm/{id}', [FilmController::class, 'destroy']);
+
+Route::get('/books', [BookController::class, 'index']);
+Route::get('/books/{id}', [BookController::class, 'show']);
+Route::post('/books', [BookController::class, 'store']);
+Route::get('/removeBook/{id}', [BookController::class, 'destroy']);
 
 Route::get('/directors', [DirectorController::class, 'index']);
 Route::get('/director/{id}', [DirectorController::class, 'show']);
@@ -78,3 +75,8 @@ Route::get('/language/{id}', [LanguageController::class, 'show']);
 Route::get('/filmLanguages/{id}', [AudioLanguageController::class, 'getFilmLanguages']);
 
 Route::get('/filmSubtitles/{id}', [SubtitleController::class, 'getFilmSubtitles']);
+
+
+Route::get('/books-most-loaned', [BookController::class, 'mostLoanedBook']);
+Route::get('/books-latest', [BookController::class, 'latestBooks']);
+Route::get('/books-most-loaned-books', [BookController::class, 'mostLoanedBooks']);
