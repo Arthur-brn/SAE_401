@@ -33,12 +33,14 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 // Mettre à jour les éléments HTML avec les données du livre le plus emprunté
                 const topPageSection = document.getElementById('top-page');
-                const titleElement = topPageSection.querySelector('#top-page h2');
-                const paragraphElement = topPageSection.querySelector('#top-page p');
-                const imgElement = topPageSection.querySelector('#top-page .img img');
+                const titleElement = topPageSection.querySelector('h2');
+                const paragraphElement = topPageSection.querySelector('p');
+                const detailPageLink = topPageSection.querySelector('a');
+                const imgElement = topPageSection.querySelector('.img img');
             
                 titleElement.textContent = data.title;
                 paragraphElement.textContent = data.summary;
+                detailPageLink.href = "/litterature-" + data.id;
                 imgElement.src = data.picture;
                 imgElement.alt = data.title;
             })
@@ -59,13 +61,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     const listItem = document.createElement('li');
                     listItem.className = 'splide__slide';
                     listItem.innerHTML = `
-                        <div>
+                        <a href="/litterature-${book.id}">
                             <img src="${book.picture}" alt="${book.title}">
                             <div class="infos">
                                 <h5>${book.title}</h5>
                                 <h6>${book.author.name}</h6>
                             </div>
-                        </div>
+                        </a>
                     `;
                     listElement.appendChild(listItem);
                 });

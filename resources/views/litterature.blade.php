@@ -6,7 +6,7 @@
     <div>
         <h2></h2>
         <p></p>
-        <a href="/catalogue"><button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button></a>
+        <a href="#"><button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button></a>
     </div>
     <div class="img">
         <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
