@@ -65,8 +65,10 @@ Route::get('/account/{id}', [UserController::class, 'getCustomerInfo']);
 Route::get('/account/loan/{id}', [UserController::class, 'getCustomerLoan']);
 
 Route::get('/authors', [AuthorController::class, 'index']);
+Route::post('/authors', [AuthorController::class, 'store']);
 
 Route::get('/editors', [EditorController::class, 'index']);
+Route::post('/editors', [EditorController::class, 'store']);
 Route::get('/editor/{id}', [EditorController::class, 'show']);
 
 Route::get('/languages', [LanguageController::class, 'index']);

@@ -45,11 +45,17 @@
                 </div>
                 <div>
                     <label for="author_id">Auteur :</label>
-                    <select name="author_id" id="author_id"></select>
+                    <select name="author_id" id="author_id">
+                        <option value="">Choisir l'auteur</option>
+                    </select>
+                    <input type="text" id="newAuthor" name="newAuthor" placeholder="Nouvel auteur">
                 </div>
                 <div>
                     <label for="editor_id">Edition:</label>
-                    <select name="editor_id" id="editor_id"></select>
+                    <select name="editor_id" id="editor_id">
+                        <option value="">Choisir l'éditeur</option>
+                    </select>
+                    <input type="text" id="newEditor" name="newEditor" placeholder="Nouvel éditeur">
                 </div>
                 <div>
                     <label for="edition_year">Année d'édition:</label>
@@ -61,7 +67,9 @@
                 </div>
                 <div>
                     <label for="language_id">Langue:</label>
-                    <select name="language_id" id="language_id"></select>
+                    <select name="language_id" id="language_id">
+                        <option value="">Choisir la langue</option>
+                    </select>
                 </div>
                 <div>
                     <label for="summary">Résumé :</label>
@@ -87,15 +95,23 @@
                 </div>
                 <div>
                     <label for="picture">Image :</label>
-                    <input type="text" id="picture" name="picture">
+                    <input type="file" id="picture" name="picture" accept=".png, .jpg, .jpeg">
                 </div>
                 <div>
-                    <label for="copy_number">Copy Number:</label>
+                    <label for="copy_number">Nombre d'exemplaire :</label>
                     <input type="number" id="copy_number" name="copy_number">
                 </div>
                 <div>
-                    <label for="loan_number">Loan Number:</label>
-                    <input type="number" id="loan_number" name="loan_number" value="0">
+                    <label for="category">Catégorie :</label>
+                    <select id="category" name="category">
+                        <option value="">Choisir la catégorie</option>
+                        <option value="romans">Romans</option>
+                        <option value="bd et manga">BD et Manga</option>
+                        <option value="jeunesse">Jeunesse</option>
+                        <option value="poésie">Poésie</option>
+                        <option value="biographie">Biographie</option>
+                        <option value="actualités">Actualités</option>
+                    </select>
                 </div>
                 <button type="submit">Ajouter</button>
             </form>
@@ -111,12 +127,15 @@
                     <input type="text" id="picture" name="picture">
                 </div>
                 <div>
-                    <label for="director_id">réalisateur :</label>
-                    <select name="director_id" id="director_id"></select>
+                    <label for="director_id">Réalisateur :</label>
+                    <select name="director_id" id="director_id">
+                        <option value="">Choisir le réalisateur</option>
+                    </select>
                 </div>
                 <div>
                     <label for="style">Style:</label>
                     <select id="style" name="style">
+                        <option value="">Choisir le style</option>
                         <option value="fantastique">Fantastique</option>
                         <option value="romantique">Romantique</option>
                         <option value="science-fiction">Science-fiction</option>
@@ -140,12 +159,26 @@
                     <input type="number" id="year" name="year">
                 </div>
                 <div>
-                    <label for="copy_number">Copy Number:</label>
+                    <label for="audioLanguages">Langue(s) audio :</label>
+                    <select name="audioLanguages" id="audioLanguages">
+                        <option value="">Choisir la langue</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="subLanguages">Langue(s) des sous-titres :</label>
+                    <select name="subLanguages" id="subLanguages">
+                        <option value="">Choisir la langue</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="copy_number">Nombre d'exemplaire :</label>
                     <input type="number" id="copy_number" name="copy_number">
                 </div>
                 <div>
-                    <label for="loan_number">Loan Number:</label>
-                    <input type="number" id="loan_number" name="loan_number" value="0">
+                    <label for="category">Catégorie :</label>
+                    <select id="category" name="category">
+                        <option value="">Choisir la catégorie</option>
+                    </select>
                 </div>
                 <button type="submit">Ajouter</button>
             </form>
@@ -607,21 +640,51 @@
         fetchLanguagesAndPopulateSelect();
         fetchBookingsAndDisplay();
 
-        addBookForm.addEventListener('submit', function(event) {
+        addBookForm.addEventListener('submit', async function(event) {
             event.preventDefault();
-            const formData = new FormData(addBookForm);
-            fetch('/api/books', {
+            let formData = new FormData(addBookForm);
+            const newAuthorInput = document.getElementById('newAuthor');
+            const newEditorInput = document.getElementById('newEditor');
+
+            if(newAuthorInput.value != ""){
+                const authorResponse = await fetch('api/authors', {
                     method: 'POST',
                     body: formData
-                })
-                .then(response => response.json())
-                .then(
-                    window.location.href = './admin'
-                )
-                .catch(error => {
-                    console.error('Error adding book :', error);
                 });
+                const newAuthorId = await authorResponse.json();
+                formData.set('author_id', newAuthorId);
+            }
+
+            if(newEditorInput.value != ""){
+                const editorResponse = await fetch('api/editors', {
+                    method: 'POST',
+                    body: formData
+                });
+                const newEditorId = await editorResponse.json();
+                formData.set('editor_id', newEditorId);
+            }
+
+            await storeBook(formData);
+            
         });
+
+        async function storeBook(formData){
+            try {
+                const bookResponse = await fetch('/api/books', {
+                    method: 'POST',
+                    body: formData
+                });
+                const bookData = await bookResponse.json();
+                if (bookResponse.ok) {
+                    console.log('Book added successfully:', bookData);
+                    window.location.href = './admin';
+                } else {
+                    console.error('Error adding book:', bookData);
+                }
+            } catch (error) {
+                console.error('Error adding book:', error);
+            }
+        }
 
         addFilmForm.addEventListener('submit', function(event) {
             event.preventDefault();

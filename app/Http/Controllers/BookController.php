@@ -24,7 +24,13 @@ class BookController extends Controller
     // Méthode pour créer un nouveau livre
     public function store(Request $request)
     {
-        $book = Book::create($request->all());
+        $imgDir = './assets/img/livres/';
+        $bookData = $request->all();
+        $bookPic = $bookData['picture'];
+        $filename = time() . '_' . $bookPic->getClientOriginalName();
+        $bookPic->move(public_path($imgDir), $filename);
+        $bookData['picture'] = $filename;
+        $book = Book::create($bookData);
         return response()->json($book, 201);
     }
 
