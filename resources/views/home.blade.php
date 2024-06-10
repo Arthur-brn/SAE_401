@@ -54,7 +54,7 @@
             <li>
                 <div id="books_categories">
                     <div class="categorie">
-                        <img src="./assets/img/roman.png" alt="Teloculture">
+                        <img src="./assets/img/type_bd_mangas.jpg" alt="Teloculture">
                         <h3>BD et Mangas</h3>
                         <p>Explorez nos incontournables BD et mangas ! Découvrez des récits palpitants et des dessins captivants pour une immersion totale.</p>
                     </div>
@@ -63,7 +63,7 @@
             <li>
                 <div id="books_categories">
                     <div class="categorie">
-                        <img src="./assets/img/roman.png" alt="Teloculture">
+                        <img src="./assets/img/type_jeunesse.jpg" alt="Teloculture">
                         <h3>Jeunesse</h3>
                         <p>Explorez notre catégorie jeunesse ! Des livres qui éveillent l'imagination, des aventures palpitantes et des personnages attachants vous attendent.</p>
                     </div>
@@ -72,7 +72,7 @@
             <li>
                 <div id="books_categories">
                     <div class="categorie">
-                        <img src="./assets/img/roman.png" alt="Teloculture">
+                        <img src="./assets/img/type_poesie.jpg" alt="Teloculture">
                         <h3>Poésie</h3>
                         <p>Plongez dans la magie de la poésie ! Laissez-vous envoûter par des vers qui captent l'amour, la nature et les émotions humaines avec une intensité saisissante.</p>
                     </div>
@@ -81,7 +81,7 @@
             <li>
                 <div id="books_categories">
                     <div class="categorie">
-                        <img src="./assets/img/roman.png" alt="Teloculture">
+                        <img src="./assets/img/type_biographie.jpg" alt="Teloculture">
                         <h3>Biographie</h3>
                         <p>Découvrez notre sélection de biographies ! Des récits captivants qui vous plongent dans la vie fascinante de personnalités inspirantes.</p>
                     </div>
@@ -90,7 +90,7 @@
             <li>
                 <div id="books_categories">
                     <div class="categorie">
-                        <img src="./assets/img/roman.png" alt="Teloculture">
+                        <img src="./assets/img/type_actualites.jpg" alt="Teloculture">
                         <h3>Actualités</h3>
                         <p>Explorez notre rubrique Actualités ! Restez à jour sur les événements récents, les tendances et les sujets d'actualité qui façonnent le monde contemporain.</p>
                     </div>
