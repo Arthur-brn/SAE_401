@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 titleElement.textContent = data.title;
                 paragraphElement.textContent = data.summary;
                 detailPageLink.href = "/litterature-" + data.id;
-                imgElement.src = data.picture;
+                imgElement.src = "./public/assets/img/livres/" + data.picture;
                 imgElement.alt = data.title;
             })
             .catch(error => console.error('Error fetching most loaned book:', error));
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     listItem.className = 'splide__slide';
                     listItem.innerHTML = `
                         <a href="/litterature-${book.id}">
-                            <img src="${book.picture}" alt="${book.title}">
+                            <img src="./public/assets/img/livres/${book.picture}" alt="${book.title}">
                             <div class="infos">
                                 <h5>${book.title}</h5>
                                 <h6>${book.author.name}</h6>
