@@ -45,4 +45,60 @@ class LoanController extends Controller
 
         return response()->json($loan, 201);
     }
+
+    public function countBook($id)
+    {
+        $loans = Loan::where('loanable_type', 'book')
+                     ->where('loanable_id', $id)
+                     ->where('status', '!=', 'returned')
+                     ->count();
+
+        return response()->json($loans, 201);
+    }
+
+    public function countFilm($id)
+    {
+        $loans = Loan::where('loanable_type', 'film')
+                     ->where('loanable_id', $id)
+                     ->where('status', '!=', 'returned')
+                     ->count();
+
+        return response()->json($loans, 201);
+    }
+
+    public function removeLoan($loanRef)
+    {
+        Loan::where('booking_number', $loanRef)->delete();
+        return response()->json(null, 201);
+    }
+
+    public function checkBook($id)
+    {
+        $book = Loan::where('loanable_type', 'book')
+                    ->where('loanable_id', $id)
+                    ->first();
+        if($book)
+        {
+            return response()->json($book, 201);
+        }
+        else
+        {
+            return response()->json(null, 404);
+        }
+    }
+
+    public function checkFilm($id)
+    {
+        $film = Loan::where('loanable_type', 'film')
+                    ->where('loanable_id', $id)
+                    ->first();
+        if($film)
+        {
+            return response()->json($film, 201);
+        }
+        else
+        {
+            return response()->json(null, 404);
+        }
+    }
 }

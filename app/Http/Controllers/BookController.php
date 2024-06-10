@@ -40,6 +40,29 @@ class BookController extends Controller
     public function destroy($id)
     {
         Book::findOrFail($id)->delete();
-        return response()->json(null, 204);
+        return response()->json(null, 201);
+    }
+
+    // Méthode pour récupérer le livre avec le plus grand nombre de prêts
+    public function mostLoanedBook()
+    {
+        $book = Book::orderBy('loan_number', 'desc')->first();
+        return response()->json($book);
+    }
+
+    // Méthode pour récupérer les livres les plus récents
+    public function latestBooks()
+    {
+        $books = Book::with('author')->orderBy('created_at', 'desc')->take(10)->get();
+        return response()->json($books);
+    }
+
+    // Méthode pour récupérer les livres avec les nombres de prêts les plus élevés
+    public function mostLoanedBooks()
+    {
+        $books = Book::with('author')->orderBy('loan_number', 'desc')->take(11)->get();
+        // Exclure le premier élément de la collection car déjà affiché au dessus
+        $booksExcludingFirst = $books->slice(1);
+        return response()->json($booksExcludingFirst->values());
     }
 }

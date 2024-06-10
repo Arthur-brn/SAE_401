@@ -17,19 +17,16 @@ class ActorSeeder extends Seeder
         DB::table('actor')->insert([
             [
                 'name' => 'Leonardo DiCaprio',
-                'picture' => 'leonardo_dicaprio.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'Meryl Streep',
-                'picture' => 'meryl_streep.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'Denzel Washington',
-                'picture' => 'denzel_washington.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

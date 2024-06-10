@@ -6,7 +6,16 @@ use Illuminate\Support\Facades\Route;
 // Controller
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\EditorController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\AudioLanguageController;
+use App\Http\Controllers\SubtitleController;
+use App\Http\Controllers\CastingController;
+use App\Http\Controllers\ActorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,19 +32,55 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/author/{id}', [AuthorController::class, 'show']);
 
+Route::get('/actor/{id}', [ActorController::class, 'show']);
+
+Route::get('/films', [FilmController::class, 'index']);
+Route::get('/films/{id}', [FilmController::class, 'show']);
+Route::post('/films', [FilmController::class, 'store']);
+Route::get('/removeFilm/{id}', [FilmController::class, 'destroy']);
 
 Route::get('/books', [BookController::class, 'index']);
 Route::get('/books/{id}', [BookController::class, 'show']);
 Route::post('/books', [BookController::class, 'store']);
-Route::put('/books/{id}', [BookController::class, 'update']);
-Route::delete('/books/{id}', [BookController::class, 'destroy']);
+Route::get('/removeBook/{id}', [BookController::class, 'destroy']);
+
+Route::get('/directors', [DirectorController::class, 'index']);
+Route::get('/director/{id}', [DirectorController::class, 'show']);
+
+Route::get('/casting/{id}', [CastingController::class, 'getFilmCasting']);
+
+Route::get('/bookLoans/{id}', [LoanController::class, 'countBook']);
+Route::get('/filmLoans/{id}', [LoanController::class, 'countFilm']);
+Route::get('/loans', [LoanController::class, 'index']);
+Route::get('/removeLoan/{loanRef}', [LoanController::class, 'removeLoan']);
+Route::get('/checkBook/{id}', [LoanController::class, 'checkBook']);
+Route::get('/checkFilm/{id}', [LoanController::class, 'checkFilm']);
 
 Route::post('/connect', [UserController::class, 'login']);
 
+Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/account/{id}', [UserController::class, 'getCustomerInfo']);
 Route::get('/account/loan/{id}', [UserController::class, 'getCustomerLoan']);
 
+Route::get('/authors', [AuthorController::class, 'index']);
 
-Route::get('/api/panier', [LoanController::class, 'index']);
-Route::post('/api/panier/add', [LoanController::class, 'add']);
+Route::get('/editors', [EditorController::class, 'index']);
+Route::get('/editor/{id}', [EditorController::class, 'show']);
+
+Route::get('/languages', [LanguageController::class, 'index']);
+Route::get('/language/{id}', [LanguageController::class, 'show']);
+
+Route::get('/filmLanguages/{id}', [AudioLanguageController::class, 'getFilmLanguages']);
+
+Route::get('/filmSubtitles/{id}', [SubtitleController::class, 'getFilmSubtitles']);
+
+
+Route::get('/books-most-loaned', [BookController::class, 'mostLoanedBook']);
+Route::get('/books-latest', [BookController::class, 'latestBooks']);
+Route::get('/books-most-loaned-books', [BookController::class, 'mostLoanedBooks']);
+
+Route::get('/films-most-loaned', [FilmController::class, 'mostLoanedFilm']);
+Route::get('/films-latest', [FilmController::class, 'latestFilms']);
+Route::get('/films-most-loaned-films', [FilmController::class, 'mostLoanedFilms']);

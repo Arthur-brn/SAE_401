@@ -53,9 +53,10 @@ class UserController extends Controller
         // Vérifier si l'utilisateur existe et le mot de passe est correct
         if ($user && $request->password == $user->password) {
             // L'utilisateur existe et le mot de passe est correct
-            $_SESSION['userId'] = $user->id;
-            return response()->json($_SESSION['userId'], 200);
-        } else {
+            return response()->json($user, 200);
+        } 
+        else 
+        {
             // L'utilisateur n'existe pas ou le mot de passe est incorrect
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
