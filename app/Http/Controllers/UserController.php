@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Loan;
 use App\Models\Film;
 use App\Models\Book;
-use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -52,8 +51,7 @@ class UserController extends Controller
         $user = User::where('email', $request->email)->first();
 
         // Vérifier si l'utilisateur existe et le mot de passe est correct
-        if ($user && $request->password == $user->password) 
-        {
+        if ($user && $request->password == $user->password) {
             // L'utilisateur existe et le mot de passe est correct
             return response()->json($user, 200);
         } 
@@ -67,12 +65,9 @@ class UserController extends Controller
     public function getCustomerInfo($userId)
     {
         $user = User::findOrFail($userId);
-        if ($user) 
-        {
+        if ($user) {
             return response()->json($user, 200);
-        } 
-        else 
-        {
+        } else {
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
     }
@@ -87,14 +82,11 @@ class UserController extends Controller
             $loanStartDate = $loan->start_date;
             $loanStatus = $loan->status;
             $booking_number = $loan->booking_number;
-            
-            if ($loan->loanable_type == "film") 
-            {
+
+            if ($loan->loanable_type == "film") {
                 $film = Film::find($loan->loanable_id);
                 $articleName = $film ? $film->title : 'Film not found';
-            } 
-            else 
-            {
+            } else {
                 $book = Book::find($loan->loanable_id);
                 $articleName = $book ? $book->title : 'Book not found';
             }

@@ -120,6 +120,6 @@ Route::get('/account', function () {
 Route::get('/panier', function () {
     return view('panier', [
         'fileCss' => 'panier',
-        'fileJS' => ''
+        'fileJS' => 'panier'
     ]);
 });
