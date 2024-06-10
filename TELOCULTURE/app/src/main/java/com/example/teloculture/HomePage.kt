@@ -12,6 +12,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -20,38 +21,41 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.teloculture.ui.theme.TELOCULTURETheme
 
 @Composable
 fun HomePage(navController: NavController) {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
-            .padding(16.dp)
-    ) {
-        item {
-            TopBar()
-        }
-        item {
-            SectionTitle("La littérature", Color(0xFFFF625C))
-        }
-        item {
-            CategoriesRow()
-        }
-        item {
-            SectionTitle("Livres populaires", Color(0xFF6887F6))
-        }
-        item {
-            BooksRow()
-        }
-        item {
-            MoreButton("Voir plus")
-        }
-        item {
-            SectionTitle("Le cinéma", Color(0xFFFF625C))
-        }
-        item {
-            CinemaSection()
+    Column(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(
+            modifier = Modifier
+                .weight(1f)
+                .background(Color.White)
+                .padding(16.dp)
+        ) {
+            item {
+                TopBar()
+            }
+            item {
+                SectionTitle("La littérature", Color(0xFFFF625C))
+            }
+            item {
+                CategoriesRow()
+            }
+            item {
+                SectionTitle("Livres populaires", Color(0xFF6887F6))
+            }
+            item {
+                BooksRow()
+            }
+            item {
+                MoreButton("Voir plus")
+            }
+            item {
+                SectionTitle("Le cinéma", Color(0xFFFF625C))
+            }
+            item {
+                CinemaSection()
+            }
         }
     }
 }
@@ -60,24 +64,15 @@ fun HomePage(navController: NavController) {
 fun TopBar() {
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp), // Ajout de padding
+        horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(
-            painter = painterResource(id = R.drawable.user),
-            contentDescription = null,
-            modifier = Modifier.size(40.dp)
-        )
         Image(
             painter = painterResource(id = R.drawable.logo), // Remplacez par votre logo
             contentDescription = null,
-            modifier = Modifier.size(60.dp)
-        )
-        Icon(
-            painter = painterResource(id = R.drawable.menu),
-            contentDescription = null,
-            modifier = Modifier.size(40.dp)
+            modifier = Modifier.size(75.dp) // Ajuster la taille du logo
         )
     }
 }
@@ -91,13 +86,11 @@ fun SectionTitle(title: String, color: Color) {
         modifier = Modifier.padding(vertical = 8.dp)
     )
 }
-
 @Composable
 fun CategoriesRow() {
     val categories = listOf(
         "Roman", "Poésie", "Fantastique", "Magazine", "Actualité"
     )
-
     LazyRow(
         modifier = Modifier.padding(vertical = 8.dp)
     ) {
@@ -119,7 +112,6 @@ fun CategoriesRow() {
         }
     }
 }
-
 @Composable
 fun BooksRow() {
     val books = List(6) { "Fashionopolis" }
@@ -130,7 +122,6 @@ fun BooksRow() {
         }
     }
 }
-
 @Composable
 fun Books(book: String) {
     Column(
@@ -147,7 +138,6 @@ fun Books(book: String) {
         Text(text = "Dana Thomas")
     }
 }
-
 @Composable
 fun MoreButton(text: String) {
     Button(
@@ -163,8 +153,6 @@ fun MoreButton(text: String) {
         Text(text)
     }
 }
-
-
 @Composable
 fun CinemaSection() {
     val gradient = Brush.linearGradient(
@@ -176,7 +164,6 @@ fun CinemaSection() {
         start = Offset.Zero, // Début du dégradé (coin en haut à gauche)
         end = Offset.Infinite, // Fin du dégradé (coin en bas à droite)
     )
-
     Box(
         modifier = Modifier
             .fillMaxWidth()
