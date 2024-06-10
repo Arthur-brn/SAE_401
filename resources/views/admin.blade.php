@@ -35,6 +35,12 @@
                         <td>Suppression</td>
                     </tr>
                 </thead>
+                <tr id="loadingBooksFilms">
+                    <td colspan="6" 
+                        style="text-align:center">
+                        Récupération des données en cours...
+                    </td>
+                </tr>
             </table>
         </div>
         <div x-show="tab === 'tab2'">
@@ -78,15 +84,19 @@
                 <div>
                     <label for="type">Type de livre :</label>
                     <select id="type" name="type">
-                        <option value="comics">Comics</option>
-                        <option value="paper back">Paper back</option>
-                        <option value="pocket book">Pocket book</option>
-                        <option value="illustrated album">Illustrated album</option>
+                        <option value="">Choisir le type</option>
+                        <option value="roman">Roman</option>
+                        <option value="bd et manga">BD et Manga</option>
+                        <option value="jeunesse">Jeunesse</option>
+                        <option value="poésie">Poésie</option>
+                        <option value="biographie">Biographie</option>
+                        <option value="actualité">Actualité</option>
                     </select>
                 </div>
                 <div>
                     <label for="style">Style:</label>
                     <select id="style" name="style">
+                        <option value="">Choisir le style</option>
                         <option value="fantastique">Fantastique</option>
                         <option value="romantique">Romantique</option>
                         <option value="science-fiction">Science-fiction</option>
@@ -100,18 +110,6 @@
                 <div>
                     <label for="copy_number">Nombre d'exemplaire :</label>
                     <input type="number" id="copy_number" name="copy_number">
-                </div>
-                <div>
-                    <label for="category">Catégorie :</label>
-                    <select id="category" name="category">
-                        <option value="">Choisir la catégorie</option>
-                        <option value="romans">Romans</option>
-                        <option value="bd et manga">BD et Manga</option>
-                        <option value="jeunesse">Jeunesse</option>
-                        <option value="poésie">Poésie</option>
-                        <option value="biographie">Biographie</option>
-                        <option value="actualités">Actualités</option>
-                    </select>
                 </div>
                 <button type="submit">Ajouter</button>
             </form>
@@ -230,6 +228,12 @@
                         <th>Suppression</th>
                     </tr>
                 </thead>
+                <tr id="loadCurrentBooking">
+                    <td colspan="7" 
+                        style="text-align:center">
+                        Récupération des données en cours...
+                    </td>
+                </tr>
             </table>
         </div>
         <div x-show="tab === 'tab2'">
@@ -249,6 +253,12 @@
                         <th>Suppression</th>
                     </tr>
                 </thead>
+                <tr id="loadFutureBooking">
+                    <td colspan="7" 
+                        style="text-align:center">
+                        Récupération des données en cours...
+                    </td>
+                </tr>
             </table>
         </div>
         <div x-show="tab === 'tab3'">
@@ -268,6 +278,12 @@
                         <th>Suppression</th>
                     </tr>
                 </thead>
+                <tr id="loadPassedBooking">
+                    <td colspan="7" 
+                        style="text-align:center">
+                        Récupération des données en cours...
+                    </td>
+                </tr>
             </table>
         </div>
         <div x-show="tab === 'tab4'">
@@ -445,6 +461,7 @@
                     line.appendChild(suppr);
 
                     document.getElementById('itemList').appendChild(line);
+                    document.getElementById('loadingBooksFilms').remove();
                 });
             } catch (error) {
                 console.error('Error fetching films data:', error);
@@ -624,14 +641,16 @@
                         loanStatus.innerHTML = "Passée";
                         passedBooking.appendChild(line);
                     }
-
+                    document.getElementById('loadCurrentBooking').remove();
+                    document.getElementById('loadFutureBooking').remove();
+                    document.getElementById('loadPassedBooking').remove();
                 });
 
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         }
-        
+
         fetchBooksAndDisplay();
         fetchFilmsAndDisplay();
         fetchAuthorsAndPopulateSelect();
