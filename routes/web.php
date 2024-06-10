@@ -16,22 +16,110 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 
     return view('home', [
-        'fileCss' => ('home')
+        'fileCss' => 'home',
+        'fileJS' => 'home'
+
     ]);
 });
 
-Route::get('/header', function () {
-    return view('header');
+Route::get('/litterature', function () {
+
+    return view('litterature', [
+        'fileCss' => 'litterature',
+        'fileJS' => 'litterature'
+    ]);
 });
 
-Route::get('/books', function () {
-    return view('books.index');
+
+Route::get('/litterature-{id}', function ($id) {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
+        'fileJS' => '',
+        'id' => $id,
+        'type' => 'book'
+    ]);
+});
+
+Route::get('/catalogue', function () {
+
+    return view('catalogue', [
+        'fileCss' => 'catalogue',
+        'fileJS' => ''
+    ]);
+});
+
+Route::get('/layout', function () {
+    return view('layout', [
+        'fileCss' => 'layout',
+        'fileJS' => ''
+    ]);
+});
+
+Route::get('/admin', function () {
+
+    return view('admin', [
+        'fileCss' => 'admin',
+        'fileJS' => ''
+    ]);
+});
+
+Route::get('/details_article', function () {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
+        'fileJS' => ''
+    ]);
+});
+
+Route::get('/cinema', function () {
+    return view('cinema', [
+        'fileCss' => 'cinema',
+        'fileJS' => ''
+    ]);
+});
+
+Route::get('/cinema-{id}', function ($id) {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
+        'fileJS' => '',
+        'id' => $id,
+        'type' => 'film'
+    ]);
+});
+
+Route::get('/tendances', function () {
+    return view('tendances', [
+        'fileCss' => 'tendances',
+        'fileJS' => ''
+    ]);
+});
+
+Route::get('/contact', function () {
+    return view('contact', [
+        'fileCss' => 'contact',
+        'fileJS' => ''
+    ]);
 });
 
 Route::get('/connect', function () {
-    return view('connect');
+    return view('connect', [
+        'fileCss' => 'connect',
+        'fileJS' => 'connection'
+    ]);
 });
 
 Route::get('/account', function () {
-    return view('account');
+    return view('account', [
+        'fileCss' => 'account',
+        'fileJS' => 'userAccount'
+    ]);
+});
+
+Route::get('/panier', function () {
+    return view('panier', [
+        'fileCss' => 'panier',
+        'fileJS' => ''
+    ]);
 });

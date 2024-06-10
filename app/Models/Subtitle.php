@@ -11,11 +11,6 @@ class Subtitle extends Model
 
     protected $table = 'subtitle';
 
-    protected $fillable = [
-        'langage_id',
-        'film_id',
-    ];
-
     public function film()
     {
         return $this->belongsTo(Film::class);
