@@ -42,4 +42,27 @@ class FilmController extends Controller
         Film::findOrFail($id)->delete();
         return response()->json(null, 201);
     }
+
+    // Méthode pour récupérer le livre avec le plus grand nombre de prêts
+    public function mostLoanedFilm()
+    {
+        $film = Film::orderBy('loan_number', 'desc')->first();
+        return response()->json($film);
+    }
+
+    // Méthode pour récupérer les livres les plus récents
+    public function latestFilms()
+    {
+        $films = Film::with('director')->orderBy('created_at', 'desc')->take(10)->get();
+        return response()->json($films);
+    }
+
+    // Méthode pour récupérer les livres avec les nombres de prêts les plus élevés
+    public function mostLoanedFilms()
+    {
+        $films = Film::with('director')->orderBy('loan_number', 'desc')->take(11)->get();
+        // Exclure le premier élément de la collection car déjà affiché au dessus
+        $filmsExcludingFirst = $films->slice(1);
+        return response()->json($filmsExcludingFirst->values());
+    }
 }
