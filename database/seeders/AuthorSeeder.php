@@ -17,19 +17,16 @@ class AuthorSeeder extends Seeder
         DB::table('author')->insert([
             [
                 'name' => 'J.K. Rowling',
-                'picture' => 'jk_rowling.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'George R.R. Martin',
-                'picture' => 'george_rr_martin.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'J.R.R. Tolkien',
-                'picture' => 'jrr_tolkien.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
