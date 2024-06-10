@@ -18,7 +18,7 @@ class CreateLoanTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('booking_number', 10);
             $table->date('start_date');
-            $table->enum('status', ['booked', 'loaned', 'returned']);
+            $table->enum('status', ['add_to_cart', 'booked', 'loaned', 'returned']);
             $table->timestamps();
 
             $table->primary(['user_id', 'loanable_id', 'loanable_type']);

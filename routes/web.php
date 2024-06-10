@@ -21,26 +21,37 @@ Route::get('/', function () {
 
     ]);
 });
+
 Route::get('/litterature', function () {
 
     return view('litterature', [
         'fileCss' => 'litterature',
-        'fileJS' => ''
+        'fileJS' => 'litterature'
     ]);
 });
 
+
+Route::get('/litterature-{id}', function ($id) {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
+        'fileJS' => '',
+        'id' => $id,
+        'type' => 'book'
+    ]);
+});
+
+Route::get('/catalogue', function () {
+
+    return view('catalogue', [
+        'fileCss' => 'catalogue',
+        'fileJS' => ''
+    ]);
+});
 
 Route::get('/layout', function () {
     return view('layout', [
         'fileCss' => 'layout',
-        'fileJS' => ''
-    ]);
-});
-
-Route::get('/books', function () {
-
-    return view('books.index', [
-        'fileCss' => 'books',
         'fileJS' => ''
     ]);
 });
@@ -53,10 +64,28 @@ Route::get('/admin', function () {
     ]);
 });
 
+Route::get('/details_article', function () {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
+        'fileJS' => ''
+    ]);
+});
+
 Route::get('/cinema', function () {
     return view('cinema', [
         'fileCss' => 'cinema',
         'fileJS' => ''
+    ]);
+});
+
+Route::get('/cinema-{id}', function ($id) {
+
+    return view('details_article', [
+        'fileCss' => 'details_article',
+        'fileJS' => '',
+        'id' => $id,
+        'type' => 'film'
     ]);
 });
 
