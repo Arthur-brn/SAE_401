@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::get('/litterature', function () {
 
     return view('litterature', [
-        'fileCss' => 'litterature',
+        'fileCss' => 'litterature_cinema',
         'fileJS' => 'litterature'
     ]);
 });
@@ -74,8 +74,8 @@ Route::get('/details_article', function () {
 
 Route::get('/cinema', function () {
     return view('cinema', [
-        'fileCss' => 'cinema',
-        'fileJS' => ''
+        'fileCss' => 'litterature_cinema',
+        'fileJS' => 'cinema'
     ]);
 });
 
