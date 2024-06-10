@@ -9,7 +9,7 @@
         <a href="#"><button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button></a>
     </div>
     <div class="img">
-        <img src="./assets/img/top-page_litterature.jpg" alt="TeloCulture">
+        <img src="" alt="">
     </div>
 </section>
 
