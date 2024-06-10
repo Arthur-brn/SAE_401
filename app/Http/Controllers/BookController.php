@@ -7,38 +7,60 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
-    /**
-     * Display form to register a new book.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
+    // Méthode pour afficher tous les livres
+    public function index()
     {
-        return view('book.create');
+        $books = Book::all();
+        return response()->json($books);
     }
 
-    /**
-     * Stocke un nouveau livre dans la base de données.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+    // Méthode pour afficher les détails d'un livre
+    public function show($id)
+    {
+        $book = Book::findOrFail($id);
+        return response()->json($book);
+    }
+
+    // Méthode pour créer un nouveau livre
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'author_id' => 'required|exists:author,id',
-            'editor' => 'required|string|max:255',
-            'style' => 'required|string|max:255',
-            'page_number' => 'required|integer|min:1',
-            'edition_date' => 'required|date',
-            'loan_number' => 'required|integer|min:0',
-            'type' => 'required|string|max:255',
-            'summary' => 'required|string|max:1255',
-        ]);
+        $book = Book::create($request->all());
+        return response()->json($book, 201);
+    }
 
-        Book::create($request->all());
+    // Méthode pour mettre à jour les informations d'un livre
+    public function update(Request $request, $id)
+    {
+        $book = Book::findOrFail($id);
+        $book->update($request->all());
+        return response()->json($book, 200);
+    }
 
-        return redirect()->route('book.store')->with('success', 'Le livre a été ajouté avec succès !');
+    // Méthode pour supprimer un livre
+    public function destroy($id)
+    {
+        Book::findOrFail($id)->delete();
+        return response()->json(null, 201);
+    }
+
+    // Méthode pour récupérer le livre avec le plus grand nombre de prêts
+    public function mostLoanedBook()
+    {
+        $book = Book::orderBy('loan_number', 'desc')->first();
+        return response()->json($book);
+    }
+
+    // Méthode pour récupérer les livres les plus récents
+    public function latestBooks()
+    {
+        $books = Book::with('author')->orderBy('created_at', 'desc')->take(10)->get();
+        return response()->json($books);
+    }
+
+    // Méthode pour récupérer les livres avec les nombres de prêts les plus élevés
+    public function mostLoanedBooks()
+    {
+        $books = Book::with('author')->orderBy('loan_number', 'desc')->take(10)->get();
+        return response()->json($books);
     }
 }
