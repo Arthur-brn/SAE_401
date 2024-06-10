@@ -28,26 +28,26 @@ class Book extends Model
 
     public function author()
     {
-        return $this->belongsTo(Author::class);
+        return $this->belongsTo(Author::class, 'author_id');
     }
 
     public function editor()
     {
-        return $this->belongsTo(Editor::class);
+        return $this->belongsTo(Editor::class, 'editor_id');
     }
 
     public function language()
     {
-        return $this->belongsTo(Language::class);
+        return $this->belongsTo(Language::class, 'language_id');
     }
 
-    public function noticeUsers()
+    public function loans()
     {
-        return $this->belongsToMany(User::class, 'notice', 'book_id', 'user_id');
+        return $this->morphToMany(User::class, 'loanable');
     }
 
-    public function loanUsers()
+    public function reviews()
     {
-        return $this->belongsToMany(User::class, 'loan', 'book_id', 'user_id');
+        return $this->morphToMany(User::class, 'reviewable');
     }
 }
