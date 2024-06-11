@@ -59,6 +59,7 @@ Route::get('/bookLoans/{id}', [LoanController::class, 'countBook']);
 Route::get('/filmLoans/{id}', [LoanController::class, 'countFilm']);
 Route::get('/loans', [LoanController::class, 'index']);
 Route::post('/loans', [LoanController::class, 'store']);
+Route::post('/checkLoans', [LoanController::class, 'checkLoans']);
 Route::get('/removeLoan/{loanRef}', [LoanController::class, 'removeLoan']);
 Route::get('/checkBook/{id}', [LoanController::class, 'checkBook']);
 Route::get('/checkFilm/{id}', [LoanController::class, 'checkFilm']);

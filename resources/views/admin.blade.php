@@ -834,7 +834,7 @@
             }
             else
             {
-                window.location.href = './admin';
+                window.location.href = './account';
             }
         }
         else

@@ -94,4 +94,14 @@ class LoanController extends Controller
             return response()->json(null, 404);
         }
     }
+
+    public function checkLoans(Request $request)
+    {
+        $loans = Loan::where('loanable_type', $request->loanable_type)
+                     ->where('loanable_id', $request->loanable_id)
+                     ->where('user_id', $request->user_id)
+                     ->where('status', '!=', 'returned')
+                     ->first();
+        return response()->json($loans, 201);
+    }
 }

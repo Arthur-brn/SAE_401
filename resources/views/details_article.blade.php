@@ -92,38 +92,13 @@
         const addReviewForm = document.getElementById('addReviewForm');
         const addToCartBtn = document.getElementById('addToCart');
 
-        if(!userId){
-            addToCartBtn.innerHTML = "Connectez-vous pour ajouter au panier !";
-        }
-        else{
-            addToCartBtn.addEventListener('click', async function(){
-                const formData = new FormData();
-                const date = new Date().toISOString().split('T')[0];
-                formData.set('loanable_type', 'App\\Models\\'+articleType);
-                formData.set('loanable_id', articleId);
-                formData.set('user_id', userId);
-                formData.set('booking_number', 'AB345');
-                formData.set('start_date', date);
-                formData.set('status', 'add_to_cart');
-                try{
-                    const bookingResponse = await fetch('/api/loans', {
-                        method: 'POST',
-                        body: formData
-                    })
-                    const booking = await bookingResponse.json();
-                    window.location.href = "#";
-                }catch (error) {
-                    console.error('Error fetching author data:', error);
-                }
-            });
-        }
-
         if (articleType && articleType == "Book") {
             await fetchBookInfos(articleId);
         } else if (articleType && articleType == "Film") {
             await fetchFilmInfos(articleId);
         }
         await fetchArticleReview(articleId, articleType);
+        await displayCartButton();
 
         async function fetchBookInfos(id) {
             try {
@@ -292,6 +267,57 @@
 
             } catch (error) {
                 console.error('Error fetching data:', error);
+            }
+        }
+
+        async function displayCartButton(){
+            if(!userId){
+                addToCartBtn.innerHTML = "Connectez-vous pour ajouter au panier !";
+            }
+            else if(availableNum.innerHTML == "Aucun exemplaire disponible dans le réseau"){
+                addToCartBtn.innerHTML = "Impossible d'ajouter l'article au panier !";
+            }
+            else{
+                try{
+                    checkData = new FormData();
+                    checkData.set('loanable_type', 'App\\Models\\'+articleType);
+                    checkData.set('loanable_id', articleId);
+                    checkData.set('user_id', userId);
+                    const loansResponse = await fetch('/api/checkLoans', {
+                        method: 'POST',
+                        body: checkData
+                    })
+                    const loans = await loansResponse.json();
+                    if(Object.keys(loans).length === 0){
+                        addToCartBtn.addEventListener('click', async function(){
+                            const formData = new FormData();
+                            const date = new Date().toISOString().split('T')[0];
+                            formData.set('loanable_type', 'App\\Models\\'+articleType);
+                            formData.set('loanable_id', articleId);
+                            formData.set('user_id', userId);
+                            formData.set('booking_number', 'AB3451213M');
+                            formData.set('start_date', date);
+                            formData.set('status', 'add_to_cart');
+                            try{
+                                const bookingResponse = await fetch('/api/loans', {
+                                    method: 'POST',
+                                    body: formData
+                                })
+                                const booking = await bookingResponse.json();
+                                console.log(booking);
+                                window.location.href = "";
+                            }catch (error) {
+                                console.error('Error fetching author data:', error);
+                            }
+                        });
+                    }
+                    else{
+                        addToCartBtn.innerHTML = "Vous avez déjà réservé cet article !";
+                    }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+                
             }
         }
     });
