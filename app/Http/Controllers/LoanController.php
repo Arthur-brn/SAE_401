@@ -45,7 +45,7 @@ class LoanController extends Controller
 
     public function countBook($id)
     {
-        $loans = Loan::where('loanable_type', 'book')
+        $loans = Loan::where('loanable_type', 'like', '%Book%')
                      ->where('loanable_id', $id)
                      ->where('status', '!=', 'returned')
                      ->count();
@@ -55,7 +55,7 @@ class LoanController extends Controller
 
     public function countFilm($id)
     {
-        $loans = Loan::where('loanable_type', 'film')
+        $loans = Loan::where('loanable_type', 'like', '%Film%')
                      ->where('loanable_id', $id)
                      ->where('status', '!=', 'returned')
                      ->count();
@@ -71,7 +71,7 @@ class LoanController extends Controller
 
     public function checkBook($id)
     {
-        $book = Loan::where('loanable_type', 'book')
+        $book = Loan::where('loanable_type', 'like', '%Book%')
                     ->where('loanable_id', $id)
                     ->first();
         if($book)
@@ -86,7 +86,7 @@ class LoanController extends Controller
 
     public function checkFilm($id)
     {
-        $film = Loan::where('loanable_type', 'film')
+        $film = Loan::where('loanable_type', 'like', '%Film%')
                     ->where('loanable_id', $id)
                     ->first();
         if($film)

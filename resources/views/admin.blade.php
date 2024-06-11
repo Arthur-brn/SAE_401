@@ -306,515 +306,540 @@
         </div>
     </div>
 </div>
+<div>
+    <button id="deconnect" style="margin : auto">Me déconnecter</button>
+</div>
 @endsection
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const itemList = document.getElementById('itemList');
-        const authorSelect = document.getElementById('author_id');
-        const editorSelect = document.getElementById('editor_id');
-        const directorSelect = document.getElementById('director_id');
-        const actorSelect = document.getElementById('actors');
-        const bookLanguage = document.getElementById('language_id');
-        const audioLanguage = document.getElementById('audioLanguages');
-        const subLanguage = document.getElementById('subLanguages');
-        const addBookForm = document.getElementById('addBookForm');
-        const addFilmForm = document.getElementById('addFilmForm');
-        const passedBooking = document.getElementById('passedBookings');
-        const futureBooking = document.getElementById('futureBookings');
-        const currentBooking = document.getElementById('currentBookings');
+        const userId = sessionStorage.getItem('userId');
+        const userStatus = sessionStorage.getItem('userStatus');
+        if(userId)
+        {
+            if(userStatus && userStatus == "admin"){
+                const itemList = document.getElementById('itemList');
+                const authorSelect = document.getElementById('author_id');
+                const editorSelect = document.getElementById('editor_id');
+                const directorSelect = document.getElementById('director_id');
+                const actorSelect = document.getElementById('actors');
+                const bookLanguage = document.getElementById('language_id');
+                const audioLanguage = document.getElementById('audioLanguages');
+                const subLanguage = document.getElementById('subLanguages');
+                const addBookForm = document.getElementById('addBookForm');
+                const addFilmForm = document.getElementById('addFilmForm');
+                const passedBooking = document.getElementById('passedBookings');
+                const futureBooking = document.getElementById('futureBookings');
+                const currentBooking = document.getElementById('currentBookings');
+                const decoButton = document.getElementById('deconnect');
 
-        async function fetchBooksAndDisplay() {
-            try {
-                const response = await fetch('/api/books');
-                const books = await response.json();
+                decoButton.addEventListener('click', function(){
+                    sessionStorage.clear();
+                    window.location.href = './account';
+                });
 
-                books.forEach(async (book) => {
-                    const line = document.createElement("tr");
-
-                    const title = document.createElement('td');
-                    title.innerHTML = book.title;
-
-                    const type = document.createElement('td');
-                    type.innerHTML = 'Livre';
-
-                    const author = document.createElement('td');
+                async function fetchBooksAndDisplay() {
                     try {
-                        const authorResponse = await fetch('/api/author/' + book.author_id);
-                        const authorData = await authorResponse.json();
-                        author.innerHTML = authorData.name;
-                    } catch (error) {
-                        console.error('Error fetching author data:', error);
-                        author.innerHTML = 'Error fetching author';
-                    }
+                        const response = await fetch('/api/books');
+                        const books = await response.json();
 
-                    const number = document.createElement('td');
-                    number.innerHTML = book.copy_number;
+                        books.forEach(async (book) => {
+                            const line = document.createElement("tr");
 
-                    const bookAvailable = document.createElement('td');
-                    try {
-                        const loanResponse = await fetch('/api/bookLoans/' + book.id);
-                        const count = await loanResponse.json();
-                        bookAvailable.innerHTML = book.copy_number - count;
-                    } catch (error) {
-                        console.error('Error fetching loan data:', error);
-                        bookAvailable.innerHTML = 'Error fetching availability';
-                    }
+                            const title = document.createElement('td');
+                            title.innerHTML = book.title;
 
-                    const suppr = document.createElement('td');
-                    try{
-                        const response = await fetch('/api/checkBook/'+book.id);
-                        const data = await response.json();
-                        if(data.loanable_id)
-                        {
-                            suppr.innerHTML = "Suppression impossible !";
-                        }
-                        else
-                        {
-                            suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
-                            suppr.addEventListener('click', async function(){
-                                try{
-                                    const response = await fetch('/api/removeBook/'+book.id);
-                                    const data = await response.json();
-                                    window.location.href = "./admin";
-                                }catch (error) {
-                                    console.error('Error fetching data:', error);
+                            const type = document.createElement('td');
+                            type.innerHTML = 'Livre';
+
+                            const author = document.createElement('td');
+                            try {
+                                const authorResponse = await fetch('/api/author/' + book.author_id);
+                                const authorData = await authorResponse.json();
+                                author.innerHTML = authorData.name;
+                            } catch (error) {
+                                console.error('Error fetching author data:', error);
+                                author.innerHTML = 'Error fetching author';
+                            }
+
+                            const number = document.createElement('td');
+                            number.innerHTML = book.copy_number;
+
+                            const bookAvailable = document.createElement('td');
+                            try {
+                                const loanResponse = await fetch('/api/bookLoans/' + book.id);
+                                const count = await loanResponse.json();
+                                bookAvailable.innerHTML = book.copy_number - count;
+                            } catch (error) {
+                                console.error('Error fetching loan data:', error);
+                                bookAvailable.innerHTML = 'Error fetching availability';
+                            }
+
+                            const suppr = document.createElement('td');
+                            try{
+                                const response = await fetch('/api/checkBook/'+book.id);
+                                const data = await response.json();
+                                if(data.loanable_id)
+                                {
+                                    suppr.innerHTML = "Suppression impossible !";
                                 }
-                            });
-                        } 
+                                else
+                                {
+                                    suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
+                                    suppr.addEventListener('click', async function(){
+                                        try{
+                                            const response = await fetch('/api/removeBook/'+book.id);
+                                            const data = await response.json();
+                                            window.location.href = "./admin";
+                                        }catch (error) {
+                                            console.error('Error fetching data:', error);
+                                        }
+                                    });
+                                } 
+                            } catch (error) {
+                                console.error('Error fetching data:', error);
+                            }
+
+                            line.appendChild(title);
+                            line.appendChild(type);
+                            line.appendChild(author);
+                            line.appendChild(number);
+                            line.appendChild(bookAvailable);
+                            line.appendChild(suppr);
+
+                            document.getElementById('itemList').appendChild(line);
+                        });
+                    } catch (error) {
+                        console.error('Error fetching books data:', error);
+                    }
+                }
+                
+                async function fetchFilmsAndDisplay() {
+                    try {
+                        const response = await fetch('/api/films');
+                        const films = await response.json();
+
+                        films.forEach(async (film) => {
+                            const line = document.createElement("tr");
+
+                            const title = document.createElement('td');
+                            title.innerHTML = film.title;
+
+                            const type = document.createElement('td');
+                            type.innerHTML = 'Film';
+
+                            const director = document.createElement('td');
+                            try {
+                                const directorResponse = await fetch(`/api/director/${film.director_id}`);
+                                const directorData = await directorResponse.json();
+                                director.innerHTML = directorData.name;
+                            } catch (error) {
+                                console.error('Error fetching director data:', error);
+                                director.innerHTML = 'Error fetching director';
+                            }
+
+                            const number = document.createElement('td');
+                            number.innerHTML = film.copy_number;
+
+                            const available = document.createElement('td');
+                            try {
+                                const loanResponse = await fetch(`/api/filmLoans/${film.id}`);
+                                const count = await loanResponse.json();
+                                available.innerHTML = film.copy_number - count;
+                            } catch (error) {
+                                console.error('Error fetching loan data:', error);
+                                available.innerHTML = 'Error fetching availability';
+                            }
+
+                            const suppr = document.createElement('td');
+                            try{
+                                const response = await fetch('/api/checkFilm/'+film.id);
+                                const data = await response.json();
+                                if(data.loanable_id)
+                                {
+                                    suppr.innerHTML = "Suppression impossible !";
+                                }
+                                else
+                                {
+                                    suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
+                                    suppr.addEventListener('click', async function(){
+                                        try{
+                                            const response = await fetch('/api/removeFilm/'+film.id);
+                                            const data = await response.json();
+                                            window.location.href = "./admin";
+                                        }catch (error) {
+                                            console.error('Error fetching data:', error);
+                                        }
+                                    });
+                                } 
+                            } catch (error) {
+                                console.error('Error fetching data:', error);
+                            }
+
+                            line.appendChild(title);
+                            line.appendChild(type);
+                            line.appendChild(director);
+                            line.appendChild(number);
+                            line.appendChild(available);
+                            line.appendChild(suppr);
+
+                            document.getElementById('itemList').appendChild(line);
+                            document.getElementById('loadingBooksFilms').remove();
+                        });
+                    } catch (error) {
+                        console.error('Error fetching films data:', error);
+                    }
+                }
+
+                async function fetchAuthorsAndPopulateSelect() {
+                    try {
+                        const response = await fetch('api/authors');
+                        const authors = await response.json();
+
+                        authors.forEach(author => {
+                            const authorOption = document.createElement('option');
+                            authorOption.innerHTML = author.name;
+                            authorOption.setAttribute('value', author.id);
+                            authorSelect.appendChild(authorOption);
+                        });
                     } catch (error) {
                         console.error('Error fetching data:', error);
                     }
+                }
 
-                    line.appendChild(title);
-                    line.appendChild(type);
-                    line.appendChild(author);
-                    line.appendChild(number);
-                    line.appendChild(bookAvailable);
-                    line.appendChild(suppr);
-
-                    document.getElementById('itemList').appendChild(line);
-                });
-            } catch (error) {
-                console.error('Error fetching books data:', error);
-            }
-        }
-        
-        async function fetchFilmsAndDisplay() {
-            try {
-                const response = await fetch('/api/films');
-                const films = await response.json();
-
-                films.forEach(async (film) => {
-                    const line = document.createElement("tr");
-
-                    const title = document.createElement('td');
-                    title.innerHTML = film.title;
-
-                    const type = document.createElement('td');
-                    type.innerHTML = 'Film';
-
-                    const director = document.createElement('td');
+                async function fetchEditorsAndPopulateSelect() {
                     try {
-                        const directorResponse = await fetch(`/api/director/${film.director_id}`);
-                        const directorData = await directorResponse.json();
-                        director.innerHTML = directorData.name;
-                    } catch (error) {
-                        console.error('Error fetching director data:', error);
-                        director.innerHTML = 'Error fetching director';
-                    }
+                        const response = await fetch('api/editors');
+                        const editors = await response.json();
 
-                    const number = document.createElement('td');
-                    number.innerHTML = film.copy_number;
-
-                    const available = document.createElement('td');
-                    try {
-                        const loanResponse = await fetch(`/api/filmLoans/${film.id}`);
-                        const count = await loanResponse.json();
-                        available.innerHTML = film.copy_number - count;
-                    } catch (error) {
-                        console.error('Error fetching loan data:', error);
-                        available.innerHTML = 'Error fetching availability';
-                    }
-
-                    const suppr = document.createElement('td');
-                    try{
-                        const response = await fetch('/api/checkFilm/'+film.id);
-                        const data = await response.json();
-                        if(data.loanable_id)
-                        {
-                            suppr.innerHTML = "Suppression impossible !";
-                        }
-                        else
-                        {
-                            suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
-                            suppr.addEventListener('click', async function(){
-                                try{
-                                    const response = await fetch('/api/removeFilm/'+film.id);
-                                    const data = await response.json();
-                                    window.location.href = "./admin";
-                                }catch (error) {
-                                    console.error('Error fetching data:', error);
-                                }
-                            });
-                        } 
+                        editors.forEach(editor => {
+                            const editorOption = document.createElement('option');
+                            editorOption.innerHTML = editor.name;
+                            editorOption.setAttribute('value', editor.id);
+                            editorSelect.appendChild(editorOption);
+                        });
                     } catch (error) {
                         console.error('Error fetching data:', error);
                     }
+                }
 
-                    line.appendChild(title);
-                    line.appendChild(type);
-                    line.appendChild(director);
-                    line.appendChild(number);
-                    line.appendChild(available);
-                    line.appendChild(suppr);
-
-                    document.getElementById('itemList').appendChild(line);
-                    document.getElementById('loadingBooksFilms').remove();
-                });
-            } catch (error) {
-                console.error('Error fetching films data:', error);
-            }
-        }
-
-        async function fetchAuthorsAndPopulateSelect() {
-            try {
-                const response = await fetch('api/authors');
-                const authors = await response.json();
-
-                authors.forEach(author => {
-                    const authorOption = document.createElement('option');
-                    authorOption.innerHTML = author.name;
-                    authorOption.setAttribute('value', author.id);
-                    authorSelect.appendChild(authorOption);
-                });
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-
-        async function fetchEditorsAndPopulateSelect() {
-            try {
-                const response = await fetch('api/editors');
-                const editors = await response.json();
-
-                editors.forEach(editor => {
-                    const editorOption = document.createElement('option');
-                    editorOption.innerHTML = editor.name;
-                    editorOption.setAttribute('value', editor.id);
-                    editorSelect.appendChild(editorOption);
-                });
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-
-        async function fetchDirectorsAndPopulateSelect() {
-            try {
-                const response = await fetch('api/directors');
-                const directors = await response.json();
-
-                directors.forEach(director => {
-                    const directorOption = document.createElement('option');
-                    directorOption.innerHTML = director.name;
-                    directorOption.setAttribute('value', director.id);
-                    directorSelect.appendChild(directorOption);
-                });
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-
-        async function fetchLanguagesAndPopulateSelect() {
-            try {
-                const response = await fetch('api/languages');
-                const languages = await response.json();
-
-                languages.forEach(language => {
-                    const languageOption1 = document.createElement('option');
-                    languageOption1.innerHTML = language.name;
-                    languageOption1.setAttribute('value', language.id);
-                    bookLanguage.appendChild(languageOption1);
-
-                    const languageOption2 = document.createElement('option');
-                    languageOption2.innerHTML = language.name;
-                    languageOption2.setAttribute('value', language.id);
-                    audioLanguage.appendChild(languageOption2);
-
-                    const languageOption3 = document.createElement('option');
-                    languageOption3.innerHTML = language.name;
-                    languageOption3.setAttribute('value', language.id);
-                    subLanguage.appendChild(languageOption3);
-                });
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-
-        async function fetchActorsAndPopulateSelect() {
-            try {
-                const response = await fetch('api/actors');
-                const actors = await response.json();
-
-                actors.forEach(actor => {
-                    const actorOption = document.createElement('option');
-                    actorOption.innerHTML = actor.name;
-                    actorOption.setAttribute('value', actor.id);
-                    actorSelect.appendChild(actorOption);
-                });
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-
-        async function fetchBookingsAndDisplay(){
-            try {
-                const response = await fetch('api/loans');
-                const loans = await response.json();
-                const sortedLoans = loans.sort((a, b) => {
-                    if (a.booking_number < b.booking_number) {
-                        return -1;
-                    }
-                    if (a.booking_number > b.booking_number) {
-                        return 1;
-                    }
-                    return 0;
-                });
-                const remadeLoans = {};
-
-                sortedLoans.forEach(booking => {
-                    if (!remadeLoans[booking.booking_number]) {
-                        remadeLoans[booking.booking_number] = {
-                            booking_number: booking.booking_number,
-                            user_id: booking.user_id,
-                            start_date: booking.start_date,
-                            loanable: [{ type: booking.loanable_type, id: booking.loanable_id }]
-                        };
-                    } else {
-                        remadeLoans[booking.booking_number].loanable.push({ type: booking.loanable_type, id: booking.loanable_id });
-                    }
-                }); 
-
-                const usedLoans = Object.values(remadeLoans);
-
-                usedLoans.forEach(async (loan) => {
-                    const line = document.createElement('tr');
-                    const bookingNumber = document.createElement('td');
-                    bookingNumber.innerHTML = loan.booking_number;
-                    const userName = document.createElement('td');
+                async function fetchDirectorsAndPopulateSelect() {
                     try {
-                        const userResponse = await fetch('/api/user/'+loan.user_id);
-                        const userData = await userResponse.json();
-                        userName.innerHTML = userData.first_name + " " + userData.last_name;
+                        const response = await fetch('api/directors');
+                        const directors = await response.json();
+
+                        directors.forEach(director => {
+                            const directorOption = document.createElement('option');
+                            directorOption.innerHTML = director.name;
+                            directorOption.setAttribute('value', director.id);
+                            directorSelect.appendChild(directorOption);
+                        });
                     } catch (error) {
-                        console.error('Error fetching author data:', error);
-                        userName.innerHTML = 'Error fetching user';
+                        console.error('Error fetching data:', error);
                     }
-                    const items = document.createElement('td');
-                    const itemList = document.createElement('ul');
-                    loan.loanable.forEach(async (item) => {
-                        const itemName = document.createElement('li');
-                        if(item.type == "book"){
-                            fetchUrl = '/api/books/'+item.id;
-                        }
-                        else{
-                            fetchUrl = '/api/films/'+item.id;
-                        }
-                        try {
-                            const itemResponse = await fetch(fetchUrl);
-                            const itemData = await itemResponse.json();
-                            itemName.innerHTML = itemData.title;
-                        } catch (error) {
-                            console.error('Error fetching author data:', error);
-                            itemName.innerHTML = 'Error fetching item';
-                        }
-                        itemList.appendChild(itemName);
-                    });
-
-                    currentDate = new Date();
-                    loanDate = new Date(loan.start_date);
-                    returnDate = new Date(loanDate);
-                    returnDate.setDate(loanDate.getDate() + 7);
-                    startDate = document.createElement("td");
-                    startDate.innerHTML = loanDate.getDate()+" - "+(loanDate.getMonth()+1)+" - "+loanDate.getFullYear();
-                    endDate = document.createElement("td");
-                    endDate.innerHTML = returnDate.getDate()+" - "+(returnDate.getMonth()+1)+" - "+returnDate.getFullYear();
-
-                    const loanStatus = document.createElement('td');
-                    
-                    suppr = document.createElement('td');
-                    suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
-                    suppr.addEventListener('click', async function(){
-                        try{
-                            const response = await fetch('api/removeLoan/'+loan.booking_number);
-                            const data = await response.json();
-                            window.location.href = "./admin";
-                        } catch (error) {
-                            console.error('Error fetching data:', error);
-                        }
-                    });
-
-                    line.appendChild(bookingNumber);
-                    line.appendChild(userName);
-                    items.appendChild(itemList);
-                    line.appendChild(items);
-                    line.appendChild(startDate);
-                    line.appendChild(endDate);
-                    line.appendChild(loanStatus);
-                    line.appendChild(suppr);
-                    if(currentDate < returnDate && currentDate > loanDate)
-                    {
-                        loanStatus.innerHTML = "En cours";
-                        currentBooking.appendChild(line);
-                    }
-                    else if(currentDate < loanDate)
-                    {
-                        loanStatus.innerHTML = "A venir";
-                        futureBooking.appendChild(line);
-                    }
-                    else{
-                        loanStatus.innerHTML = "Passée";
-                        passedBooking.appendChild(line);
-                    }
-                    document.getElementById('loadCurrentBooking').remove();
-                    document.getElementById('loadFutureBooking').remove();
-                    document.getElementById('loadPassedBooking').remove();
-                });
-
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-
-        fetchBooksAndDisplay();
-        fetchFilmsAndDisplay();
-        fetchAuthorsAndPopulateSelect();
-        fetchEditorsAndPopulateSelect();
-        fetchDirectorsAndPopulateSelect();
-        fetchLanguagesAndPopulateSelect();
-        fetchActorsAndPopulateSelect();
-        fetchBookingsAndDisplay();
-
-        addBookForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            let formData = new FormData(addBookForm);
-            const newAuthorInput = document.getElementById('newAuthor');
-            const newEditorInput = document.getElementById('newEditor');
-
-            if(newAuthorInput.value != ""){
-                const authorResponse = await fetch('api/authors', {
-                    method: 'POST',
-                    body: formData
-                });
-                const newAuthorId = await authorResponse.json();
-                formData.set('author_id', newAuthorId);
-            }
-
-            if(newEditorInput.value != ""){
-                const editorResponse = await fetch('api/editors', {
-                    method: 'POST',
-                    body: formData
-                });
-                const newEditorId = await editorResponse.json();
-                formData.set('editor_id', newEditorId);
-            }
-
-            await storeBook(formData);
-            
-        });
-
-        async function storeBook(formData){
-            try {
-                const bookResponse = await fetch('/api/books', {
-                    method: 'POST',
-                    body: formData
-                });
-                const bookData = await bookResponse.json();
-                if (bookResponse.ok) {
-                    window.location.href = './admin';
-                } else {
-                    console.error('Error adding book:', bookData);
                 }
-            } catch (error) {
-                console.error('Error adding book:', error);
-            }
-        }
 
-        addFilmForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            let formData = new FormData(addFilmForm);
-            const newDirectorInput = document.getElementById('newDirector');
+                async function fetchLanguagesAndPopulateSelect() {
+                    try {
+                        const response = await fetch('api/languages');
+                        const languages = await response.json();
 
-            if(newDirectorInput.value != ""){
-                const directorResponse = await fetch('api/directors', {
-                    method: 'POST',
-                    body: formData
-                });
-                const newDirectorId = await directorResponse.json();
-                formData.set('director_id', newDirectorId);
-            }
+                        languages.forEach(language => {
+                            const languageOption1 = document.createElement('option');
+                            languageOption1.innerHTML = language.name;
+                            languageOption1.setAttribute('value', language.id);
+                            bookLanguage.appendChild(languageOption1);
 
-            await storeFilm(formData);
-            
-        });
+                            const languageOption2 = document.createElement('option');
+                            languageOption2.innerHTML = language.name;
+                            languageOption2.setAttribute('value', language.id);
+                            audioLanguage.appendChild(languageOption2);
 
-        async function storeFilm(formData){
-            try {
-                const filmResponse = await fetch('/api/films', {
-                    method: 'POST',
-                    body: formData
-                });
-                const filmData = await filmResponse.json();
-                if (filmResponse.ok) {
-                    formData.set('film_id', filmData);
-                    
-                    await storeAudioLanguages(formData);
-                    await storeSubLanguages(formData);
-                    await storeActors(formData);
-    
-                    window.location.href = './admin';
-                } else {
-                    console.error('Error adding book:', filmData);
+                            const languageOption3 = document.createElement('option');
+                            languageOption3.innerHTML = language.name;
+                            languageOption3.setAttribute('value', language.id);
+                            subLanguage.appendChild(languageOption3);
+                        });
+                    } catch (error) {
+                        console.error('Error fetching data:', error);
+                    }
                 }
-            } catch (error) {
-                console.error('Error adding book:', error);
+
+                async function fetchActorsAndPopulateSelect() {
+                    try {
+                        const response = await fetch('api/actors');
+                        const actors = await response.json();
+
+                        actors.forEach(actor => {
+                            const actorOption = document.createElement('option');
+                            actorOption.innerHTML = actor.name;
+                            actorOption.setAttribute('value', actor.id);
+                            actorSelect.appendChild(actorOption);
+                        });
+                    } catch (error) {
+                        console.error('Error fetching data:', error);
+                    }
+                }
+
+                async function fetchBookingsAndDisplay(){
+                    try {
+                        const response = await fetch('api/loans');
+                        const loans = await response.json();
+                        const sortedLoans = loans.sort((a, b) => {
+                            if (a.booking_number < b.booking_number) {
+                                return -1;
+                            }
+                            if (a.booking_number > b.booking_number) {
+                                return 1;
+                            }
+                            return 0;
+                        });
+                        const remadeLoans = {};
+
+                        sortedLoans.forEach(booking => {
+                            if (!remadeLoans[booking.booking_number]) {
+                                remadeLoans[booking.booking_number] = {
+                                    booking_number: booking.booking_number,
+                                    user_id: booking.user_id,
+                                    start_date: booking.start_date,
+                                    loanable: [{ type: booking.loanable_type, id: booking.loanable_id }]
+                                };
+                            } else {
+                                remadeLoans[booking.booking_number].loanable.push({ type: booking.loanable_type, id: booking.loanable_id });
+                            }
+                        }); 
+
+                        const usedLoans = Object.values(remadeLoans);
+
+                        usedLoans.forEach(async (loan) => {
+                            const line = document.createElement('tr');
+                            const bookingNumber = document.createElement('td');
+                            bookingNumber.innerHTML = loan.booking_number;
+                            const userName = document.createElement('td');
+                            try {
+                                const userResponse = await fetch('/api/user/'+loan.user_id);
+                                const userData = await userResponse.json();
+                                userName.innerHTML = userData.first_name + " " + userData.last_name;
+                            } catch (error) {
+                                console.error('Error fetching author data:', error);
+                                userName.innerHTML = 'Error fetching user';
+                            }
+                            const items = document.createElement('td');
+                            const itemList = document.createElement('ul');
+                            loan.loanable.forEach(async (item) => {
+                                const itemName = document.createElement('li');
+                                
+                                if(item.type.split(/\\/)[2] == "Book"){
+                                    fetchUrl = '/api/books/'+item.id;
+                                }
+                                else{
+                                    fetchUrl = '/api/films/'+item.id;
+                                }
+                                try {
+                                    const itemResponse = await fetch(fetchUrl);
+                                    const itemData = await itemResponse.json();
+                                    itemName.innerHTML = itemData.title;
+                                } catch (error) {
+                                    console.error('Error fetching author data:', error);
+                                    itemName.innerHTML = 'Error fetching item';
+                                }
+                                itemList.appendChild(itemName);
+                            });
+
+                            currentDate = new Date();
+                            loanDate = new Date(loan.start_date);
+                            returnDate = new Date(loanDate);
+                            returnDate.setDate(loanDate.getDate() + 7);
+                            startDate = document.createElement("td");
+                            startDate.innerHTML = loanDate.getDate()+" - "+(loanDate.getMonth()+1)+" - "+loanDate.getFullYear();
+                            endDate = document.createElement("td");
+                            endDate.innerHTML = returnDate.getDate()+" - "+(returnDate.getMonth()+1)+" - "+returnDate.getFullYear();
+
+                            const loanStatus = document.createElement('td');
+                            
+                            suppr = document.createElement('td');
+                            suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
+                            suppr.addEventListener('click', async function(){
+                                try{
+                                    const response = await fetch('api/removeLoan/'+loan.booking_number);
+                                    const data = await response.json();
+                                    window.location.href = "./admin";
+                                } catch (error) {
+                                    console.error('Error fetching data:', error);
+                                }
+                            });
+
+                            line.appendChild(bookingNumber);
+                            line.appendChild(userName);
+                            items.appendChild(itemList);
+                            line.appendChild(items);
+                            line.appendChild(startDate);
+                            line.appendChild(endDate);
+                            line.appendChild(loanStatus);
+                            line.appendChild(suppr);
+                            if(currentDate < returnDate && currentDate > loanDate)
+                            {
+                                loanStatus.innerHTML = "En cours";
+                                currentBooking.appendChild(line);
+                            }
+                            else if(currentDate < loanDate)
+                            {
+                                loanStatus.innerHTML = "A venir";
+                                futureBooking.appendChild(line);
+                            }
+                            else{
+                                loanStatus.innerHTML = "Passée";
+                                passedBooking.appendChild(line);
+                            }
+                            document.getElementById('loadCurrentBooking').remove();
+                            document.getElementById('loadFutureBooking').remove();
+                            document.getElementById('loadPassedBooking').remove();
+                        });
+
+                    } catch (error) {
+                        console.error('Error fetching data:', error);
+                    }
+                }
+
+                fetchBooksAndDisplay();
+                fetchFilmsAndDisplay();
+                fetchAuthorsAndPopulateSelect();
+                fetchEditorsAndPopulateSelect();
+                fetchDirectorsAndPopulateSelect();
+                fetchLanguagesAndPopulateSelect();
+                fetchActorsAndPopulateSelect();
+                fetchBookingsAndDisplay();
+
+                addBookForm.addEventListener('submit', async function(event) {
+                    event.preventDefault();
+                    let formData = new FormData(addBookForm);
+                    const newAuthorInput = document.getElementById('newAuthor');
+                    const newEditorInput = document.getElementById('newEditor');
+
+                    if(newAuthorInput.value != ""){
+                        const authorResponse = await fetch('api/authors', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const newAuthorId = await authorResponse.json();
+                        formData.set('author_id', newAuthorId);
+                    }
+
+                    if(newEditorInput.value != ""){
+                        const editorResponse = await fetch('api/editors', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const newEditorId = await editorResponse.json();
+                        formData.set('editor_id', newEditorId);
+                    }
+
+                    await storeBook(formData);
+                    
+                });
+
+                async function storeBook(formData){
+                    try {
+                        const bookResponse = await fetch('/api/books', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const bookData = await bookResponse.json();
+                        if (bookResponse.ok) {
+                            window.location.href = './admin';
+                        } else {
+                            console.error('Error adding book:', bookData);
+                        }
+                    } catch (error) {
+                        console.error('Error adding book:', error);
+                    }
+                }
+
+                addFilmForm.addEventListener('submit', async function(event) {
+                    event.preventDefault();
+                    let formData = new FormData(addFilmForm);
+                    const newDirectorInput = document.getElementById('newDirector');
+
+                    if(newDirectorInput.value != ""){
+                        const directorResponse = await fetch('api/directors', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const newDirectorId = await directorResponse.json();
+                        formData.set('director_id', newDirectorId);
+                    }
+
+                    await storeFilm(formData);
+                    
+                });
+
+                async function storeFilm(formData){
+                    try {
+                        const filmResponse = await fetch('/api/films', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const filmData = await filmResponse.json();
+                        if (filmResponse.ok) {
+                            formData.set('film_id', filmData);
+                            
+                            await storeAudioLanguages(formData);
+                            await storeSubLanguages(formData);
+                            await storeActors(formData);
+            
+                            window.location.href = './admin';
+                        } else {
+                            console.error('Error adding book:', filmData);
+                        }
+                    } catch (error) {
+                        console.error('Error adding book:', error);
+                    }
+                }
+
+                async function storeAudioLanguages(formData){
+                    const audioLang = formData.getAll('audioLanguages');
+                    audioLang.forEach(async (lang)=>{
+                        formData.set('language_id', lang);
+                        const audioResponse = await fetch('/api/audioLanguage', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const audioData = await audioResponse.json();
+                    });
+                }
+
+                async function storeSubLanguages(formData){
+                    const subLang = formData.getAll('subLanguages');
+                    subLang.forEach(async (lang)=>{
+                        formData.set('language_id', lang);
+                        const subResponse = await fetch('/api/subtitle', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const subData = await subResponse.json();
+                    });
+                }
+
+                async function storeActors(formData){
+                    const actors = formData.getAll('actors');
+                    actors.forEach(async (actor)=>{
+                        formData.set('actor_id', actor);
+                        const actorResponse = await fetch('/api/casting', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const actorData = await actorResponse.json();
+                    });
+                }
+            }
+            else
+            {
+                window.location.href = './admin';
             }
         }
-
-        async function storeAudioLanguages(formData){
-            const audioLang = formData.getAll('audioLanguages');
-            audioLang.forEach(async (lang)=>{
-                formData.set('language_id', lang);
-                const audioResponse = await fetch('/api/audioLanguage', {
-                    method: 'POST',
-                    body: formData
-                });
-                const audioData = await audioResponse.json();
-            });
-        }
-
-        async function storeSubLanguages(formData){
-            const subLang = formData.getAll('subLanguages');
-            subLang.forEach(async (lang)=>{
-                formData.set('language_id', lang);
-                const subResponse = await fetch('/api/subtitle', {
-                    method: 'POST',
-                    body: formData
-                });
-                const subData = await subResponse.json();
-            });
-        }
-
-        async function storeActors(formData){
-            const actors = formData.getAll('actors');
-            actors.forEach(async (actor)=>{
-                formData.set('actor_id', actor);
-                const actorResponse = await fetch('/api/casting', {
-                    method: 'POST',
-                    body: formData
-                });
-                const actorData = await actorResponse.json();
-            });
+        else
+        {
+            window.location.href = './connect';
         }
     });
 </script>
