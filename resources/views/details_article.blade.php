@@ -16,7 +16,7 @@
             <img src="../assets/img/disponibilite.svg" alt="TeloCulture">
             <h6 id="articleAvailbleNum"></h6>
         </div>
-        <button class="panier">AJOUTER AU PANIER <img src="../assets/img/voir_plus.svg" alt="Teloculture"></button>
+        <button class="panier" id="addToCart">AJOUTER AU PANIER <img src="../assets/img/voir_plus.svg" alt="Teloculture"></button>
     </div>
 </section>
 
@@ -55,32 +55,26 @@
             </div>
             <div x-show="tab === 'tab2'" id="comments">
                 <form action="">
-                    <textarea name="my_comment" id="my_comment" placeholder="Rentrez votre commentaire ici !"></textarea>
+                    <textarea name="review_content" id="review_content" placeholder="Rentrez votre commentaire ici !"></textarea>
                     <div id="buttons">
                         <div class="rating_zone">
-                            <label for="rating">Note /5 :</label>
-                            <input style="width: 100%;" type="number" max="5" min="0" name="rating" id="rating">
+                            <label for="review_mark">Note /5 :</label>
+                            <input style="width: 100%;" type="number" max="5" min="0" name="review_mark" id="review_mark">
                         </div>
                         <input type="submit" value="Envoyer !">
                         <button id="cancelButton">Annuler</button>
                     </div>
                 </form>
-                <div>
-                    <div class="first_name">Test</div>
-                    <div class="comment_content"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, aperiam. Facilis expedita eveniet dolor iste illum vero excepturi, magnam esse magni voluptatem vitae, alias, quibusdam culpa ex nemo reprehenderit quidem reiciendis necessitatibus molestias odio facere doloremque tempore error? Impedit numquam corrupti rem, repudiandae officiis optio odio ullam. Unde, modi quia!</div>
-                </div>
-                <div>
-                    <div class="first_name">Test</div>
-                    <div class="comment_content"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, aperiam. Facilis expedita eveniet dolor iste illum vero excepturi, magnam esse magni voluptatem vitae, alias, quibusdam culpa ex nemo reprehenderit quidem reiciendis necessitatibus molestias odio facere doloremque tempore error? Impedit numquam corrupti rem, repudiandae officiis optio odio ullam. Unde, modi quia!</div>
-                </div>
             </div>
         </div>
 </section>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", async function() {
         const articleId = "{{$id}}";
         const articleType = "{{$type}}";
+
+        const userId = sessionStorage.getItem('userId');
 
         const picture = document.getElementById('articlePicture');
         const title = document.getElementById('articleTitle');
@@ -94,12 +88,17 @@
         const changingHeader = document.getElementById('changingHeader');
         const editor = document.getElementById('articleEditor');
         const style = document.getElementById('articleStyle');
+        const reviewSection = document.getElementById('comments');
+        const addReviewForm = document.getElementById('addReviewForm');
+        const addToCartBtn = document.getElementById('addToCart');
 
-        if (articleType && articleType == "book") {
-            fetchBookInfos(articleId);
-        } else if (articleType && articleType == "film") {
-            fetchFilmInfos(articleId);
+        if (articleType && articleType == "Book") {
+            await fetchBookInfos(articleId);
+        } else if (articleType && articleType == "Film") {
+            await fetchFilmInfos(articleId);
         }
+        await fetchArticleReview(articleId, articleType);
+        await displayCartButton();
 
         async function fetchBookInfos(id) {
             try {
@@ -234,6 +233,91 @@
                 }
             } catch (error) {
                 console.error('Error fetching books data:', error);
+            }
+        }
+
+        async function fetchArticleReview(id, type){
+            try {
+                let reviewResponse;
+                if(type == "Book"){
+                    reviewResponse = await fetch('/api/bookReview/'+id);
+                }
+                else{
+                    reviewResponse = await fetch('/api/filmReview/'+id);
+                }
+                const reviews = await reviewResponse.json();
+                reviews.forEach(async (review) => {
+                    const line = document.createElement('div');
+                    try{
+                        const userResponse = await fetch('/api/user/'+review.user_id);
+                        const user = await userResponse.json();
+                        const userName = document.createElement('div');
+                        userName.innerHTML = user.first_name+" "+user.last_name+ " - "+review.review_mark+"/5";
+                        userName.classList.add('first_name');
+                        const reviewContent = document.createElement('div');
+                        reviewContent.innerHTML = review.review_content;
+                        reviewContent.classList.add('comment_content');
+                        line.appendChild(userName);
+                        line.appendChild(reviewContent);
+                    } catch (error) {
+                        console.error('Error fetching data:', error);
+                    }
+                    reviewSection.appendChild(line);
+                })
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        async function displayCartButton(){
+            if(!userId){
+                addToCartBtn.innerHTML = "Connectez-vous pour ajouter au panier !";
+            }
+            else if(availableNum.innerHTML == "Aucun exemplaire disponible dans le réseau"){
+                addToCartBtn.innerHTML = "Impossible d'ajouter l'article au panier !";
+            }
+            else{
+                try{
+                    checkData = new FormData();
+                    checkData.set('loanable_type', 'App\\Models\\'+articleType);
+                    checkData.set('loanable_id', articleId);
+                    checkData.set('user_id', userId);
+                    const loansResponse = await fetch('/api/checkLoans', {
+                        method: 'POST',
+                        body: checkData
+                    })
+                    const loans = await loansResponse.json();
+                    if(Object.keys(loans).length === 0){
+                        addToCartBtn.addEventListener('click', async function(){
+                            const formData = new FormData();
+                            const date = new Date().toISOString().split('T')[0];
+                            formData.set('loanable_type', 'App\\Models\\'+articleType);
+                            formData.set('loanable_id', articleId);
+                            formData.set('user_id', userId);
+                            formData.set('booking_number', 'AB3451213M');
+                            formData.set('start_date', date);
+                            formData.set('status', 'add_to_cart');
+                            try{
+                                const bookingResponse = await fetch('/api/loans', {
+                                    method: 'POST',
+                                    body: formData
+                                })
+                                const booking = await bookingResponse.json();
+                                console.log(booking);
+                                window.location.href = "";
+                            }catch (error) {
+                                console.error('Error fetching author data:', error);
+                            }
+                        });
+                    }
+                    else{
+                        addToCartBtn.innerHTML = "Vous avez déjà réservé cet article !";
+                    }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+                
             }
         }
     });

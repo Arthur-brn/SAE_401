@@ -36,7 +36,7 @@ Route::get('/litterature-{id}', function ($id) {
         'fileCss' => 'details_article',
         'fileJS' => 'details_article',
         'id' => $id,
-        'type' => 'book'
+        'type' => 'Book'
     ]);
 });
 
@@ -84,7 +84,7 @@ Route::get('/cinema-{id}', function ($id) {
         'fileCss' => 'details_article',
         'fileJS' => '',
         'id' => $id,
-        'type' => 'film'
+        'type' => 'Film'
     ]);
 });
 

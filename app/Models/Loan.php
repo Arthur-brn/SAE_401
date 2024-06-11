@@ -12,8 +12,12 @@ class Loan extends Model
     protected $table = 'loan';
 
     protected $fillable = [
+        'user_id',
+        'loanable_type',
+        'loanable_id',
+        'booking_number',
         'start_date',
-        'status',
+        'status'
     ];
 
     public function user()
