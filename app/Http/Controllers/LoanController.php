@@ -45,20 +45,20 @@ class LoanController extends Controller
 
     public function countBook($id)
     {
-        $loans = Loan::where('loanable_type', 'book')
-            ->where('loanable_id', $id)
-            ->where('status', '!=', 'returned')
-            ->count();
+        $loans = Loan::where('loanable_type', 'like', '%Book%')
+                     ->where('loanable_id', $id)
+                     ->where('status', '!=', 'returned')
+                     ->count();
 
         return response()->json($loans, 201);
     }
 
     public function countFilm($id)
     {
-        $loans = Loan::where('loanable_type', 'film')
-            ->where('loanable_id', $id)
-            ->where('status', '!=', 'returned')
-            ->count();
+        $loans = Loan::where('loanable_type', 'like', '%Film%')
+                     ->where('loanable_id', $id)
+                     ->where('status', '!=', 'returned')
+                     ->count();
 
         return response()->json($loans, 201);
     }
@@ -71,10 +71,11 @@ class LoanController extends Controller
 
     public function checkBook($id)
     {
-        $book = Loan::where('loanable_type', 'book')
-            ->where('loanable_id', $id)
-            ->first();
-        if ($book) {
+        $book = Loan::where('loanable_type', 'like', '%Book%')
+                    ->where('loanable_id', $id)
+                    ->first();
+        if($book)
+        {
             return response()->json($book, 201);
         } else {
             return response()->json(null, 404);
@@ -83,10 +84,11 @@ class LoanController extends Controller
 
     public function checkFilm($id)
     {
-        $film = Loan::where('loanable_type', 'film')
-            ->where('loanable_id', $id)
-            ->first();
-        if ($film) {
+        $film = Loan::where('loanable_type', 'like', '%Film%')
+                    ->where('loanable_id', $id)
+                    ->first();
+        if($film)
+        {
             return response()->json($film, 201);
         } else {
             return response()->json(null, 404);

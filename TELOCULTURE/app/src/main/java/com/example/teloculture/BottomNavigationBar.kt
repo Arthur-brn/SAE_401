@@ -52,7 +52,7 @@ fun BottomNavigationBar(navController: NavController) {
             },
             label = { Text("Profil") },
             selected = false,
-            onClick = { navController.navigate("login")}
+            onClick = { navController.navigate("ProfilePage") } // Correct page name should be "ProfilePage"
         )
     }
 }

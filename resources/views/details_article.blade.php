@@ -5,7 +5,7 @@
 <section id="principale_infos">
     <img class="img_article" id="articlePicture">
     <div class="infos">
-        <h6 class="type" id="articleCat"></h6>
+        <h6 class="type" id="articleType"></h6>
         <h2 id="articleTitle"></h2>
         <h3 id="articleAuthor"></h3>
         <p id="articleYear"></p>
@@ -21,29 +21,60 @@
 </section>
 
 <section id="secondaire_infos">
-    <div class="choix">
-        <button id="btn-description" class="active">Description</button>
-    </div>
-    <div id="description">
-        <div class="content_description">
-            <div class="titre">
-                <h5>Type de document</h5>
-                <h5>Description physique</h5>
-                <h5>Disponible en </h5>
-                <h5>Public visé</h5>
-                <h5>Style</h5>
-                <h5 id="changingHeader"></h5>
+    <div class="container" x-data="{ tab : 'tab1' }">
+        <ul id="tabs">
+            <li>
+                <a href="#" @click.prevent="tab = 'tab1'" :class="{ 'tab_selected' : tab === 'tab1' }">Description</a>
+            </li>
+            <li>
+                <a href="#" @click.prevent="tab = 'tab2'" :class="{ 'tab_selected' : tab === 'tab2' }">Avis</a>
+            </li>
+        </ul>
+        <div class="content">
+            <div x-show="tab === 'tab1'">
+                <div id="description">
+                    <div class="content_description">
+                        <div class="titre">
+                            <h5>Type de document</h5>
+                            <h5>Description physique</h5>
+                            <h5>Disponible en </h5>
+                            <h5>Public visé</h5>
+                            <h5>Style</h5>
+                            <h5 id="changingHeader"></h5>
+                        </div>
+                        <div class="contenue">
+                            <h5 id="articleType"></h5>
+                            <h5 id="articleLenght"></h5>
+                            <h5 id="articleLanguage"></h5>
+                            <h5 id="articleTarget">Jeunesse</h5>
+                            <h5 id="articleStyle"></h5>
+                            <h5 id="articleEditor"></h5>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="contenue">
-                <h5 id="articleType"></h5>
-                <h5 id="articleLenght"></h5>
-                <h5 id="articleLanguage"></h5>
-                <h5 id="articleTarget">Jeunesse</h5>
-                <h5 id="articleStyle"></h5>
-                <h5 id="articleEditor"></h5>
+            <div x-show="tab === 'tab2'" id="comments">
+                <form action="">
+                    <textarea name="my_comment" id="my_comment" placeholder="Rentrez votre commentaire ici !"></textarea>
+                    <div id="buttons" class="hidden">
+                        <div class="rating_zone">
+                            <label for="rating">Note /5 :</label>
+                            <input style="width: 100%;" type="number" max="5" min="0" name="rating" id="rating">
+                        </div>
+                        <input type="submit" value="Envoyer !">
+                        <button id="cancelButton">Annuler</button>
+                    </div>
+                </form>
+                <div>
+                    <div class="first_name">Test</div>
+                    <div class="comment_content"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, aperiam. Facilis expedita eveniet dolor iste illum vero excepturi, magnam esse magni voluptatem vitae, alias, quibusdam culpa ex nemo reprehenderit quidem reiciendis necessitatibus molestias odio facere doloremque tempore error? Impedit numquam corrupti rem, repudiandae officiis optio odio ullam. Unde, modi quia!</div>
+                </div>
+                <div>
+                    <div class="first_name">Test</div>
+                    <div class="comment_content"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, aperiam. Facilis expedita eveniet dolor iste illum vero excepturi, magnam esse magni voluptatem vitae, alias, quibusdam culpa ex nemo reprehenderit quidem reiciendis necessitatibus molestias odio facere doloremque tempore error? Impedit numquam corrupti rem, repudiandae officiis optio odio ullam. Unde, modi quia!</div>
+                </div>
             </div>
         </div>
-    </div>
 </section>
 
 <script>
@@ -104,8 +135,8 @@
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
-                length.innerHTML = "1 vol. (" + book.page_number + " p.)";
-                type.innerHTML = book.type.charAt(0).toUpperCase() + book.type.slice(1);
+                length.innerHTML = "1 vol. ("+book.page_number+" p.)";
+                type.innerHTML = "- "+book.type.charAt(0).toUpperCase() + book.type.slice(1);
                 try {
                     const editorResponse = await fetch('/api/editor/' + book.editor_id);
                     const editorName = await editorResponse.json();
@@ -181,8 +212,8 @@
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
-                length.innerHTML = "1 dvd. (" + (film.duration - film.duration % 60) / 60 + "h" + film.duration % 60 + "min)";
-                type.innerHTML = "Film";
+                length.innerHTML = "1 dvd. ("+(film.duration-film.duration%60)/60+"h"+film.duration%60+"min)";
+                type.innerHTML = "- "+film.type.charAt(0).toUpperCase() + film.type.slice(1);
                 style.innerHTML = film.style.charAt(0).toUpperCase() + film.style.slice(1);
                 changingHeader.innerHTML = "Casting";
                 try {

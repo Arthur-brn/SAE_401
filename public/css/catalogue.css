@@ -19,6 +19,7 @@
 #main #filtre .all_filtres {
     display: flex;
     flex-direction: column;
+    align-items: baseline;
     gap: 15px;
 }
 #main #filtre .all_filtres .filtre {
@@ -29,6 +30,7 @@
     padding: 20px;
     cursor: pointer;
     align-items: center;
+    width: 100%;
 }
 #main #filtre .all_filtres .filtre h6 {
     font-size: 14px;
@@ -49,9 +51,12 @@
     flex-direction: column;
     align-items: baseline;
     gap: 20px;
+    width: 100%;
 }
 
-#main #filtre .all_filtres .choix .filtre_rapides {
+#main #filtre .all_filtres .choix .filtre_rapides,
+.type,
+.genre {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -74,21 +79,29 @@
 #main #resultat .ma_recherche {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     flex-direction: row;
     gap: 5px;
 }
 #main #resultat .ma_recherche p {
+    display: flex;
     font-size: 12px;
+    min-width: 30%;
 }
 #main #resultat .ma_recherche .type {
     display: flex;
     align-items: center;
     padding: 5px;
     background-color: #ff625c;
-    color: white;
     gap: 5px;
     border-radius: 5px;
+    min-width: 45%;
 }
+
+#main #resultat .ma_recherche .type p {
+    color: white;
+}
+
 #main #resultat .ma_recherche .type img {
     height: 17px;
     cursor: pointer;

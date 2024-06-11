@@ -24,8 +24,11 @@ class DirectorController extends Controller
     // Méthode pour créer un nouveau livre
     public function store(Request $request)
     {
-        $director = Director::create($request->all());
-        return response()->json($director, 201);
+        $director = Director::create([
+            'name' => $request->input('newDirector')
+        ]);
+        $directorId = $director->id;
+        return response()->json($directorId, 201);
     }
 
     // Méthode pour mettre à jour les informations d'un livre
