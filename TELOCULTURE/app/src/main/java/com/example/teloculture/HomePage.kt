@@ -3,6 +3,7 @@ package com.example.teloculture
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -36,10 +37,10 @@ fun HomePage(navController: NavController) {
                 TopBar()
             }
             item {
-                SectionTitle("La littérature", Color(0xFFFF625C))
+                SectionTitle("Les catégories selon les ressources", Color(0xFFFF625C))
             }
             item {
-                CategoriesRow()
+                CategoriesRow(navController)
             }
             item {
                 SectionTitle("Livres populaires", Color(0xFF6887F6))
@@ -87,9 +88,9 @@ fun SectionTitle(title: String, color: Color) {
     )
 }
 @Composable
-fun CategoriesRow() {
+fun CategoriesRow(navController: NavController) {
     val categories = listOf(
-        "Roman", "Poésie", "Fantastique", "Magazine", "Actualité"
+        "Livre", "Cinéma", "Fantastique", "Magazine", "Actualité"
     )
     LazyRow(
         modifier = Modifier.padding(vertical = 8.dp)
@@ -97,7 +98,9 @@ fun CategoriesRow() {
         items(categories) { category ->
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(horizontal = 8.dp)
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .clickable { navController.navigate("catalogue") }
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.imgbook), // Replace with your actual drawable resource ID
@@ -112,6 +115,7 @@ fun CategoriesRow() {
         }
     }
 }
+
 @Composable
 fun BooksRow() {
     val books = List(6) { "Fashionopolis" }
