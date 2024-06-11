@@ -268,6 +268,9 @@
                         const userResponse = await fetch('/api/user/'+review.user_id);
                         const user = await userResponse.json();
                         const userName = document.createElement('div');
+                        if(user.id == userId){
+                            addReviewForm.style.display = "none";
+                        }
                         userName.innerHTML = user.first_name+" "+user.last_name+ " - "+review.review_mark+"/5";
                         userName.classList.add('first_name');
                         const reviewContent = document.createElement('div');
