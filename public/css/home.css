@@ -64,7 +64,7 @@
     flex-direction: column;
 }
 
-#books_categories ul{
+#books_categories ul {
     display: flex;
     width: 100%;
     scroll-snap-type: x var(--tw-scroll-snap-strictness);
@@ -73,7 +73,7 @@
     gap: 5%;
 }
 
-#books_categories ul li{
+#books_categories ul li {
     display: flex;
     width: 30%;
     flex-shrink: 0;
@@ -86,8 +86,10 @@
 }
 
 #books_categories img {
-    width: 100%;
+    width: 330px;
+    height: 250px;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 #literature #books_categories > div {
@@ -122,8 +124,8 @@
     padding: 10px 70px;
 }
 
-#faq{
-    padding:50px 70px 0;
+#faq {
+    padding: 50px 70px 0;
 }
 
 #faq div {
@@ -133,10 +135,9 @@
     gap: 10px;
 }
 
-#faq>div {
+#faq > div {
     align-items: center;
 }
-
 
 #faq div div {
     flex-direction: column;
@@ -144,19 +145,19 @@
     text-align: start;
 }
 
-#faq>div>div{
+#faq > div > div {
     padding: 10px;
 }
 
-#questions button{
+#questions button {
     width: 100%;
-    border: #FF625C solid 1px;
+    border: #ff625c solid 1px;
     font-weight: 600;
     font-size: 16px;
     padding: 10px 20px;
 }
 
-#answer{
+#answer {
     padding: 0 10px;
 }
 
@@ -175,7 +176,7 @@
         align-items: center;
     }
 
-    #cinema{
+    #cinema {
         flex-direction: column;
     }
 
@@ -187,19 +188,19 @@
         flex-direction: column;
     }
 
-    #literature{
+    #literature {
         padding: 50px 10px;
     }
 
     #faq {
-        padding:50px 10px 0;
+        padding: 50px 10px 0;
     }
 
-    #faq>div {
+    #faq > div {
         flex-direction: column;
     }
-    
-    #books_categories ul li{
+
+    #books_categories ul li {
         width: 100%;
     }
 }
