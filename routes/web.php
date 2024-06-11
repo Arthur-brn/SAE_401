@@ -105,14 +105,14 @@ Route::get('/contact', function () {
 Route::get('/connect', function () {
     return view('connect', [
         'fileCss' => 'connect',
-        'fileJS' => 'connection'
+        'fileJS' => ''
     ]);
 });
 
 Route::get('/account', function () {
     return view('account', [
         'fileCss' => 'account',
-        'fileJS' => 'userAccount'
+        'fileJS' => ''
     ]);
 });
 
