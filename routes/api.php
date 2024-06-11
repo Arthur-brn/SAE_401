@@ -16,6 +16,7 @@ use App\Http\Controllers\AudioLanguageController;
 use App\Http\Controllers\SubtitleController;
 use App\Http\Controllers\CastingController;
 use App\Http\Controllers\ActorController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,8 @@ Route::post('/audioLanguage', [AudioLanguageController::class, 'store']);
 Route::get('/filmSubtitles/{id}', [SubtitleController::class, 'getFilmSubtitles']);
 Route::post('/subtitle', [SubtitleController::class, 'store']);
 
+Route::get('/bookReview/{id}', [ReviewController::class, 'getBookReview']);
+Route::get('/filmReview/{id}', [ReviewController::class, 'getFilmReview']);
 
 Route::get('/books-most-loaned', [BookController::class, 'mostLoanedBook']);
 Route::get('/books-latest', [BookController::class, 'latestBooks']);

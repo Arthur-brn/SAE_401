@@ -54,12 +54,12 @@
                 </div>
             </div>
             <div x-show="tab === 'tab2'" id="comments">
-                <form action="">
-                    <textarea name="my_comment" id="my_comment" placeholder="Rentrez votre commentaire ici !"></textarea>
+                <form id="addReviewForm">
+                    <textarea name="review_content" id="review_content" placeholder="Rentrez votre commentaire ici !"></textarea>
                     <div id="buttons" class="hidden">
                         <div class="rating_zone">
-                            <label for="rating">Note /5 :</label>
-                            <input style="width: 100%;" type="number" max="5" min="0" name="rating" id="rating">
+                            <label for="review_mark">Note /5 :</label>
+                            <input style="width: 100%;" type="number" max="5" min="0" name="review_mark" id="review_mark">
                         </div>
                         <input type="submit" value="Envoyer !">
                         <button id="cancelButton">Annuler</button>
@@ -78,7 +78,7 @@
 </section>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", async function() {
         const articleId = "{{$id}}";
         const articleType = "{{$type}}";
 
@@ -94,12 +94,15 @@
         const changingHeader = document.getElementById('changingHeader');
         const editor = document.getElementById('articleEditor');
         const style = document.getElementById('articleStyle');
+        const reviewSection = document.getElementById('comments');
+        const addReviewForm = document.getElementById('addReviewForm');
 
-        if (articleType && articleType == "book") {
-            fetchBookInfos(articleId);
-        } else if (articleType && articleType == "film") {
-            fetchFilmInfos(articleId);
+        if (articleType && articleType == "Book") {
+            await fetchBookInfos(articleId);
+        } else if (articleType && articleType == "Film") {
+            await fetchFilmInfos(articleId);
         }
+        await fetchArticleReview(articleId, articleType);
 
         async function fetchBookInfos(id) {
             try {
@@ -234,6 +237,40 @@
                 }
             } catch (error) {
                 console.error('Error fetching books data:', error);
+            }
+        }
+
+        async function fetchArticleReview(id, type){
+            try {
+                let reviewResponse;
+                if(type == "Book"){
+                    reviewResponse = await fetch('/api/bookReview/'+id);
+                }
+                else{
+                    reviewResponse = await fetch('/api/filmReview/'+id);
+                }
+                const reviews = await reviewResponse.json();
+                reviews.forEach(async (review) => {
+                    const line = document.createElement('div');
+                    try{
+                        const userResponse = await fetch('/api/user/'+review.user_id);
+                        const user = await userResponse.json();
+                        const userName = document.createElement('div');
+                        userName.innerHTML = user.first_name+" "+user.last_name+ " - "+review.review_mark+"/5";
+                        userName.classList.add('first_name');
+                        const reviewContent = document.createElement('div');
+                        reviewContent.innerHTML = review.review_content;
+                        reviewContent.classList.add('comment_content');
+                        line.appendChild(userName);
+                        line.appendChild(reviewContent);
+                    } catch (error) {
+                        console.error('Error fetching data:', error);
+                    }
+                    reviewSection.appendChild(line);
+                })
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
             }
         }
     });
