@@ -16,38 +16,65 @@
             <img src="../assets/img/disponibilite.svg" alt="TeloCulture">
             <h6 id="articleAvailbleNum"></h6>
         </div>
-        <button class="panier">AJOUTER AU PANIER -></button>
+        <button class="panier">AJOUTER AU PANIER <img src="../assets/img/voir_plus.svg" alt="Teloculture"></button>
     </div>
 </section>
 
 <section id="secondaire_infos">
-    <div class="choix">
-        <button id="btn-description" class="active">Description</button>
-    </div>
-    <div id="description">
-        <div class="content_description">
-            <div class="titre">
-                <h5>Type de document</h5>
-                <h5>Description physique</h5>
-                <h5>Disponible en </h5>
-                <h5>Public visé</h5>
-                <h5>Style</h5>
-                <h5 id="changingHeader"></h5>
+    <div class="container" x-data="{ tab : 'tab1' }">
+        <ul id="tabs">
+            <li>
+                <a href="#" @click.prevent="tab = 'tab1'" :class="{ 'tab_selected' : tab === 'tab1' }">Description</a>
+            </li>
+            <li>
+                <a href="#" @click.prevent="tab = 'tab2'" :class="{ 'tab_selected' : tab === 'tab2' }">Avis</a>
+            </li>
+        </ul>
+        <div class="content">
+            <div x-show="tab === 'tab1'">
+                <div id="description">
+                    <div class="content_description">
+                        <div class="titre">
+                            <h5>Type de document</h5>
+                            <h5>Description physique</h5>
+                            <h5>Disponible en </h5>
+                            <h5>Public visé</h5>
+                            <h5>Style</h5>
+                            <h5 id="changingHeader"></h5>
+                        </div>
+                        <div class="contenue">
+                            <h5 id="articleType"></h5>
+                            <h5 id="articleLenght"></h5>
+                            <h5 id="articleLanguage"></h5>
+                            <h5 id="articleTarget">Jeunesse</h5>
+                            <h5 id="articleStyle"></h5>
+                            <h5 id="articleEditor"></h5>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="contenue">
-                <h5 id="articleType"></h5>
-                <h5 id="articleLenght"></h5>
-                <h5 id="articleLanguage"></h5>
-                <h5 id="articleTarget">Jeunesse</h5>
-                <h5 id="articleStyle"></h5>
-                <h5 id="articleEditor"></h5>
+            <div x-show="tab === 'tab2'" id="comments">
+                <form action="">
+                    <textarea name="my_comment" id="my_comment" placeholder="Rentrez votre commentaire ici !"></textarea>
+                    <div id="buttons" class="hidden">
+                        <button id="cancelButton">Annuler</button>
+                        <input type="submit" value="Envoyer !">
+                    </div>
+                </form>
+                <div>
+                    <div class="first_name">Test</div>
+                    <div class="comment_content"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, aperiam. Facilis expedita eveniet dolor iste illum vero excepturi, magnam esse magni voluptatem vitae, alias, quibusdam culpa ex nemo reprehenderit quidem reiciendis necessitatibus molestias odio facere doloremque tempore error? Impedit numquam corrupti rem, repudiandae officiis optio odio ullam. Unde, modi quia!</div>
+                </div>
+                <div>
+                    <div class="first_name">Test</div>
+                    <div class="comment_content"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, aperiam. Facilis expedita eveniet dolor iste illum vero excepturi, magnam esse magni voluptatem vitae, alias, quibusdam culpa ex nemo reprehenderit quidem reiciendis necessitatibus molestias odio facere doloremque tempore error? Impedit numquam corrupti rem, repudiandae officiis optio odio ullam. Unde, modi quia!</div>
+                </div>
             </div>
         </div>
-    </div>
 </section>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const articleId = "{{$id}}";
         const articleType = "{{$type}}";
 
@@ -64,56 +91,54 @@
         const editor = document.getElementById('articleEditor');
         const style = document.getElementById('articleStyle');
 
-        if(articleType && articleType == "book"){
+        if (articleType && articleType == "book") {
             fetchBookInfos(articleId);
-        }
-        else if(articleType && articleType == "film"){
+        } else if (articleType && articleType == "film") {
             fetchFilmInfos(articleId);
         }
 
         async function fetchBookInfos(id) {
             try {
-                const response = await fetch('/api/books/'+id);
+                const response = await fetch('/api/books/' + id);
                 const book = await response.json();
-                picture.setAttribute('src', '../assets/img/livres/'+book.picture);
+                picture.setAttribute('src', '../assets/img/livres/' + book.picture);
                 title.innerHTML = book.title;
                 try {
-                    const authorResponse = await fetch('/api/author/'+book.author_id);
+                    const authorResponse = await fetch('/api/author/' + book.author_id);
                     const authorName = await authorResponse.json();
                     author.innerHTML = authorName.name.toUpperCase();
                 } catch (error) {
                     console.error('Error fetching author data:', error);
                 }
-                year.innerHTML = "Collection - " +book.edition_year;
+                year.innerHTML = "Collection - " + book.edition_year;
                 summary.innerHTML = book.summary;
                 try {
-                    const avNumResponse = await fetch('/api/bookLoans/'+book.id);
+                    const avNumResponse = await fetch('/api/bookLoans/' + book.id);
                     const avNum = await avNumResponse.json();
-                    if(book.copy_number - avNum > 0){
-                        availableNum.innerHTML = (book.copy_number - avNum)+" exemplaire(s) disponible(s) dans le réseau";
-                    }
-                    else {
+                    if (book.copy_number - avNum > 0) {
+                        availableNum.innerHTML = (book.copy_number - avNum) + " exemplaire(s) disponible(s) dans le réseau";
+                    } else {
                         availableNum.innerHTML = "Aucun exemplaire disponible dans le réseau";
                     }
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
                 try {
-                    const langResponse = await fetch('/api/language/'+book.language_id);
+                    const langResponse = await fetch('/api/language/' + book.language_id);
                     const lang = await langResponse.json();
                     language.innerHTML = lang.name;
-                    
+
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
-                length.innerHTML = "1 vol. ("+book.page_number+" p.)";
+                length.innerHTML = "1 vol. (" + book.page_number + " p.)";
                 type.innerHTML = book.type.charAt(0).toUpperCase() + book.type.slice(1);
                 try {
-                    const editorResponse = await fetch('/api/editor/'+book.editor_id);
+                    const editorResponse = await fetch('/api/editor/' + book.editor_id);
                     const editorName = await editorResponse.json();
                     changingHeader.innerHTML = "Editeur";
                     editor.innerHTML = editorName.name;
-                    
+
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
@@ -125,41 +150,40 @@
 
         async function fetchFilmInfos(id) {
             try {
-                const response = await fetch('/api/films/'+id);
+                const response = await fetch('/api/films/' + id);
                 const film = await response.json();
-                picture.setAttribute('src', '../assets/img/dvd/'+film.picture);
+                picture.setAttribute('src', '../assets/img/dvd/' + film.picture);
                 title.innerHTML = film.title;
                 try {
-                    const directorResponse = await fetch('/api/director/'+film.director_id);
+                    const directorResponse = await fetch('/api/director/' + film.director_id);
                     const directorName = await directorResponse.json();
                     author.innerHTML = directorName.name.toUpperCase();
                 } catch (error) {
                     console.error('Error fetching author data:', error);
                 }
-                year.innerHTML = "Collection - " +film.year;
+                year.innerHTML = "Collection - " + film.year;
                 summary.innerHTML = film.summary;
                 try {
-                    const avNumResponse = await fetch('/api/filmLoans/'+film.id);
+                    const avNumResponse = await fetch('/api/filmLoans/' + film.id);
                     const avNum = await avNumResponse.json();
-                    if(film.copy_number - avNum > 0){
-                        availableNum.innerHTML = (film.copy_number - avNum)+" exemplaire(s) disponible(s) dans le réseau";
-                    }
-                    else {
+                    if (film.copy_number - avNum > 0) {
+                        availableNum.innerHTML = (film.copy_number - avNum) + " exemplaire(s) disponible(s) dans le réseau";
+                    } else {
                         availableNum.innerHTML = "Aucun exemplaire disponible dans le réseau";
                     }
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
                 try {
-                    const langResponse = await fetch('/api/filmLanguages/'+film.id);
+                    const langResponse = await fetch('/api/filmLanguages/' + film.id);
                     const langs = await langResponse.json();
                     language.innerHTML = "Audio : ";
                     langs.forEach(async (lang) => {
                         try {
-                            const langDetail = await fetch('/api/language/'+lang.language_id);
+                            const langDetail = await fetch('/api/language/' + lang.language_id);
                             const langName = await langDetail.json();
                             language.innerHTML += langName.name + " ";
-                            
+
                         } catch (error) {
                             console.error('Error fetching data:', error);
                         }
@@ -168,15 +192,15 @@
                     console.error('Error fetching data:', error);
                 }
                 try {
-                    const subResponse = await fetch('/api/filmSubtitles/'+film.id);
+                    const subResponse = await fetch('/api/filmSubtitles/' + film.id);
                     const subs = await subResponse.json();
                     language.innerHTML += "| Sous-titres : ";
                     subs.forEach(async (sub) => {
                         try {
-                            const subDetail = await fetch('/api/language/'+sub.language_id);
+                            const subDetail = await fetch('/api/language/' + sub.language_id);
                             const subName = await subDetail.json();
                             language.innerHTML += subName.name + " ";
-                            
+
                         } catch (error) {
                             console.error('Error fetching data:', error);
                         }
@@ -184,23 +208,23 @@
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
-                length.innerHTML = "1 dvd. ("+(film.duration-film.duration%60)/60+"h"+film.duration%60+"min)";
+                length.innerHTML = "1 dvd. (" + (film.duration - film.duration % 60) / 60 + "h" + film.duration % 60 + "min)";
                 type.innerHTML = "Film";
                 style.innerHTML = film.style.charAt(0).toUpperCase() + film.style.slice(1);
                 changingHeader.innerHTML = "Casting";
                 try {
-                    const castingResponse = await fetch('/api/casting/'+film.id);
+                    const castingResponse = await fetch('/api/casting/' + film.id);
                     const casting = await castingResponse.json();
                     casting.forEach(async (cast) => {
                         try {
-                            const actorResponse = await fetch('/api/actor/'+cast.actor_id);
+                            const actorResponse = await fetch('/api/actor/' + cast.actor_id);
                             const actor = await actorResponse.json();
                             editor.innerHTML += actor.name + ", ";
                         } catch (error) {
                             console.error('Error fetching data:', error);
                         }
                     })
-                    
+
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }

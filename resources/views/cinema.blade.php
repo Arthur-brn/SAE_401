@@ -55,28 +55,28 @@
         <div class="allGenre">
             <div>
                 <div class="genre romans">
-                    <h3>Romans</h3>
+                    <h3>Longs Métrages</h3>
                 </div>
                 <div class="genre bd_mangas">
-                    <h3>BD et mangas</h3>
+                    <h3>Séries</h3>
                 </div>
                 <div class="genre jeunesse">
-                    <h3>Jeunesse</h3>
+                    <h3>Documentaires</h3>
                 </div>
                 <div class="genre poesie">
-                    <h3>Poésie</h3>
+                    <h3>Films d'Animation</h3>
                 </div>
                 <div class="genre biographie">
-                    <h3>Biographie</h3>
+                    <h3>Courts Métrages</h3>
                 </div>
                 <div class="genre actualites">
-                    <h3>Actualités</h3>
+                    <h3>Reportages</h3>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<script src="./js/litterature.js"></script>
+<script src="./js/cinema.js"></script>
 
 @endsection

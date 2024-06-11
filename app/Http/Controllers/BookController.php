@@ -60,7 +60,9 @@ class BookController extends Controller
     // Méthode pour récupérer les livres avec les nombres de prêts les plus élevés
     public function mostLoanedBooks()
     {
-        $books = Book::with('author')->orderBy('loan_number', 'desc')->take(10)->get();
-        return response()->json($books);
+        $books = Book::with('author')->orderBy('loan_number', 'desc')->take(11)->get();
+        // Exclure le premier élément de la collection car déjà affiché au dessus
+        $booksExcludingFirst = $books->slice(1);
+        return response()->json($booksExcludingFirst->values());
     }
 }

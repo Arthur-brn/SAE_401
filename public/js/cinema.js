@@ -26,12 +26,12 @@ document.addEventListener("DOMContentLoaded", function () {
         getSplideOptions()
     ).mount();
 
-    // Fonction pour récupérer les informations sur le livre le plus emprunté
-    function fetchMostLoanedBook() {
-        fetch('/api/books-most-loaned')
+    // Fonction pour récupérer les informations sur le film le plus emprunté
+    function fetchMostLoanedFilm() {
+        fetch('/api/films-most-loaned')
             .then(response => response.json())
             .then(data => {
-                // Mettre à jour les éléments HTML avec les données du livre le plus emprunté
+                // Mettre à jour les éléments HTML avec les données du film le plus emprunté
                 const topPageSection = document.getElementById('top-page');
                 const titleElement = topPageSection.querySelector('h2');
                 const paragraphElement = topPageSection.querySelector('p');
@@ -41,13 +41,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 titleElement.textContent = data.title;
                 paragraphElement.textContent = data.summary;
                 detailPageLink.href = "/litterature-" + data.id;
-                imgElement.src = "./assets/img/livres/" + data.picture;
+                imgElement.src = "./assets/img/dvd/" + data.picture;
                 imgElement.alt = data.title;
             })
-            .catch(error => console.error('Error fetching most loaned book:', error));
+            .catch(error => console.error('Error fetching most loaned film:', error));
     }
 
-    function fetchBooks(url, listElementId) {
+    function fetchFilms(url, listElementId) {
         fetch(url)
             .then(response => response.text())
             .then(text => {
@@ -57,15 +57,15 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 const listElement = document.getElementById(listElementId);
                 listElement.innerHTML = '';
-                data.forEach(book => {
+                data.forEach(film => {
                     const listItem = document.createElement('li');
                     listItem.className = 'splide__slide';
                     listItem.innerHTML = `
-                        <a href="/litterature-${book.id}">
-                            <img src="./assets/img/livres/${book.picture}" alt="${book.title}">
+                        <a href="/litterature-${film.id}">
+                            <img src="./assets/img/dvd/${film.picture}" alt="${film.title}">
                             <div class="infos">
-                                <h5>${book.title}</h5>
-                                <h6>${book.author.name}</h6>
+                                <h5>${film.title}</h5>
+                                <h6>${film.director.name}</h6>
                             </div>
                         </a>
                     `;
@@ -73,12 +73,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
                 new Splide(`#${listElementId.split('-')[0]}`, getSplideOptions()).mount();
             })
-            .catch(error => console.error('Error fetching books:', error));
+            .catch(error => console.error('Error fetching films:', error));
     }
 
-    fetchMostLoanedBook();
-    fetchBooks('/api/books-latest', 'nouveautes-list');
-    fetchBooks('/api/books-most-loaned-books', 'coups_de_coeur-list');
+    fetchMostLoanedFilm();
+    fetchFilms('/api/films-latest', 'nouveautes-list');
+    fetchFilms('/api/films-most-loaned-films', 'coups_de_coeur-list');
     
     window.addEventListener("resize", function () {
         nouveautesSplide.options = getSplideOptions();

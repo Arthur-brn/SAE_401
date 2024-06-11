@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::get('/litterature', function () {
 
     return view('litterature', [
-        'fileCss' => 'litterature',
+        'fileCss' => 'litterature_cinema',
         'fileJS' => 'litterature'
     ]);
 });
@@ -35,7 +35,7 @@ Route::get('/litterature-{id}', function ($id) {
 
     return view('details_article', [
         'fileCss' => 'details_article',
-        'fileJS' => '',
+        'fileJS' => 'details_article',
         'id' => $id,
         'type' => 'book'
     ]);
@@ -74,8 +74,8 @@ Route::get('/details_article', function () {
 
 Route::get('/cinema', function () {
     return view('cinema', [
-        'fileCss' => 'cinema',
-        'fileJS' => ''
+        'fileCss' => 'litterature_cinema',
+        'fileJS' => 'cinema'
     ]);
 });
 
@@ -120,6 +120,6 @@ Route::get('/account', function () {
 Route::get('/panier', function () {
     return view('panier', [
         'fileCss' => 'panier',
-        'fileJS' => ''
+        'fileJS' => 'panier'
     ]);
 });
