@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Loan;
 use App\Models\Film;
@@ -51,12 +52,10 @@ class UserController extends Controller
         $user = User::where('email', $request->email)->first();
 
         // Vérifier si l'utilisateur existe et le mot de passe est correct
-        if ($user && $request->password == $user->password) {
+        if ($user && Hash::check($request->password, $user->password)) {
             // L'utilisateur existe et le mot de passe est correct
             return response()->json($user, 200);
-        } 
-        else 
-        {
+        } else {
             // L'utilisateur n'existe pas ou le mot de passe est incorrect
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
