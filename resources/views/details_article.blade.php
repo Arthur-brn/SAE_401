@@ -54,9 +54,9 @@
                 </div>
             </div>
             <div x-show="tab === 'tab2'" id="comments">
-                <form id="addReviewForm">
+                <form action="">
                     <textarea name="review_content" id="review_content" placeholder="Rentrez votre commentaire ici !"></textarea>
-                    <div id="buttons" class="hidden">
+                    <div id="buttons">
                         <div class="rating_zone">
                             <label for="review_mark">Note /5 :</label>
                             <input style="width: 100%;" type="number" max="5" min="0" name="review_mark" id="review_mark">
@@ -134,8 +134,8 @@
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
-                length.innerHTML = "1 vol. ("+book.page_number+" p.)";
-                type.innerHTML = "- "+book.type.charAt(0).toUpperCase() + book.type.slice(1);
+                length.innerHTML = "1 vol. (" + book.page_number + " p.)";
+                type.innerHTML = "- " + book.type.charAt(0).toUpperCase() + book.type.slice(1);
                 try {
                     const editorResponse = await fetch('/api/editor/' + book.editor_id);
                     const editorName = await editorResponse.json();
@@ -211,8 +211,8 @@
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
-                length.innerHTML = "1 dvd. ("+(film.duration-film.duration%60)/60+"h"+film.duration%60+"min)";
-                type.innerHTML = "- "+film.type.charAt(0).toUpperCase() + film.type.slice(1);
+                length.innerHTML = "1 dvd. (" + (film.duration - film.duration % 60) / 60 + "h" + film.duration % 60 + "min)";
+                type.innerHTML = "- " + film.type.charAt(0).toUpperCase() + film.type.slice(1);
                 style.innerHTML = film.style.charAt(0).toUpperCase() + film.style.slice(1);
                 changingHeader.innerHTML = "Casting";
                 try {
