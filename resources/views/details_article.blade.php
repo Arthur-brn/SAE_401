@@ -57,8 +57,12 @@
                 <form action="">
                     <textarea name="my_comment" id="my_comment" placeholder="Rentrez votre commentaire ici !"></textarea>
                     <div id="buttons" class="hidden">
-                        <button id="cancelButton">Annuler</button>
+                        <div class="rating_zone">
+                            <label for="rating">Note /5 :</label>
+                            <input type="number" name="rating" id="rating">
+                        </div>
                         <input type="submit" value="Envoyer !">
+                        <button id="cancelButton">Annuler</button>
                     </div>
                 </form>
                 <div>
