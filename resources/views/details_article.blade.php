@@ -35,7 +35,6 @@
                 <div id="description">
                     <div class="content_description">
                         <div class="titre">
-                            <h5>Type de document</h5>
                             <h5>Description physique</h5>
                             <h5>Disponible en </h5>
                             <h5>Public visé</h5>
@@ -43,7 +42,6 @@
                             <h5 id="changingHeader"></h5>
                         </div>
                         <div class="contenue">
-                            <h5 id="articleType"></h5>
                             <h5 id="articleLenght"></h5>
                             <h5 id="articleLanguage"></h5>
                             <h5 id="articleTarget">Jeunesse</h5>
@@ -56,12 +54,12 @@
             <div x-show="tab === 'tab2'" id="comments">
                 <form id="addReviewForm">
                     <textarea name="review_content" id="review_content" placeholder="Rentrez votre commentaire ici !"></textarea>
-                    <div id="buttons" class="hidden">
+                    <div id="buttons">
                         <div class="rating_zone">
                             <label for="review_mark">Note /5 :</label>
                             <input style="width: 100%;" type="number" max="5" min="0" name="review_mark" id="review_mark">
                         </div>
-                        <input type="submit" value="Envoyer !">
+                        <input type="submit" value="Envoyer">
                         <button id="cancelButton">Annuler</button>
                     </div>
                 </form>
@@ -91,6 +89,24 @@
         const reviewSection = document.getElementById('comments');
         const addReviewForm = document.getElementById('addReviewForm');
         const addToCartBtn = document.getElementById('addToCart');
+
+        addReviewForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const reviewData = new FormData(addReviewForm);
+            reviewData.set('reviewable_type', 'App\\Models\\'+articleType);
+            reviewData.set('reviewable_id', articleId);
+            reviewData.set('user_id', userId);
+            try {
+                const reviewResponse = await fetch('/api/review', {
+                    method: 'POST',
+                    body: reviewData
+                });
+                const review = await reviewResponse.json();
+                window.location.href = '';
+            } catch (error) {
+                console.error('Error fetching author data:', error);
+            }
+        })
 
         if (articleType && articleType == "Book") {
             await fetchBookInfos(articleId);
@@ -273,6 +289,7 @@
         async function displayCartButton(){
             if(!userId){
                 addToCartBtn.innerHTML = "Connectez-vous pour ajouter au panier !";
+                addReviewForm.style.display = "none";
             }
             else if(availableNum.innerHTML == "Aucun exemplaire disponible dans le réseau"){
                 addToCartBtn.innerHTML = "Impossible d'ajouter l'article au panier !";
@@ -304,7 +321,6 @@
                                     body: formData
                                 })
                                 const booking = await bookingResponse.json();
-                                console.log(booking);
                                 window.location.href = "";
                             }catch (error) {
                                 console.error('Error fetching author data:', error);

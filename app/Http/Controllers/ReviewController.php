@@ -24,8 +24,8 @@ class ReviewController extends Controller
     // Méthode pour créer un nouveau livre
     public function store(Request $request)
     {
-        $Review = Review::create($request->all());
-        return response()->json($Review, 201);
+        $review = Review::create($request->all());
+        return response()->json($review, 201);
     }
 
     // Méthode pour mettre à jour les informations d'un livre
