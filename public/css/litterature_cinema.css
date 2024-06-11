@@ -32,10 +32,12 @@ p {
 
 #top-page .img {
     border-radius: 5px;
-    width: 50%;
+    width: 60%;
     padding: 0 150px;
 }
-
+#top-page .img img {
+    width: 100%;
+}
 /* Styles pour Splide */
 .splide {
     padding: 50px;
@@ -47,6 +49,7 @@ p {
 
 .splide__list {
     display: flex;
+    align-items: flex-start;
     gap: 50px;
     list-style: none;
     width: 80%;
@@ -66,7 +69,8 @@ p {
 }
 
 .splide__slide img {
-    width: 80%;
+    width: 180px;
+    height: 250px;
 }
 
 .splide__slide .infos {
