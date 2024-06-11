@@ -21,6 +21,7 @@ fun MyApp(navController: NavHostController) {
                 composable("catalogue") { catalogue(navController) }
                 composable("login") { login(navController) }
                 composable("DetailsArticle") { DetailsArticle(navController) }
+                composable("ProfilePage") { ProfilePage(navController) }
                 // Ajoutez d'autres destinations de navigation au besoin
             }
         }
