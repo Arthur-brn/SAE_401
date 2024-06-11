@@ -16,7 +16,7 @@
             <img src="../assets/img/disponibilite.svg" alt="TeloCulture">
             <h6 id="articleAvailbleNum"></h6>
         </div>
-        <button class="panier">AJOUTER AU PANIER <img src="../assets/img/voir_plus.svg" alt="Teloculture"></button>
+        <button class="panier" id="addToCart">AJOUTER AU PANIER <img src="../assets/img/voir_plus.svg" alt="Teloculture"></button>
     </div>
 </section>
 
@@ -65,14 +65,6 @@
                         <button id="cancelButton">Annuler</button>
                     </div>
                 </form>
-                <div>
-                    <div class="first_name">Test</div>
-                    <div class="comment_content"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, aperiam. Facilis expedita eveniet dolor iste illum vero excepturi, magnam esse magni voluptatem vitae, alias, quibusdam culpa ex nemo reprehenderit quidem reiciendis necessitatibus molestias odio facere doloremque tempore error? Impedit numquam corrupti rem, repudiandae officiis optio odio ullam. Unde, modi quia!</div>
-                </div>
-                <div>
-                    <div class="first_name">Test</div>
-                    <div class="comment_content"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, aperiam. Facilis expedita eveniet dolor iste illum vero excepturi, magnam esse magni voluptatem vitae, alias, quibusdam culpa ex nemo reprehenderit quidem reiciendis necessitatibus molestias odio facere doloremque tempore error? Impedit numquam corrupti rem, repudiandae officiis optio odio ullam. Unde, modi quia!</div>
-                </div>
             </div>
         </div>
 </section>
@@ -81,6 +73,8 @@
     document.addEventListener("DOMContentLoaded", async function() {
         const articleId = "{{$id}}";
         const articleType = "{{$type}}";
+
+        const userId = sessionStorage.getItem('userId');
 
         const picture = document.getElementById('articlePicture');
         const title = document.getElementById('articleTitle');
@@ -96,6 +90,33 @@
         const style = document.getElementById('articleStyle');
         const reviewSection = document.getElementById('comments');
         const addReviewForm = document.getElementById('addReviewForm');
+        const addToCartBtn = document.getElementById('addToCart');
+
+        if(!userId){
+            addToCartBtn.innerHTML = "Connectez-vous pour ajouter au panier !";
+        }
+        else{
+            addToCartBtn.addEventListener('click', async function(){
+                const formData = new FormData();
+                const date = new Date().toISOString().split('T')[0];
+                formData.set('loanable_type', 'App\\Models\\'+articleType);
+                formData.set('loanable_id', articleId);
+                formData.set('user_id', userId);
+                formData.set('booking_number', 'AB345');
+                formData.set('start_date', date);
+                formData.set('status', 'add_to_cart');
+                try{
+                    const bookingResponse = await fetch('/api/loans', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    const booking = await bookingResponse.json();
+                    window.location.href = "#";
+                }catch (error) {
+                    console.error('Error fetching author data:', error);
+                }
+            });
+        }
 
         if (articleType && articleType == "Book") {
             await fetchBookInfos(articleId);
