@@ -22,7 +22,7 @@
         <input type="email" name="email" placeholder="Email">
         <label for="message">Message</label>
         <textarea name="message" id="message" cols="80" rows="10" placeholder="Votre message"></textarea>
-        <input type="submit" name="submit" value="Envoyer ->">
+        <input type="submit" name="submit" value="Envoyer">
     </form>
     <div class="carte">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1016.492368333706!2d5.938709361145863!3d43.12096107324639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c91b0a6b2cea6f%3A0xa865e0843e39d84e!2sIUT%20MMI!5e0!3m2!1sfr!2sfr!4v1717080144581!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
