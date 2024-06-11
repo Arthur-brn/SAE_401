@@ -196,11 +196,11 @@ p {
 
     #top-page div {
         gap: 20px;
-        width: 100%;
+        width: 50%;
     }
 
     #top-page .img {
-        width: 75%;
+        width: 40%;
         padding: 0;
     }
 
@@ -210,6 +210,7 @@ p {
 
     .splide {
         padding: 20px;
+        width: 50%;
     }
 
     .splide__list {
@@ -227,11 +228,13 @@ p {
 
     #genre {
         padding: 20px;
-        gap: 10px;
     }
 
     #genre div {
         gap: 10px;
+    }
+    #genre div .allGenre div {
+        width: 350px;
     }
 
     #genre div .allGenre div .genre {
