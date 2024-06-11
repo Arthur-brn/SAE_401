@@ -16,6 +16,7 @@ use App\Http\Controllers\AudioLanguageController;
 use App\Http\Controllers\SubtitleController;
 use App\Http\Controllers\CastingController;
 use App\Http\Controllers\ActorController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,8 @@ Route::post('/casting', [CastingController::class, 'store']);
 Route::get('/bookLoans/{id}', [LoanController::class, 'countBook']);
 Route::get('/filmLoans/{id}', [LoanController::class, 'countFilm']);
 Route::get('/loans', [LoanController::class, 'index']);
+Route::post('/loans', [LoanController::class, 'store']);
+Route::post('/checkLoans', [LoanController::class, 'checkLoans']);
 Route::get('/removeLoan/{loanRef}', [LoanController::class, 'removeLoan']);
 Route::get('/checkBook/{id}', [LoanController::class, 'checkBook']);
 Route::get('/checkFilm/{id}', [LoanController::class, 'checkFilm']);
@@ -83,6 +86,8 @@ Route::post('/audioLanguage', [AudioLanguageController::class, 'store']);
 Route::get('/filmSubtitles/{id}', [SubtitleController::class, 'getFilmSubtitles']);
 Route::post('/subtitle', [SubtitleController::class, 'store']);
 
+Route::get('/bookReview/{id}', [ReviewController::class, 'getBookReview']);
+Route::get('/filmReview/{id}', [ReviewController::class, 'getFilmReview']);
 
 Route::get('/books-most-loaned', [BookController::class, 'mostLoanedBook']);
 Route::get('/books-latest', [BookController::class, 'latestBooks']);
