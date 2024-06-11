@@ -1,10 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Inter", sans-serif;
-}
-
 section {
     margin: 50px 100px;
 }
@@ -23,8 +16,9 @@ section {
 #principale_infos .infos {
     display: flex;
     flex-direction: column;
+    align-items: flex-start !important;
     gap: 20px;
-    max-width: 60%;
+    max-width: 45%;
 }
 #principale_infos .infos .type {
     font-size: 14px;
@@ -42,7 +36,14 @@ section {
     flex-direction: column;
     align-items: baseline;
     justify-content: space-between;
-    height: 200px;
+    height: 250px;
+    max-width: 25%;
+}
+#principale_infos #panier .panier {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 #principale_infos #panier .disponibilite {
     display: flex;
@@ -91,10 +92,11 @@ section {
     margin: 20px 0;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     font-size: 16px;
     gap: 15px;
 }
-#secondaire_infos #description .content_description .contenue {
+#secondaire_infos #description .content_description .contenue h5 {
     color: #8c8c8c;
 }
 
@@ -114,4 +116,75 @@ section {
     #principale_infos #panier {
         height: 75px;
     }
+}
+#tabs{
+    display: flex;
+    box-sizing: border-box;
+    margin-top: 6px;
+    width: 100%;
+    gap: 10px;
+}
+
+#tabs li{
+    margin-right: 1px;
+    border: 2px solid #ff625c;
+    border-top-left-radius: 0.25rem ;
+    border-top-right-radius: 0.25rem ;
+}
+
+.tab_selected{
+    background-color: #ff625c;
+    color: #ffffff;
+    border-bottom: none;
+}
+
+li a{
+    display: inline-block;
+    color: #000000;
+    height: 100%;
+    padding:1rem ;
+    line-height: 180%;
+}
+
+#comments, #comments > div{
+    padding: 1vw 0;
+}
+
+#comments form, #comments form div{
+    gap: 1vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+#comments textarea{
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #6887f6;
+}
+
+input[type=submit] {
+    display: flex;
+    padding: 5px;
+    gap: 8px;
+    background-color: #ff625c;
+    border: 1px solid #ff625c ;
+    color: #ffffff;
+    border-radius: 7px;
+    line-height: 220%;
+    cursor: pointer;
+}
+
+.first_name{
+    font-weight: 600;
+}
+
+.hidden{
+    display: hidden;
+}
+
+.rating_zone{
+    flex-direction: column;
+    align-items: baseline;
 }

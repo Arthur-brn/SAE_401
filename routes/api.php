@@ -87,3 +87,7 @@ Route::post('/subtitle', [SubtitleController::class, 'store']);
 Route::get('/books-most-loaned', [BookController::class, 'mostLoanedBook']);
 Route::get('/books-latest', [BookController::class, 'latestBooks']);
 Route::get('/books-most-loaned-books', [BookController::class, 'mostLoanedBooks']);
+
+Route::get('/films-most-loaned', [FilmController::class, 'mostLoanedFilm']);
+Route::get('/films-latest', [FilmController::class, 'latestFilms']);
+Route::get('/films-most-loaned-films', [FilmController::class, 'mostLoanedFilms']);

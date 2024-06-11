@@ -77,9 +77,7 @@ class LoanController extends Controller
         if($book)
         {
             return response()->json($book, 201);
-        }
-        else
-        {
+        } else {
             return response()->json(null, 404);
         }
     }
@@ -92,9 +90,7 @@ class LoanController extends Controller
         if($film)
         {
             return response()->json($film, 201);
-        }
-        else
-        {
+        } else {
             return response()->json(null, 404);
         }
     }

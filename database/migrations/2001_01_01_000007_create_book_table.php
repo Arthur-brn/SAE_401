@@ -22,7 +22,7 @@ class CreateBookTable extends Migration
             $table->unsignedBigInteger('language_id');
 
             $table->enum('style', ['fantastique', 'romantique', 'science-fiction', 'policier', 'aventure', 'historique', 'horreur', 'humoristique', 'fantasy épique', 'drame', 'thriller', 'mystère', 'biographie', 'autobiographie', 'essai', 'poésie', 'conte de fées', 'nouvelle', 'roman graphique']);
-            $table->enum('type', ['comics', 'paper back', 'pocket book', 'illustrated album']);
+            $table->enum('type', ['roman', 'bd et manga', 'jeunesse', 'poésie', 'biographie', 'actualité']);
 
             $table->text('summary');
             $table->unsignedInteger('page_number');
