@@ -59,7 +59,7 @@
                     <div id="buttons" class="hidden">
                         <div class="rating_zone">
                             <label for="rating">Note /5 :</label>
-                            <input type="number" name="rating" id="rating">
+                            <input style="width: 100%;" type="number" max="5" min="0" name="rating" id="rating">
                         </div>
                         <input type="submit" value="Envoyer !">
                         <button id="cancelButton">Annuler</button>
