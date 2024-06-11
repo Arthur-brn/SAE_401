@@ -24,8 +24,15 @@ class FilmController extends Controller
     // Méthode pour créer un nouveau livre
     public function store(Request $request)
     {
-        $film = Film::create($request->all());
-        return response()->json($film, 201);
+        $imgDir = './assets/img/dvd/';
+        $filmData = $request->all();
+        $filmPic = $filmData['picture'];
+        $filename = time() . '_' . $filmPic->getClientOriginalName();
+        $filmPic->move(public_path($imgDir), $filename);
+        $filmData['picture'] = $filename;
+        $film = Film::create($filmData);
+        $filmId = $film->id;
+        return response()->json($filmId, 201);
     }
 
     // Méthode pour mettre à jour les informations d'un livre

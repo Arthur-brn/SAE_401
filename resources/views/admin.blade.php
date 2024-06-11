@@ -122,13 +122,18 @@
                 </div>
                 <div>
                     <label for="picture">Image :</label>
-                    <input type="text" id="picture" name="picture">
+                    <input type="file" id="picture" name="picture" accept=".png, .jpg, .jpeg">
+                </div>
+                <div>
+                    <label for="actors">Acteurs :</label>
+                    <select name="actors" id="actors" multiple></select>
                 </div>
                 <div>
                     <label for="director_id">Réalisateur :</label>
                     <select name="director_id" id="director_id">
                         <option value="">Choisir le réalisateur</option>
                     </select>
+                    <input type="text" id="newDirector" name="newDirector" placeholder="Nouveau Réalisateur">
                 </div>
                 <div>
                     <label for="style">Style:</label>
@@ -158,25 +163,26 @@
                 </div>
                 <div>
                     <label for="audioLanguages">Langue(s) audio :</label>
-                    <select name="audioLanguages" id="audioLanguages">
-                        <option value="">Choisir la langue</option>
-                    </select>
+                    <select name="audioLanguages" id="audioLanguages" multiple></select>
                 </div>
                 <div>
                     <label for="subLanguages">Langue(s) des sous-titres :</label>
-                    <select name="subLanguages" id="subLanguages">
-                        <option value="">Choisir la langue</option>
+                    <select name="subLanguages" id="subLanguages" multiple></select>
+                </div>
+                <div>
+                    <label for="type">Type de livre :</label>
+                    <select id="type" name="type">
+                        <option value="">Choisir le type</option>
+                        <option value="long métrage">Long métrage</option>
+                        <option value="série">Série</option>
+                        <option value="film animation">Film d'animation</option>
+                        <option value="court métrage">Court-métrage</option>
+                        <option value="reportage">Reportage</option>
                     </select>
                 </div>
                 <div>
                     <label for="copy_number">Nombre d'exemplaire :</label>
                     <input type="number" id="copy_number" name="copy_number">
-                </div>
-                <div>
-                    <label for="category">Catégorie :</label>
-                    <select id="category" name="category">
-                        <option value="">Choisir la catégorie</option>
-                    </select>
                 </div>
                 <button type="submit">Ajouter</button>
             </form>
@@ -308,7 +314,10 @@
         const authorSelect = document.getElementById('author_id');
         const editorSelect = document.getElementById('editor_id');
         const directorSelect = document.getElementById('director_id');
+        const actorSelect = document.getElementById('actors');
         const bookLanguage = document.getElementById('language_id');
+        const audioLanguage = document.getElementById('audioLanguages');
+        const subLanguage = document.getElementById('subLanguages');
         const addBookForm = document.getElementById('addBookForm');
         const addFilmForm = document.getElementById('addFilmForm');
         const passedBooking = document.getElementById('passedBookings');
@@ -522,10 +531,36 @@
                 const languages = await response.json();
 
                 languages.forEach(language => {
-                    const languageOption = document.createElement('option');
-                    languageOption.innerHTML = language.name;
-                    languageOption.setAttribute('value', language.id);
-                    bookLanguage.appendChild(languageOption);
+                    const languageOption1 = document.createElement('option');
+                    languageOption1.innerHTML = language.name;
+                    languageOption1.setAttribute('value', language.id);
+                    bookLanguage.appendChild(languageOption1);
+
+                    const languageOption2 = document.createElement('option');
+                    languageOption2.innerHTML = language.name;
+                    languageOption2.setAttribute('value', language.id);
+                    audioLanguage.appendChild(languageOption2);
+
+                    const languageOption3 = document.createElement('option');
+                    languageOption3.innerHTML = language.name;
+                    languageOption3.setAttribute('value', language.id);
+                    subLanguage.appendChild(languageOption3);
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        async function fetchActorsAndPopulateSelect() {
+            try {
+                const response = await fetch('api/actors');
+                const actors = await response.json();
+
+                actors.forEach(actor => {
+                    const actorOption = document.createElement('option');
+                    actorOption.innerHTML = actor.name;
+                    actorOption.setAttribute('value', actor.id);
+                    actorSelect.appendChild(actorOption);
                 });
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -657,6 +692,7 @@
         fetchEditorsAndPopulateSelect();
         fetchDirectorsAndPopulateSelect();
         fetchLanguagesAndPopulateSelect();
+        fetchActorsAndPopulateSelect();
         fetchBookingsAndDisplay();
 
         addBookForm.addEventListener('submit', async function(event) {
@@ -695,7 +731,6 @@
                 });
                 const bookData = await bookResponse.json();
                 if (bookResponse.ok) {
-                    console.log('Book added successfully:', bookData);
                     window.location.href = './admin';
                 } else {
                     console.error('Error adding book:', bookData);
@@ -705,20 +740,81 @@
             }
         }
 
-        addFilmForm.addEventListener('submit', function(event) {
+        addFilmForm.addEventListener('submit', async function(event) {
             event.preventDefault();
-            const formData = new FormData(addFilmForm);
-            fetch('/api/films', {
+            let formData = new FormData(addFilmForm);
+            const newDirectorInput = document.getElementById('newDirector');
+
+            if(newDirectorInput.value != ""){
+                const directorResponse = await fetch('api/directors', {
                     method: 'POST',
                     body: formData
-                })
-                .then(response => response.json())
-                .then(
-                    window.location.href = './admin'
-                )
-                .catch(error => {
-                    console.error('Error adding film :', error);
                 });
+                const newDirectorId = await directorResponse.json();
+                formData.set('director_id', newDirectorId);
+            }
+
+            await storeFilm(formData);
+            
         });
+
+        async function storeFilm(formData){
+            try {
+                const filmResponse = await fetch('/api/films', {
+                    method: 'POST',
+                    body: formData
+                });
+                const filmData = await filmResponse.json();
+                if (filmResponse.ok) {
+                    formData.set('film_id', filmData);
+                    
+                    await storeAudioLanguages(formData);
+                    await storeSubLanguages(formData);
+                    await storeActors(formData);
+    
+                    window.location.href = './admin';
+                } else {
+                    console.error('Error adding book:', filmData);
+                }
+            } catch (error) {
+                console.error('Error adding book:', error);
+            }
+        }
+
+        async function storeAudioLanguages(formData){
+            const audioLang = formData.getAll('audioLanguages');
+            audioLang.forEach(async (lang)=>{
+                formData.set('language_id', lang);
+                const audioResponse = await fetch('/api/audioLanguage', {
+                    method: 'POST',
+                    body: formData
+                });
+                const audioData = await audioResponse.json();
+            });
+        }
+
+        async function storeSubLanguages(formData){
+            const subLang = formData.getAll('subLanguages');
+            subLang.forEach(async (lang)=>{
+                formData.set('language_id', lang);
+                const subResponse = await fetch('/api/subtitle', {
+                    method: 'POST',
+                    body: formData
+                });
+                const subData = await subResponse.json();
+            });
+        }
+
+        async function storeActors(formData){
+            const actors = formData.getAll('actors');
+            actors.forEach(async (actor)=>{
+                formData.set('actor_id', actor);
+                const actorResponse = await fetch('/api/casting', {
+                    method: 'POST',
+                    body: formData
+                });
+                const actorData = await actorResponse.json();
+            });
+        }
     });
 </script>

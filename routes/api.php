@@ -35,6 +35,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/author/{id}', [AuthorController::class, 'show']);
 
 Route::get('/actor/{id}', [ActorController::class, 'show']);
+Route::get('/actors', [ActorController::class, 'index']);
 
 Route::get('/films', [FilmController::class, 'index']);
 Route::get('/films/{id}', [FilmController::class, 'show']);
@@ -47,9 +48,11 @@ Route::post('/books', [BookController::class, 'store']);
 Route::get('/removeBook/{id}', [BookController::class, 'destroy']);
 
 Route::get('/directors', [DirectorController::class, 'index']);
+Route::post('/directors', [DirectorController::class, 'store']);
 Route::get('/director/{id}', [DirectorController::class, 'show']);
 
 Route::get('/casting/{id}', [CastingController::class, 'getFilmCasting']);
+Route::post('/casting', [CastingController::class, 'store']);
 
 Route::get('/bookLoans/{id}', [LoanController::class, 'countBook']);
 Route::get('/filmLoans/{id}', [LoanController::class, 'countFilm']);
@@ -75,8 +78,10 @@ Route::get('/languages', [LanguageController::class, 'index']);
 Route::get('/language/{id}', [LanguageController::class, 'show']);
 
 Route::get('/filmLanguages/{id}', [AudioLanguageController::class, 'getFilmLanguages']);
+Route::post('/audioLanguage', [AudioLanguageController::class, 'store']);
 
 Route::get('/filmSubtitles/{id}', [SubtitleController::class, 'getFilmSubtitles']);
+Route::post('/subtitle', [SubtitleController::class, 'store']);
 
 
 Route::get('/books-most-loaned', [BookController::class, 'mostLoanedBook']);
