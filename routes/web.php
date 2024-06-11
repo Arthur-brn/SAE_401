@@ -35,7 +35,7 @@ Route::get('/litterature-{id}', function ($id) {
 
     return view('details_article', [
         'fileCss' => 'details_article',
-        'fileJS' => '',
+        'fileJS' => 'details_article',
         'id' => $id,
         'type' => 'book'
     ]);
@@ -120,6 +120,6 @@ Route::get('/account', function () {
 Route::get('/panier', function () {
     return view('panier', [
         'fileCss' => 'panier',
-        'fileJS' => ''
+        'fileJS' => 'panier'
     ]);
 });
