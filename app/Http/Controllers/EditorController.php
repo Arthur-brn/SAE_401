@@ -24,8 +24,11 @@ class EditorController extends Controller
     // Méthode pour créer un nouveau livre
     public function store(Request $request)
     {
-        $editor = Editor::create($request->all());
-        return response()->json($editor, 201);
+        $editor = Editor::create([
+            'name' => $request->input('newEditor')
+        ]);
+        $editorId = $editor->id;
+        return response()->json($editorId, 201);
     }
 
     // Méthode pour mettre à jour les informations d'un livre

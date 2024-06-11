@@ -5,7 +5,7 @@
 <section id="principale_infos">
     <img class="img_article" id="articlePicture">
     <div class="infos">
-        <h6 class="type" id="articleCat"></h6>
+        <h6 class="type" id="articleType"></h6>
         <h2 id="articleTitle"></h2>
         <h3 id="articleAuthor"></h3>
         <p id="articleYear"></p>
@@ -135,8 +135,8 @@
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
-                length.innerHTML = "1 vol. (" + book.page_number + " p.)";
-                type.innerHTML = book.type.charAt(0).toUpperCase() + book.type.slice(1);
+                length.innerHTML = "1 vol. ("+book.page_number+" p.)";
+                type.innerHTML = "- "+book.type.charAt(0).toUpperCase() + book.type.slice(1);
                 try {
                     const editorResponse = await fetch('/api/editor/' + book.editor_id);
                     const editorName = await editorResponse.json();
@@ -212,8 +212,8 @@
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
-                length.innerHTML = "1 dvd. (" + (film.duration - film.duration % 60) / 60 + "h" + film.duration % 60 + "min)";
-                type.innerHTML = "Film";
+                length.innerHTML = "1 dvd. ("+(film.duration-film.duration%60)/60+"h"+film.duration%60+"min)";
+                type.innerHTML = "- "+film.type.charAt(0).toUpperCase() + film.type.slice(1);
                 style.innerHTML = film.style.charAt(0).toUpperCase() + film.style.slice(1);
                 changingHeader.innerHTML = "Casting";
                 try {

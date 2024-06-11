@@ -24,8 +24,11 @@ class AuthorController extends Controller
     // Méthode pour créer un nouveau acteur
     public function store(Request $request)
     {
-        $author = Author::create($request->all());
-        return response()->json($author, 201);
+        $author = Author::create([
+            'name' => $request->input('newAuthor')
+        ]);
+        $authorId = $author->id;
+        return response()->json($authorId, 201);
     }
 
     // Méthode pour mettre à jour les informations d'un acteur
