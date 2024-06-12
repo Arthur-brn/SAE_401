@@ -189,13 +189,25 @@
         </div>
         <div x-show="tab === 'tab4'">
             <div>
-                <label for="style">Document:</label>
-                <select id="style" name="style">
-                    <option value=""></option>
-                    <option value="titanic">Titanic</option>
-                    <option value="harry potter">Harry Potter</option>
-                </select>
-                <form action=""></form>
+                <div>
+                    <p>Rechercher un document :</p>
+                    <input type="text" name="" id="" placeholder="Titre du document">
+                </div>
+                <table id="modifyList">
+                    <thead>
+                        <tr>
+                            <td>Titre</td>
+                            <td>Type de document</td>
+                            <td>Nombre d'exemplaire</td>
+                        </tr>
+                    </thead>
+                    <tr id="loadingModifyTable">
+                        <td colspan="3" 
+                            style="text-align:center">
+                            Récupération des données en cours...
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
@@ -312,13 +324,14 @@
 @endsection
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', async function() {
         const userId = sessionStorage.getItem('userId');
         const userStatus = sessionStorage.getItem('userStatus');
         if(userId)
         {
             if(userStatus && userStatus == "admin"){
                 const itemList = document.getElementById('itemList');
+                const modifyList = document.getElementById('modifyList');
                 const authorSelect = document.getElementById('author_id');
                 const editorSelect = document.getElementById('editor_id');
                 const directorSelect = document.getElementById('director_id');
@@ -701,14 +714,79 @@
                     }
                 }
 
-                fetchBooksAndDisplay();
-                fetchFilmsAndDisplay();
-                fetchAuthorsAndPopulateSelect();
-                fetchEditorsAndPopulateSelect();
-                fetchDirectorsAndPopulateSelect();
-                fetchLanguagesAndPopulateSelect();
-                fetchActorsAndPopulateSelect();
-                fetchBookingsAndDisplay();
+                async function fetchBookAndPopulateModifyTable() {
+                    try {
+                        const response = await fetch('/api/books');
+                        const books = await response.json();
+
+                        books.forEach(async (book) => {
+                            const line = document.createElement("tr");
+
+                            const title = document.createElement('td');
+                            title.innerHTML = book.title;
+
+                            const type = document.createElement('td');
+                            type.innerHTML = 'Livre';
+
+                            const number = document.createElement('td');
+                            number.innerHTML = '<form class="modifyArticleCopyNumber modifyBook" style="display :flex">';
+                            number.innerHTML += '<input type="number" name="copy_number" value="'+book.copy_number+'">';
+                            number.innerHTML += '<button type="submit">Modifier</button>';
+                            number.innerHTML += '</form>';
+
+                            line.appendChild(title);
+                            line.appendChild(type);
+                            line.appendChild(number);
+
+                            modifyList.appendChild(line);
+                            document.getElementById('loadingModifyTable').remove();
+                        });
+                    } catch (error) {
+                        console.error('Error fetching books data:', error);
+                    }
+                }
+
+                async function fetchFilmAndPopulateModifyTable() {
+                    try {
+                        const response = await fetch('/api/films');
+                        const films = await response.json();
+
+                        films.forEach(async (film) => {
+                            const line = document.createElement("tr");
+
+                            const title = document.createElement('td');
+                            title.innerHTML = film.title;
+
+                            const type = document.createElement('td');
+                            type.innerHTML = 'Film';
+
+                            const number = document.createElement('td');
+                            number.innerHTML = '<form class="modifyArticleCopyNumber modifyFilm" style="display :flex">';
+                            number.innerHTML += '<input type="number" name="copy_number" value="'+film.copy_number+'">';
+                            number.innerHTML += '<button type="submit">Modifier</button>';
+                            number.innerHTML += '</form>';
+
+                            line.appendChild(title);
+                            line.appendChild(type);
+                            line.appendChild(number);
+
+                            modifyList.appendChild(line);
+                        });
+                    } catch (error) {
+                        console.error('Error fetching books data:', error);
+                    }
+                }
+
+                await fetchBooksAndDisplay();
+                await fetchFilmsAndDisplay();
+                await fetchAuthorsAndPopulateSelect();
+                await fetchEditorsAndPopulateSelect();
+                await fetchDirectorsAndPopulateSelect();
+                await fetchLanguagesAndPopulateSelect();
+                await fetchActorsAndPopulateSelect();
+                await fetchBookingsAndDisplay();
+                await fetchBookAndPopulateModifyTable();
+                await fetchFilmAndPopulateModifyTable();
 
                 addBookForm.addEventListener('submit', async function(event) {
                     event.preventDefault();
