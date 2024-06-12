@@ -8,5 +8,6 @@
     <p>Le panier est vide.</p>
 </div>
 
-<button id="btn-reserver">Réserver</button>
+<button id="btn-reserver">Réserver !
+</button>
 @endsection
