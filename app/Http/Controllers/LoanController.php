@@ -147,4 +147,24 @@ class LoanController extends Controller
 
         return response()->json(['message' => 'Items reserved successfully'], 200);
     }
+
+    public function checkCart($id)
+    {
+        $bookingNum = Loan::where('user_id', $id)
+                          ->where('status', 'add_to_cart')
+                          ->first();
+        if ($bookingNum) {
+            return response()->json($bookingNum, 201);
+        } else {
+            return response()->json('', 201);
+        }
+    }
+
+    public function getCustomerLoan($id)
+    {
+        $userLoans = Loan::where('user_id', $id)
+                         ->where('status', '!=', 'add_to_cart')
+                         ->get();
+        return response()->json($userLoans, 201);
+    }
 }
