@@ -39,7 +39,7 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
         $book->update($request->all());
-        return response()->json($book, 200);
+        return response()->json($book, 201);
     }
 
     // Méthode pour supprimer un livre

@@ -30,11 +30,10 @@ class LoanController extends Controller
     }
 
     // Méthode pour mettre à jour les informations d'un livre
-    public function update(Request $request, $id)
+    public function update(Request $request, $loanRef)
     {
-        $loan = Loan::findOrFail($id);
-        $loan->update($request->all());
-        return response()->json($loan, 200);
+        $loan = Loan::where('booking_number', $loanRef)->update($request->all());
+        return response()->json($loan, 201);
     }
 
     // Méthode pour supprimer un livre
