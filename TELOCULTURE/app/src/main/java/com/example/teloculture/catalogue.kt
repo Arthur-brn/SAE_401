@@ -1,5 +1,6 @@
 package com.example.teloculture
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -8,7 +9,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -16,20 +18,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 @Composable
-fun Catalogue(navController: NavController) {
-    val categories = listOf("Tous", "Livre", "Cinéma", "Romance", "Thriller", "Fiction", "Crime")
-    val allBooks = listOf(
-        "Fashionopolis", "Book2", "Book3", "Book4", "Book5", "Book6"
-    )
-
-    var selectedCategory by remember { mutableStateOf("Tous") }
-    val filteredBooks = if (selectedCategory == "Tous") {
-        allBooks
-    } else {
-        allBooks.filter { it.contains(selectedCategory, ignoreCase = true) }
-    }
+fun catalogue(navController: NavController) {
+    val categories = listOf("Livre", "Cinéma", "Romance", "Thriller", "Fiction", "Crime")
+    val books = List(6) { "Fashionopolis" }
 
     Column {
         Text("Les catégories", fontSize = 24.sp, modifier = Modifier.padding(16.dp))
@@ -53,8 +49,8 @@ fun Catalogue(navController: NavController) {
             columns = GridCells.Fixed(2),
             modifier = Modifier.padding(16.dp)
         ) {
-            items(filteredBooks.size) { index ->
-                BookItem(book = filteredBooks[index]) {
+            items(books.size) { index ->
+                BookItem(book = books[index]) {
                     navController.navigate("DetailsArticle")
                 }
             }
@@ -63,23 +59,25 @@ fun Catalogue(navController: NavController) {
 }
 
 @Composable
-fun BookItem(book: String, onClick: () -> Unit) {
+fun BookItem(book: String, author: String, picture: String, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
             .clickable(onClick = onClick) // Rendre la Card cliquable
     ) {
+        val imgName = picture.split('.')[0]
+        val img = getResourceId(name = imgName)
         Column(modifier = Modifier.padding(16.dp)) {
             Image(
-                painter = painterResource(id = R.drawable.imgbook),
+                painter = painterResource(id = img),
                 contentDescription = "Image du livre",
                 modifier = Modifier.size(120.dp),
                 contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(book)
-            Text("Dana Thomas")
+            Text(author)
         }
     }
 }
