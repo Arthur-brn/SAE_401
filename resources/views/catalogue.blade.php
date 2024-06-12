@@ -105,5 +105,19 @@
 </div>
 
 <script src="./js/catalogue.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Check if the URL has the sort parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const sortParam = urlParams.get('sort');
+
+        if (sortParam === 'recent') {
+            document.getElementById('filtre-plus-recents').checked = true;
+        }
+
+        // Trigger the filter function to sort and display the results
+        applyFiltersAndDisplay();
+    });
+</script>
 
 @endsection
