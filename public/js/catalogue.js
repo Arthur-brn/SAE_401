@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
         paginationContainer.querySelectorAll('p[data-page]').forEach((page) => {
             page.addEventListener('click', () => {
                 currentPage = parseInt(page.getAttribute('data-page'), 10);
-                showPage(currentPage, allArticles);
+                applyFiltersAndDisplay();
             });
         });
 
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else if (button.getAttribute('data-page') === 'next' && currentPage < totalPages) {
                     currentPage++;
                 }
-                showPage(currentPage, allArticles);
+                applyFiltersAndDisplay();
             });
         });
 
