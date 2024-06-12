@@ -80,13 +80,7 @@
                 <h6 class="totale_resultat">20</h6>
             </div>
             <div class="droite">
-                <img src="./assets/img/fleche_back_catalogue.svg" alt="Teloculture" class="pagination-nav" data-page="prev">
-                <p class="active" data-page="1">1</p>
-                <p class="passive" data-page="2">2</p>
-                <p class="passive" data-page="3">3</p>
-                <p class="reduit">...</p>
-                <p class="passive totale_page" data-page="10">10</p>
-                <img src="./assets/img/fleche_forward_catalogue.svg" alt="Teloculture" class="pagination-nav" data-page="next">
+                <!-- Pagination controls will be injected here -->
             </div>
         </div>
         <div class="all_articles">
