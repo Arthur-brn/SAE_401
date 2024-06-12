@@ -50,6 +50,9 @@ android {
 }
 
 dependencies {
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("io.coil-kt:coil-compose:1.4.0")
     implementation(libs.androidx.navigation.compose)
     implementation("androidx.compose.material3:material3:1.2.1")
     implementation(libs.androidx.core.ktx)

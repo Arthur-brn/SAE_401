@@ -1,5 +1,8 @@
 package com.example.teloculture
 
+import android.annotation.SuppressLint
+import android.util.Log
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -11,18 +14,30 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.rememberImagePainter
 import com.example.teloculture.ui.theme.TELOCULTURETheme
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.IOException
 
 @Composable
 fun HomePage(navController: NavController) {
@@ -118,30 +133,61 @@ fun CategoriesRow(navController: NavController) {
 
 @Composable
 fun BooksRow() {
-    val books = List(6) { "Fashionopolis" }
+    // Déclarer books en dehors de onResponse
+    var books by remember { mutableStateOf<List<Book>>(emptyList()) }
 
+    val apiService = RetrofitClient.getClient().create(ApiService::class.java)
+    val call = apiService.getBooks()
+
+    call.enqueue(object : Callback<List<Book>> {
+        override fun onResponse(call: Call<List<Book>>, response: Response<List<Book>>) {
+            if (response.isSuccessful) {
+                // Mettre à jour books lorsque la réponse est réussie
+                books = response.body() ?: emptyList()
+            }
+        }
+
+        override fun onFailure(call: Call<List<Book>>, t: Throwable) {
+            Log.e("Error", t.message ?: "An error occurred")
+        }
+    })
+
+    // Utiliser books dans LazyRow
     LazyRow {
         items(books) { book ->
             Books(book)
         }
     }
 }
+
+@SuppressLint("DiscouragedApi")
 @Composable
-fun Books(book: String) {
+fun Books(book: Book) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.padding(8.dp)
     ) {
+        val imgName = book.picture.split('.')[0]
+        val img = getResourceId(name = imgName)
         Image(
-            painter = painterResource(id = R.drawable.imgbook), // Replace with your actual drawable resource ID
+            painter = painterResource(id = img),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.size(120.dp)
         )
-        Text(text = book)
-        Text(text = "Dana Thomas")
+        Text(text = book.title)
+        Text(text = book.author)
     }
 }
+
+@Composable
+fun getResourceId(name: String): Int {
+    val context = LocalContext.current // Remplacez MyApp.context par votre contexte d'application
+
+    // Obtenez l'ID de ressource de l'image à partir de son nom dans le dossier drawable
+    return context.resources.getIdentifier(name, "drawable", context.packageName)
+}
+
 @Composable
 fun MoreButton(text: String) {
     Button(

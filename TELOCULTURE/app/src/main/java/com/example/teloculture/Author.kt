@@ -1,4 +1,5 @@
 package com.example.teloculture
 
-class Author {
-}
+data class Author(
+    val name: String
+)

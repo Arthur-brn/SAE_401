@@ -1,24 +1,38 @@
 package com.example.teloculture
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 @Composable
 fun ProfilePage(navController: NavController) {
+    val session = SessionManager(LocalContext.current)
+    val user = session.token
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -27,15 +41,16 @@ fun ProfilePage(navController: NavController) {
     ) {
         TopBar()
         Spacer(modifier = Modifier.height(16.dp))
-        ProfileHeader()
+        ProfileHeader(user)
         Spacer(modifier = Modifier.height(16.dp))
-        ProfileContent()
+        ProfileContent(user)
         Spacer(modifier = Modifier.height(16.dp))
     }
 }
 
 @Composable
-fun ProfileHeader() {
+fun ProfileHeader(user: String?) {
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()
@@ -50,28 +65,38 @@ fun ProfileHeader() {
             contentScale = ContentScale.Crop
         )
         Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = "Nom de l'utilisateur",
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            text = "email@example.com",
-            fontSize = 16.sp,
-            color = Color.Gray
-        )
+        if (user != null) {
+            Text(
+                text = user.split('|')[0],
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
+        if (user != null) {
+            Text(
+                text = user.split('|')[2],
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
     }
 }
 
 @Composable
-fun ProfileContent() {
+fun ProfileContent(user: String?) {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
         ProfileSection(title = "Informations personnelles")
-        ProfileItem(label = "Nom complet", value = "Nom de l'utilisateur")
-        ProfileItem(label = "Email", value = "email@example.com")
-        ProfileItem(label = "Téléphone", value = "+33 123 456 789")
+        if (user != null) {
+            ProfileItem(label = "Nom complet", value = user.split('|')[0]+" "+user.split('|')[1])
+        }
+        if (user != null) {
+            ProfileItem(label = "Email", value = user.split('|')[2])
+        }
+        if (user != null) {
+            ProfileItem(label = "Téléphone", value = user.split('|')[3])
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
