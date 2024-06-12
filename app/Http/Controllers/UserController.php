@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Models\Loan;
-use App\Models\Film;
-use App\Models\Book;
 
 class UserController extends Controller
 {
@@ -69,35 +66,5 @@ class UserController extends Controller
         } else {
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
-    }
-
-    public function getCustomerLoan($userId)
-    {
-        $userLoans = Loan::where('user_id', $userId)->get();
-
-        $results = [];
-
-        foreach ($userLoans as $loan) {
-            $loanStartDate = $loan->start_date;
-            $loanStatus = $loan->status;
-            $booking_number = $loan->booking_number;
-
-            if ($loan->loanable_type == "film") {
-                $film = Film::find($loan->loanable_id);
-                $articleName = $film ? $film->title : 'Film not found';
-            } else {
-                $book = Book::find($loan->loanable_id);
-                $articleName = $book ? $book->title : 'Book not found';
-            }
-
-            $results[] = [
-                'start_date' => $loanStartDate,
-                'status' => $loanStatus,
-                'article_name' => $articleName,
-                'booking_number' => $booking_number
-            ];
-        }
-
-        return response()->json($results, 200);
     }
 }

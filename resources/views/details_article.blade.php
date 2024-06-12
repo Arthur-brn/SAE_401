@@ -295,7 +295,19 @@
                             formData.set('loanable_type', 'App\\Models\\'+articleType);
                             formData.set('loanable_id', articleId);
                             formData.set('user_id', userId);
-                            formData.set('booking_number', 'AB3451213M');
+                            try{
+                                const bookingNumResponse = await fetch('/api/checkCart/'+userId)
+                                const bookingNum = await bookingNumResponse.json();
+                                if(bookingNum != '')
+                                {
+                                    formData.set('booking_number', bookingNum.booking_number);
+                                }
+                                else{
+                                    formData.set('booking_number', generateRandomString(10));
+                                }
+                            }catch (error) {
+                                console.error('Error fetching author data:', error);
+                            }
                             formData.set('start_date', date);
                             formData.set('status', 'add_to_cart');
                             try{
@@ -304,7 +316,6 @@
                                     body: formData
                                 })
                                 const booking = await bookingResponse.json();
-                                console.log(booking);
                                 window.location.href = "";
                             }catch (error) {
                                 console.error('Error fetching author data:', error);
@@ -319,6 +330,19 @@
                 }
                 
             }
+        }
+
+        function generateRandomString(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            const charactersLength = characters.length;
+            
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charactersLength);
+                result += characters.charAt(randomIndex);
+            }
+            
+            return result;
         }
     });
 </script>

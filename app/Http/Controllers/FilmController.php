@@ -40,7 +40,7 @@ class FilmController extends Controller
     {
         $film = Film::findOrFail($id);
         $film->update($request->all());
-        return response()->json($film, 200);
+        return response()->json($film, 201);
     }
 
     // Méthode pour supprimer un livre

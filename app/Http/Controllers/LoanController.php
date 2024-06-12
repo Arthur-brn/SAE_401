@@ -30,11 +30,10 @@ class LoanController extends Controller
     }
 
     // Méthode pour mettre à jour les informations d'un livre
-    public function update(Request $request, $id)
+    public function update(Request $request, $loanRef)
     {
-        $loan = Loan::findOrFail($id);
-        $loan->update($request->all());
-        return response()->json($loan, 200);
+        $loan = Loan::where('booking_number', $loanRef)->update($request->all());
+        return response()->json($loan, 201);
     }
 
     // Méthode pour supprimer un livre
@@ -147,5 +146,25 @@ class LoanController extends Controller
             ]);
 
         return response()->json(['message' => 'Items reserved successfully'], 200);
+    }
+
+    public function checkCart($id)
+    {
+        $bookingNum = Loan::where('user_id', $id)
+                          ->where('status', 'add_to_cart')
+                          ->first();
+        if ($bookingNum) {
+            return response()->json($bookingNum, 201);
+        } else {
+            return response()->json('', 201);
+        }
+    }
+
+    public function getCustomerLoan($id)
+    {
+        $userLoans = Loan::where('user_id', $id)
+                         ->where('status', '!=', 'add_to_cart')
+                         ->get();
+        return response()->json($userLoans, 201);
     }
 }

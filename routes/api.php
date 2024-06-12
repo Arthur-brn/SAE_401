@@ -44,11 +44,13 @@ Route::get('/films', [FilmController::class, 'index']);
 Route::get('/films/{id}', [FilmController::class, 'show']);
 Route::post('/films', [FilmController::class, 'store']);
 Route::get('/removeFilm/{id}', [FilmController::class, 'destroy']);
+Route::post('/modifyFilm/{id}', [FilmController::class, 'update']);
 
 Route::get('/books', [BookController::class, 'index']);
 Route::get('/books/{id}', [BookController::class, 'show']);
 Route::post('/books', [BookController::class, 'store']);
 Route::get('/removeBook/{id}', [BookController::class, 'destroy']);
+Route::post('/modifyBook/{id}', [BookController::class, 'update']);
 
 Route::get('/directors', [DirectorController::class, 'index']);
 Route::post('/directors', [DirectorController::class, 'store']);
@@ -65,12 +67,14 @@ Route::post('/checkLoans', [LoanController::class, 'checkLoans']);
 Route::get('/removeLoan/{loanRef}', [LoanController::class, 'removeLoan']);
 Route::get('/checkBook/{id}', [LoanController::class, 'checkBook']);
 Route::get('/checkFilm/{id}', [LoanController::class, 'checkFilm']);
+Route::get('/checkCart/{id}', [LoanController::class, 'checkCart']);
+Route::post('/modifyLoan/{loanRef}', [LoanController::class, 'update']);
+Route::get('/account/loan/{id}', [LoanController::class, 'getCustomerLoan']);
 
 Route::post('/connect', [UserController::class, 'login']);
 
 Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/account/{id}', [UserController::class, 'getCustomerInfo']);
-Route::get('/account/loan/{id}', [UserController::class, 'getCustomerLoan']);
 
 Route::get('/authors', [AuthorController::class, 'index']);
 Route::post('/authors', [AuthorController::class, 'store']);
