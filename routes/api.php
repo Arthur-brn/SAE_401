@@ -17,6 +17,8 @@ use App\Http\Controllers\SubtitleController;
 use App\Http\Controllers\CastingController;
 use App\Http\Controllers\ActorController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CatalogueController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -99,3 +101,5 @@ Route::get('/films-most-loaned-films', [FilmController::class, 'mostLoanedFilms'
 
 Route::get('/panier', [LoanController::class, 'fetchLoanUser']);
 Route::put('/panier/reserver', [LoanController::class, 'bookItems']);
+
+Route::get('/articles', [CatalogueController::class, 'allArticles']);
