@@ -86,16 +86,18 @@
 #main #resultat .ma_recherche p {
     display: flex;
     font-size: 12px;
-    min-width: 30%;
+    min-width: max-content;
 }
 #main #resultat .ma_recherche .type {
     display: flex;
     align-items: center;
-    padding: 5px;
+    padding: 5px 10px;
     background-color: #ff625c;
     gap: 5px;
     border-radius: 5px;
-    min-width: 45%;
+    min-width: max-content;
+    user-select: none;
+    cursor: pointer;
 }
 
 #main #resultat .ma_recherche .type p {

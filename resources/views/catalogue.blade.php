@@ -13,7 +13,7 @@
             <div class="choix">
                 <div class="filtre_rapides">
                     <label for="filtre-plus-recents">Les plus récents</label>
-                    <input class="filtres" value="desc" type="radio" name="filtres-rapides" id="filtre-plus-recents">
+                    <input class="filtres" value="desc" type="radio" name="filtres-rapides" id="filtre-plus-recents" checked>
                 </div>
                 <div class="filtre_rapides">
                     <label for="filtre-plus-anciens">Les plus anciens</label>
@@ -73,29 +73,14 @@
     </section>
     <section id="resultat">
         <h1>Résultats de la recherche</h1>
-        <div class="ma_recherche">
-            <p>Ma recherche :</p>
-            <div class="type">
-                <p>TOUS LES DOCUMENTS</p>
-            </div>
-            <div class="type">
-                <p>NOUVEAUTES</p>
-                <img src="./assets/img/croix.svg" alt="Teloculture">
-            </div>
-        </div>
+        <div class="ma_recherche"></div>
         <div class="resultat">
             <div class="gauche">
                 <h6>Résultats 1 - 5 / </h6>
                 <h6 class="totale_resultat">20</h6>
             </div>
             <div class="droite">
-                <img src="./assets/img/fleche_back_catalogue.svg" alt="Teloculture" class="pagination-nav" data-page="prev">
-                <p class="active" data-page="1">1</p>
-                <p class="passive" data-page="2">2</p>
-                <p class="passive" data-page="3">3</p>
-                <p class="reduit">...</p>
-                <p class="passive totale_page" data-page="10">10</p>
-                <img src="./assets/img/fleche_forward_catalogue.svg" alt="Teloculture" class="pagination-nav" data-page="next">
+                <!-- Pagination controls will be injected here -->
             </div>
         </div>
         <div class="all_articles">
@@ -105,19 +90,5 @@
 </div>
 
 <script src="./js/catalogue.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Check if the URL has the sort parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const sortParam = urlParams.get('sort');
-
-        if (sortParam === 'recent') {
-            document.getElementById('filtre-plus-recents').checked = true;
-        }
-
-        // Trigger the filter function to sort and display the results
-        applyFiltersAndDisplay();
-    });
-</script>
 
 @endsection
