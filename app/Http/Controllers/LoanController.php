@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\Loan;
 
 class LoanController extends Controller
@@ -46,9 +47,9 @@ class LoanController extends Controller
     public function countBook($id)
     {
         $loans = Loan::where('loanable_type', 'like', '%Book%')
-                     ->where('loanable_id', $id)
-                     ->where('status', '!=', 'returned')
-                     ->count();
+            ->where('loanable_id', $id)
+            ->where('status', '!=', 'returned')
+            ->count();
 
         return response()->json($loans, 201);
     }
@@ -56,9 +57,9 @@ class LoanController extends Controller
     public function countFilm($id)
     {
         $loans = Loan::where('loanable_type', 'like', '%Film%')
-                     ->where('loanable_id', $id)
-                     ->where('status', '!=', 'returned')
-                     ->count();
+            ->where('loanable_id', $id)
+            ->where('status', '!=', 'returned')
+            ->count();
 
         return response()->json($loans, 201);
     }
@@ -72,10 +73,9 @@ class LoanController extends Controller
     public function checkBook($id)
     {
         $book = Loan::where('loanable_type', 'like', '%Book%')
-                    ->where('loanable_id', $id)
-                    ->first();
-        if($book)
-        {
+            ->where('loanable_id', $id)
+            ->first();
+        if ($book) {
             return response()->json($book, 201);
         } else {
             return response()->json(null, 404);
@@ -85,10 +85,9 @@ class LoanController extends Controller
     public function checkFilm($id)
     {
         $film = Loan::where('loanable_type', 'like', '%Film%')
-                    ->where('loanable_id', $id)
-                    ->first();
-        if($film)
-        {
+            ->where('loanable_id', $id)
+            ->first();
+        if ($film) {
             return response()->json($film, 201);
         } else {
             return response()->json(null, 404);
@@ -98,10 +97,55 @@ class LoanController extends Controller
     public function checkLoans(Request $request)
     {
         $loans = Loan::where('loanable_type', $request->loanable_type)
-                     ->where('loanable_id', $request->loanable_id)
-                     ->where('user_id', $request->user_id)
-                     ->where('status', '!=', 'returned')
-                     ->first();
+            ->where('loanable_id', $request->loanable_id)
+            ->where('user_id', $request->user_id)
+            ->where('status', '!=', 'returned')
+            ->first();
         return response()->json($loans, 201);
+    }
+
+    public function fetchLoanUser(Request $request)
+    {
+        $userId = $request->input('userId');
+
+        if (!$userId) {
+            return response()->json(['error' => 'userId is required'], 400);
+        }
+
+        $loans = Loan::where('user_id', $userId)
+            ->where('status', 'add_to_cart')
+            ->get();
+
+        if ($loans->isEmpty()) {
+            return response()->json(['message' => 'No loans found for this user with status add_to_cart'], 404);
+        }
+
+        $loans->each(function ($loan) {
+            if ($loan->loanable_type === 'App\Models\Book') {
+                $loan->load('loanable.author');
+            } elseif ($loan->loanable_type === 'App\Models\Film') {
+                $loan->load('loanable.director');
+            }
+        });
+
+        return response()->json($loans);
+    }
+
+    public function bookItems(Request $request)
+    {
+        $userId = $request->input('userId');
+
+        if (!$userId) {
+            return response()->json(['error' => 'userId is required'], 400);
+        }
+
+        Loan::where('user_id', $userId)
+            ->where('status', 'add_to_cart')
+            ->update([
+                'status' => 'booked',
+                'start_date' => Carbon::now(),
+            ]);
+
+        return response()->json(['message' => 'Items reserved successfully'], 200);
     }
 }

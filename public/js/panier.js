@@ -1,47 +1,104 @@
-// Fonction pour récupérer les éléments du panier depuis le backend
 function fetchPanierItems() {
-    // Remplacer l'URL par l'endpoint réel pour récupérer les éléments du panier
-    fetch('/api/panier')
-        .then(response => response.json())
-        .then(data => {
-            // Affichage des éléments du panier sur l'interface utilisateur
-            const panierContainer = document.querySelector('.panier-container');
-            panierContainer.innerHTML = ''; // Effacer le contenu précédent
+    const userId = sessionStorage.getItem('userId'); // Récupérer le userID depuis sessionStorage
 
-            data.forEach(item => {
-                const card = document.createElement('div');
-                card.classList.add('panier-item');
+    // Vérifier si un userID est disponible
+    if(userId) {
+        // Utiliser le userID dans la requête vers l'API
+        fetch(`/api/panier?userId=${userId}`)
+            .then(response => {
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        let panierVide = document.querySelector(".panier-vide");
+                        let buttonReserver = document.getElementById("btn-reserver");
+                        let panierContainer = document.querySelector('.panier-container');
+                        panierVide.style.display = 'block';
+                        buttonReserver.style.display = 'none';
+                        panierContainer.innerHTML = ''; 
+                        return;
+                    } else {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.length > 0) { // Vérifie si des données sont récupérées
+                    console.log(data);
+                    const panierContainer = document.querySelector('.panier-container');
+                    panierContainer.innerHTML = ''; 
 
-                // Construction de la carte de l'article
-                const content = `
-                    <div class="img_book">
-                        <img src="${item.picture}" alt="Couverture du livre">
-                    </div>
-                    <div class="desc_book">
-                        <span>${item.type}</span>
-                        <div>
-                            <p class="book_name">${item.title}</p>
-                            <p class="author_name">${item.author}</p>
-                        </div>
-                        <p>${item.summary}</p>
-                    </div>
-                `;
+                    data.forEach(item => {
+                        const card = document.createElement('div');
+                        card.classList.add('panier-item');
+                        let content = '';
 
-                card.innerHTML = content;
-                panierContainer.appendChild(card);
-            });
-        })
-        .catch(error => console.error('Erreur lors de la récupération des éléments du panier:', error));
+                        if (item.loanable_type === 'App\\Models\\Book') {
+                            content = `
+                                <div class="img_book">
+                                    <img src="./assets/img/livres/${item.loanable.picture}" alt="Couverture du livre">
+                                </div>
+                                <div class="desc_book">
+                                    <span>${item.loanable.type}</span>
+                                    <div>
+                                        <p class="book_name">${item.loanable.title}</p>
+                                        <p class="author_name">${item.loanable.author.name}</p>
+                                    </div>
+                                    <p>${item.loanable.summary}</p>
+                                </div>
+                            `;
+                        } else if (item.loanable_type === 'App\\Models\\Film') {
+                            content = `
+                                <div class="img_book">
+                                    <img src="./assets/img/dvd/${item.loanable.picture}" alt="Image du film">
+                                </div>
+                                <div class="desc_book">
+                                    <span>${item.loanable.type}</span>
+                                    <div>
+                                        <p class="book_name">${item.loanable.title}</p>
+                                        <p class="author_name">${item.loanable.director.name}</p>
+                                    </div>
+                                    <p>${item.loanable.summary}</p>
+                                </div>
+                            `;
+                        }
+
+                        card.innerHTML = content;
+                        panierContainer.appendChild(card);
+                    });
+                } else {
+                    console.log('Aucun prêt trouvé pour cet utilisateur.');
+                }
+            })
+            .catch(error => console.error('Erreur lors de la récupération des éléments du panier:', error));
+    } else {
+        console.log('userID non trouvé.');
+    }
 }
 
-// Événement au chargement de la page
 document.addEventListener('DOMContentLoaded', () => {
-    fetchPanierItems(); // Récupérer et afficher les éléments du panier au chargement de la page
+    fetchPanierItems();
 
-    // Gestion de l'événement de clic sur le bouton de réservation
     const btnReserver = document.getElementById('btn-reserver');
     btnReserver.addEventListener('click', () => {
-        // Logique pour effectuer la réservation (à implémenter)
-        console.log('Réservation en cours...');
+        fetch('/api/panier/reserver', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId: sessionStorage.getItem('userId')
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data.message);
+            fetchPanierItems();
+        })
+        .catch(error => console.error('Erreur lors de la réservation des éléments du panier:', error));
     });
 });

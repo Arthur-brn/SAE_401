@@ -46,11 +46,11 @@ class Film extends Model
 
     public function loans()
     {
-        return $this->morphToMany(User::class, 'loanable');
+        return $this->morphMany(Loan::class, 'loanable');
     }
 
     public function reviews()
     {
-        return $this->morphToMany(User::class, 'reviewable');
+        return $this->morphMany(Review::class, 'reviewable');
     }
 }
