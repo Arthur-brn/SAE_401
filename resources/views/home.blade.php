@@ -6,7 +6,7 @@
         <h1>Nos dernières pépites</h1>
         <p class="p2">Découvrez les dernières nouveautés de notre médiathèque ! Que vous soyez passionné par la littérature, le cinéma ou les tendances culturelles, nous avons quelque chose pour vous. Plongez dans un monde de découvertes et laissez-vous inspirer par nos sélections soigneusement choisies.
         </p>
-        <a href="/#"><button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button></a>
+        <a href="/catalogue?sort=recent"><button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button></a>
     </div>
     <div id="top_right">
         <img src="./assets/img/booksHome.png" alt="Teloculture">
@@ -105,7 +105,7 @@
         <span>-Cinéma</span>
         <h2>Les dernières sorties au cinéma en DVD !</h2>
         <p class="p2">Ne manquez pas les dernières sorties de films en DVD. Que vous soyez fan de blockbusters, de films indépendants ou de documentaires, notre sélection vous garantit des heures de divertissement.</p>
-        <a href="/#"><button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button></a>
+        <a href="/cinema"><button>VOIR PLUS <i class="fa-solid fa-arrow-right" style="color: #6887f6;"></i></button></a>
     </div>
     <div id="right_cine">
         <img src="./assets/img/cinema.png" alt="Teloculture">
