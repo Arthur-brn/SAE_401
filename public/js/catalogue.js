@@ -93,3 +93,75 @@ document.addEventListener("DOMContentLoaded", function () {
 
     showPage(currentPage);
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Fonction pour récupérer tous les articles
+    function fetchArticles() {
+        fetch('/api/articles')
+            .then(response => response.json())
+            .then(data => {
+                allArticles = data;
+                applyFiltersAndDisplay();
+            })
+            .catch(error => console.error('Erreur lors de la récupération des articles:', error));
+    }
+
+    // Appliquer les filtres et afficher les articles
+    function applyFiltersAndDisplay() {
+        let filteredArticles = [...allArticles];
+
+        // Appliquer les tris
+        const sortOption = document.querySelector('input[name="filtre-date"]:checked');
+        if (sortOption) {
+            const sortOrder = sortOption.value;
+            filteredArticles.sort((a, b) => {
+                const yearA = a.article === 'book' ? a.edition_year : a.year;
+                const yearB = b.article === 'book' ? b.edition_year : b.year;
+                if (sortOrder === 'asc') {
+                    return yearA - yearB;
+                } else {
+                    return yearB - yearA;
+                }
+            });
+        }
+        displayArticles(filteredArticles);
+    }
+
+    // Fonction pour afficher les articles
+    function displayArticles(articles) {
+        const resultsContainer = document.querySelector('.all_articles');
+
+        // Efface les articles précédents
+        resultsContainer.innerHTML = '';
+
+        // Parcours tous les articles et les ajoute à la page
+        articles.forEach(article => {
+            const articleHTML = `
+            <div class="article" data-article="${article.id}">
+                <div class="gauche_article">
+                    <img class="img_article" src="./assets/img/${article.article === 'book' ? 'livres/' : 'dvd/'}${article.picture}" alt="${article.title}">
+                    <div class="plus_infos">
+                        <img src="./assets/img/Info.svg" alt="TeloCulture">
+                        <h5>Plus d'informations</h5>
+                    </div>
+                </div>
+                <div class="infos">
+                    <h6 class="type">- ${article.type}</h6>
+                    <h2>${article.title}</h2>
+                    <h3>${article.article === 'book' ? article.author : article.director}</h3>
+                    <p>${article.article === 'book' ? article.editor + ' - '  + article.edition_year : article.year}</p>
+                    <p>${article.summary}</p>
+                </div>
+            </div>
+            `;
+            resultsContainer.insertAdjacentHTML('beforeend', articleHTML);
+        });
+    }
+
+    // Appel de la fonction pour récupérer tous les articles au chargement de la page
+    fetchArticles();
+
+    document.querySelectorAll('.filtres').forEach(input => {
+        input.addEventListener('change', applyFiltersAndDisplay);
+    });
+});
