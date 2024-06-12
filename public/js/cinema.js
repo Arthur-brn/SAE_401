@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
             
                 titleElement.textContent = data.title;
                 paragraphElement.textContent = data.summary;
-                detailPageLink.href = "/litterature-" + data.id;
+                detailPageLink.href = "/cinema-" + data.id;
                 imgElement.src = "./assets/img/dvd/" + data.picture;
                 imgElement.alt = data.title;
             })
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const listItem = document.createElement('li');
                     listItem.className = 'splide__slide';
                     listItem.innerHTML = `
-                        <a href="/litterature-${film.id}">
+                        <a href="/cinema-${film.id}">
                             <img src="./assets/img/dvd/${film.picture}" alt="${film.title}">
                             <div class="infos">
                                 <h5>${film.title}</h5>
