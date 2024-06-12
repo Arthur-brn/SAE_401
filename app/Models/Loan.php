@@ -20,6 +20,16 @@ class Loan extends Model
         'status'
     ];
 
+    public function loanable()
+    {
+        return $this->morphTo();
+    }
+
+    public function reviewable()
+    {
+        return $this->morphTo();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

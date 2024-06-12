@@ -19,23 +19,13 @@ class User extends Model
         'status',
     ];
 
-    public function filmLoans()
+    public function loans()
     {
-        return $this->morphByMany(Film::class, 'loanable');
+        return $this->hasMany(Loan::class);
     }
 
-    public function bookLoans()
+    public function reviews()
     {
-        return $this->morphByMany(Book::class, 'loanable');
-    }
-
-    public function filmReviews()
-    {
-        return $this->morphByMany(Film::class, 'reviewable');
-    }
-
-    public function bookReviews()
-    {
-        return $this->morphByMany(Book::class, 'reviewable');
+        return $this->hasMany(Review::class);
     }
 }
