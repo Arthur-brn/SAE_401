@@ -22,7 +22,7 @@
         <div x-show="tab === 'tab1'">
             <div>
                 <p>Rechercher un document :</p>
-                <input type="text" name="" id="" placeholder="Titre du document">
+                <input type="text" name="" id="itemListFilter" placeholder="Titre du document">
             </div>
             <table id="itemList">
                 <thead>
@@ -191,7 +191,7 @@
             <div>
                 <div>
                     <p>Rechercher un document :</p>
-                    <input type="text" name="" id="" placeholder="Titre du document">
+                    <input type="text" name="" id="itemModifyFilter" placeholder="Titre du document">
                 </div>
                 <table id="modifyList">
                     <thead>
@@ -232,7 +232,7 @@
         <div x-show="tab === 'tab1'">
             <div>
                 <p>Rechercher une réservation :</p>
-                <input type="number" name="" id="" placeholder="N° de la réservation">
+                <input type="number" name="" id="currentFilter" placeholder="N° de la réservation">
             </div>
             <table id="currentBookings">
                 <thead>
@@ -257,7 +257,7 @@
         <div x-show="tab === 'tab2'">
             <div>
                 <p>Rechercher une réservation :</p>
-                <input type="text" name="" id="" placeholder="Titre du document">
+                <input type="text" name="" id="futureFilter" placeholder="N° de la réservation">
             </div>
             <table id="futureBookings">
                 <thead>
@@ -282,7 +282,7 @@
         <div x-show="tab === 'tab3'">
             <div>
                 <p>Rechercher une réservation :</p>
-                <input type="text" name="" id="" placeholder="Titre du document">
+                <input type="text" name="" id="passedFilter" placeholder="N° de la réservation">
             </div>
             <table id="passedBookings">
                 <thead>
@@ -305,16 +305,26 @@
             </table>
         </div>
         <div x-show="tab === 'tab4'">
-            <form action="">
-                <div>
-                    <label for="loan_number">Numéro :</label>
-                    <input type="number" name="loan_number" id="loan_number">
-                </div>
-                <div>
-                    <label for="user_id">Nom :</label>
-                    <input type="number" id="user_id" name="user_id">
-                </div>
-            </form>
+            <div>
+                <p>Rechercher une réservation :</p>
+                <input type="text" name="" id="modifyFilter" placeholder="N° de la réservation">
+            </div>
+            <table id="modifyBooking">
+                <thead>
+                    <tr>
+                        <th>Numéro de la réservation</th>
+                        <th>Nom</th>
+                        <th>Document(s)</th>
+                        <th>Statut de la réservation</th>
+                    </tr>
+                </thead>
+                <tr id="loadingModifyBookings">
+                    <td colspan="4" 
+                        style="text-align:center">
+                        Récupération des données en cours...
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
@@ -351,6 +361,102 @@
                     window.location.href = './account';
                 });
 
+                document.getElementById('itemListFilter').addEventListener('input', function(){
+                    var input = this.value;
+                    const table = document.getElementById('itemList');
+                    var filter = input.replace(/ /g, '_');
+                    var tr = table.getElementsByTagName('tr');
+
+                    for (var i = 1; i < tr.length; i++) {
+                        var rowClass = tr[i].className.toLowerCase();
+                        if (rowClass.indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                })
+
+                document.getElementById('itemModifyFilter').addEventListener('input', function(){
+                    var input = this.value;
+                    const table = document.getElementById('modifyList');
+                    var filter = input.replace(/ /g, '_').toLowerCase();
+                    var tr = table.getElementsByTagName('tr');
+
+                    for (var i = 1; i < tr.length; i++) {
+                        var rowClass = tr[i].className;
+                        if (rowClass.indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                })
+
+                document.getElementById('currentFilter').addEventListener('input', function(){
+                    var input = this.value;
+                    const table = document.getElementById('currentBookings');
+                    var filter = input.toLowerCase();
+                    var tr = table.getElementsByTagName('tr');
+
+                    for (var i = 1; i < tr.length; i++) {
+                        var rowClass = tr[i].className;
+                        if (rowClass.indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                })
+
+                document.getElementById('futureFilter').addEventListener('input', function(){
+                    var input = this.value;
+                    const table = document.getElementById('futureBookings');
+                    var filter = input.toLowerCase();
+                    var tr = table.getElementsByTagName('tr');
+
+                    for (var i = 1; i < tr.length; i++) {
+                        var rowClass = tr[i].className;
+                        if (rowClass.indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                })
+
+                document.getElementById('passedFilter').addEventListener('input', function(){
+                    var input = this.value;
+                    const table = document.getElementById('passedBookings');
+                    var filter = input.toLowerCase();
+                    var tr = table.getElementsByTagName('tr');
+
+                    for (var i = 1; i < tr.length; i++) {
+                        var rowClass = tr[i].className;
+                        if (rowClass.indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                })
+
+                document.getElementById('modifyFilter').addEventListener('input', function(){
+                    var input = this.value;
+                    const table = document.getElementById('modifyBooking');
+                    var filter = input.toLowerCase();
+                    var tr = table.getElementsByTagName('tr');
+
+                    for (var i = 1; i < tr.length; i++) {
+                        var rowClass = tr[i].className;
+                        if (rowClass.indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                })
+
                 async function fetchBooksAndDisplay() {
                     try {
                         const response = await fetch('/api/books');
@@ -358,6 +464,7 @@
 
                         books.forEach(async (book) => {
                             const line = document.createElement("tr");
+                            line.classList.add(book.title.replace(/ /g, '_'));
 
                             const title = document.createElement('td');
                             title.innerHTML = book.title;
@@ -434,6 +541,7 @@
 
                         films.forEach(async (film) => {
                             const line = document.createElement("tr");
+                            line.classList.add(film.title.replace(/ /g, '_'));
 
                             const title = document.createElement('td');
                             title.innerHTML = film.title;
@@ -615,6 +723,7 @@
                                     booking_number: booking.booking_number,
                                     user_id: booking.user_id,
                                     start_date: booking.start_date,
+                                    status : booking.status,
                                     loanable: [{ type: booking.loanable_type, id: booking.loanable_id }]
                                 };
                             } else {
@@ -625,88 +734,91 @@
                         const usedLoans = Object.values(remadeLoans);
 
                         usedLoans.forEach(async (loan) => {
-                            const line = document.createElement('tr');
-                            const bookingNumber = document.createElement('td');
-                            bookingNumber.innerHTML = loan.booking_number;
-                            const userName = document.createElement('td');
-                            try {
-                                const userResponse = await fetch('/api/user/'+loan.user_id);
-                                const userData = await userResponse.json();
-                                userName.innerHTML = userData.first_name + " " + userData.last_name;
-                            } catch (error) {
-                                console.error('Error fetching author data:', error);
-                                userName.innerHTML = 'Error fetching user';
-                            }
-                            const items = document.createElement('td');
-                            const itemList = document.createElement('ul');
-                            loan.loanable.forEach(async (item) => {
-                                const itemName = document.createElement('li');
-                                
-                                if(item.type.split(/\\/)[2] == "Book"){
-                                    fetchUrl = '/api/books/'+item.id;
-                                }
-                                else{
-                                    fetchUrl = '/api/films/'+item.id;
-                                }
+                            if(loan.status != "add_to_cart"){
+                                const line = document.createElement('tr');
+                                line.classList.add(loan.booking_number.toLowerCase());
+                                const bookingNumber = document.createElement('td');
+                                bookingNumber.innerHTML = loan.booking_number;
+                                const userName = document.createElement('td');
                                 try {
-                                    const itemResponse = await fetch(fetchUrl);
-                                    const itemData = await itemResponse.json();
-                                    itemName.innerHTML = itemData.title;
+                                    const userResponse = await fetch('/api/user/'+loan.user_id);
+                                    const userData = await userResponse.json();
+                                    userName.innerHTML = userData.first_name + " " + userData.last_name;
                                 } catch (error) {
                                     console.error('Error fetching author data:', error);
-                                    itemName.innerHTML = 'Error fetching item';
+                                    userName.innerHTML = 'Error fetching user';
                                 }
-                                itemList.appendChild(itemName);
-                            });
+                                const items = document.createElement('td');
+                                const itemList = document.createElement('ul');
+                                loan.loanable.forEach(async (item) => {
+                                    const itemName = document.createElement('li');
+                                    
+                                    if(item.type.split(/\\/)[2] == "Book"){
+                                        fetchUrl = '/api/books/'+item.id;
+                                    }
+                                    else{
+                                        fetchUrl = '/api/films/'+item.id;
+                                    }
+                                    try {
+                                        const itemResponse = await fetch(fetchUrl);
+                                        const itemData = await itemResponse.json();
+                                        itemName.innerHTML = itemData.title;
+                                    } catch (error) {
+                                        console.error('Error fetching author data:', error);
+                                        itemName.innerHTML = 'Error fetching item';
+                                    }
+                                    itemList.appendChild(itemName);
+                                });
 
-                            currentDate = new Date();
-                            loanDate = new Date(loan.start_date);
-                            returnDate = new Date(loanDate);
-                            returnDate.setDate(loanDate.getDate() + 7);
-                            startDate = document.createElement("td");
-                            startDate.innerHTML = loanDate.getDate()+" - "+(loanDate.getMonth()+1)+" - "+loanDate.getFullYear();
-                            endDate = document.createElement("td");
-                            endDate.innerHTML = returnDate.getDate()+" - "+(returnDate.getMonth()+1)+" - "+returnDate.getFullYear();
+                                currentDate = new Date();
+                                loanDate = new Date(loan.start_date);
+                                returnDate = new Date(loanDate);
+                                returnDate.setDate(loanDate.getDate() + 7);
+                                startDate = document.createElement("td");
+                                startDate.innerHTML = loanDate.getDate()+" - "+(loanDate.getMonth()+1)+" - "+loanDate.getFullYear();
+                                endDate = document.createElement("td");
+                                endDate.innerHTML = returnDate.getDate()+" - "+(returnDate.getMonth()+1)+" - "+returnDate.getFullYear();
 
-                            const loanStatus = document.createElement('td');
-                            
-                            suppr = document.createElement('td');
-                            suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
-                            suppr.addEventListener('click', async function(){
-                                try{
-                                    const response = await fetch('api/removeLoan/'+loan.booking_number);
-                                    const data = await response.json();
-                                    window.location.href = "./admin";
-                                } catch (error) {
-                                    console.error('Error fetching data:', error);
+                                const loanStatus = document.createElement('td');
+                                
+                                suppr = document.createElement('td');
+                                suppr.innerHTML = '<i class="fa-solid fa-trash" style="color: #ff0000;"></i>';
+                                suppr.addEventListener('click', async function(){
+                                    try{
+                                        const response = await fetch('api/removeLoan/'+loan.booking_number);
+                                        const data = await response.json();
+                                        window.location.href = "./admin";
+                                    } catch (error) {
+                                        console.error('Error fetching data:', error);
+                                    }
+                                });
+
+                                line.appendChild(bookingNumber);
+                                line.appendChild(userName);
+                                items.appendChild(itemList);
+                                line.appendChild(items);
+                                line.appendChild(startDate);
+                                line.appendChild(endDate);
+                                line.appendChild(loanStatus);
+                                line.appendChild(suppr);
+                                if(currentDate < returnDate && currentDate > loanDate)
+                                {
+                                    loanStatus.innerHTML = "En cours";
+                                    currentBooking.appendChild(line);
                                 }
-                            });
-
-                            line.appendChild(bookingNumber);
-                            line.appendChild(userName);
-                            items.appendChild(itemList);
-                            line.appendChild(items);
-                            line.appendChild(startDate);
-                            line.appendChild(endDate);
-                            line.appendChild(loanStatus);
-                            line.appendChild(suppr);
-                            if(currentDate < returnDate && currentDate > loanDate)
-                            {
-                                loanStatus.innerHTML = "En cours";
-                                currentBooking.appendChild(line);
+                                else if(currentDate < loanDate)
+                                {
+                                    loanStatus.innerHTML = "A venir";
+                                    futureBooking.appendChild(line);
+                                }
+                                else{
+                                    loanStatus.innerHTML = "Passée";
+                                    passedBooking.appendChild(line);
+                                }
+                                document.getElementById('loadCurrentBooking').remove();
+                                document.getElementById('loadFutureBooking').remove();
+                                document.getElementById('loadPassedBooking').remove();
                             }
-                            else if(currentDate < loanDate)
-                            {
-                                loanStatus.innerHTML = "A venir";
-                                futureBooking.appendChild(line);
-                            }
-                            else{
-                                loanStatus.innerHTML = "Passée";
-                                passedBooking.appendChild(line);
-                            }
-                            document.getElementById('loadCurrentBooking').remove();
-                            document.getElementById('loadFutureBooking').remove();
-                            document.getElementById('loadPassedBooking').remove();
                         });
 
                     } catch (error) {
@@ -721,18 +833,37 @@
 
                         books.forEach(async (book) => {
                             const line = document.createElement("tr");
+                            line.classList.add(book.title.replace(/ /g, '_'));
 
                             const title = document.createElement('td');
                             title.innerHTML = book.title;
 
                             const type = document.createElement('td');
                             type.innerHTML = 'Livre';
-
                             const number = document.createElement('td');
-                            number.innerHTML = '<form class="modifyArticleCopyNumber modifyBook" style="display :flex">';
-                            number.innerHTML += '<input type="number" name="copy_number" value="'+book.copy_number+'">';
-                            number.innerHTML += '<button type="submit">Modifier</button>';
-                            number.innerHTML += '</form>';
+                            try {
+                                const loanResponse = await fetch('/api/bookLoans/' + book.id);
+                                const count = await loanResponse.json();
+                                const form = document.createElement('form');
+                                form.innerHTML += '<input type="number" min="'+count+'" name="copy_number" value="'+book.copy_number+'">';
+                                form.innerHTML += '<button type="submit">Modifier</button>';
+                                number.appendChild(form);
+                                form.addEventListener('submit', async function(){
+                                    formData = new FormData(form);
+                                    try {
+                                        const response = await fetch('/api/modifyBook/'+book.id, {
+                                            method : 'POST',
+                                            body : formData
+                                        });
+                                        const articleData = await response.json();
+                                        window.location.href = './admin';
+                                    } catch (error) {
+                                        console.error('Error fetching loan data:', error);
+                                    }
+                                })
+                            } catch (error) {
+                                console.error('Error fetching loan data:', error);
+                            }
 
                             line.appendChild(title);
                             line.appendChild(type);
@@ -753,6 +884,7 @@
 
                         films.forEach(async (film) => {
                             const line = document.createElement("tr");
+                            line.classList.add(film.title.replace(/ /g, '_'));
 
                             const title = document.createElement('td');
                             title.innerHTML = film.title;
@@ -761,10 +893,29 @@
                             type.innerHTML = 'Film';
 
                             const number = document.createElement('td');
-                            number.innerHTML = '<form class="modifyArticleCopyNumber modifyFilm" style="display :flex">';
-                            number.innerHTML += '<input type="number" name="copy_number" value="'+film.copy_number+'">';
-                            number.innerHTML += '<button type="submit">Modifier</button>';
-                            number.innerHTML += '</form>';
+                            try {
+                                const loanResponse = await fetch('/api/filmLoans/' + film.id);
+                                const count = await loanResponse.json();
+                                const form = document.createElement('form');
+                                form.innerHTML += '<input type="number" min="'+count+'" name="copy_number" value="'+film.copy_number+'">';
+                                form.innerHTML += '<button type="submit">Modifier</button>';
+                                number.appendChild(form);
+                                form.addEventListener('submit', async function(){
+                                    formData = new FormData(form);
+                                    try {
+                                        const response = await fetch('/api/modifyFilm/'+film.id, {
+                                            method : 'POST',
+                                            body : formData
+                                        });
+                                        const articleData = await response.json();
+                                        window.location.href = './admin';
+                                    } catch (error) {
+                                        console.error('Error fetching loan data:', error);
+                                    }
+                                })
+                            } catch (error) {
+                                console.error('Error fetching loan data:', error);
+                            }
 
                             line.appendChild(title);
                             line.appendChild(type);
@@ -774,6 +925,144 @@
                         });
                     } catch (error) {
                         console.error('Error fetching books data:', error);
+                    }
+                }
+
+                async function fetchBookingsAndPopulateModifyTable(){
+                    try {
+                        const response = await fetch('api/loans');
+                        const loans = await response.json();
+                        const sortedLoans = loans.sort((a, b) => {
+                            if (a.booking_number < b.booking_number) {
+                                return -1;
+                            }
+                            if (a.booking_number > b.booking_number) {
+                                return 1;
+                            }
+                            return 0;
+                        });
+                        const remadeLoans = {};
+
+                        sortedLoans.forEach(booking => {
+                            if (!remadeLoans[booking.booking_number]) {
+                                remadeLoans[booking.booking_number] = {
+                                    booking_number: booking.booking_number,
+                                    user_id: booking.user_id,
+                                    start_date: booking.start_date,
+                                    status : booking.status,
+                                    loanable: [{ type: booking.loanable_type, id: booking.loanable_id }]
+                                };
+                            } else {
+                                remadeLoans[booking.booking_number].loanable.push({ type: booking.loanable_type, id: booking.loanable_id });
+                            }
+                        }); 
+
+                        const usedLoans = Object.values(remadeLoans);
+
+                        usedLoans.forEach(async (loan) => {
+                            if(loan.status != "add_to_cart"){
+                                const line = document.createElement('tr');
+                                line.classList.add(loan.booking_number.toLowerCase());
+                                const bookingNumber = document.createElement('td');
+                                bookingNumber.innerHTML = loan.booking_number;
+                                const userName = document.createElement('td');
+                                try {
+                                    const userResponse = await fetch('/api/user/'+loan.user_id);
+                                    const userData = await userResponse.json();
+                                    userName.innerHTML = userData.first_name + " " + userData.last_name;
+                                } catch (error) {
+                                    console.error('Error fetching author data:', error);
+                                    userName.innerHTML = 'Error fetching user';
+                                }
+                                const items = document.createElement('td');
+                                const itemList = document.createElement('ul');
+                                loan.loanable.forEach(async (item) => {
+                                    const itemName = document.createElement('li');
+                                    
+                                    if(item.type.split(/\\/)[2] == "Book"){
+                                        fetchUrl = '/api/books/'+item.id;
+                                    }
+                                    else{
+                                        fetchUrl = '/api/films/'+item.id;
+                                    }
+                                    try {
+                                        const itemResponse = await fetch(fetchUrl);
+                                        const itemData = await itemResponse.json();
+                                        itemName.innerHTML = itemData.title;
+                                    } catch (error) {
+                                        console.error('Error fetching author data:', error);
+                                        itemName.innerHTML = 'Error fetching item';
+                                    }
+                                    itemList.appendChild(itemName);
+                                });
+
+                                const loanStatus = document.createElement('td');
+                                const form = document.createElement('form');
+                                const statusSelect = document.createElement('select');
+                                statusSelect.setAttribute('name', 'status');
+                                
+                                if(loan.status == "booked")
+                                {
+                                    const option1 = document.createElement('option');
+                                    option1.setAttribute('value', 'booked');
+                                    option1.innerHTML = 'Réservée';
+                                    statusSelect.appendChild(option1);
+                                    const option2 = document.createElement('option');
+                                    option2.setAttribute('value', 'loaned');
+                                    option2.innerHTML = 'Emprûntée';
+                                    statusSelect.appendChild(option2);
+                                    const option3 = document.createElement('option');
+                                    option3.setAttribute('value', 'returned');
+                                    option3.innerHTML = 'Rendue';
+                                    statusSelect.appendChild(option3);
+                                }
+                                else if(loan.status == "loaned")
+                                {
+                                    const option2 = document.createElement('option');
+                                    option2.setAttribute('value', 'loaned');
+                                    option2.innerHTML = 'Emprûntée';
+                                    statusSelect.appendChild(option2);
+                                    const option3 = document.createElement('option');
+                                    option3.setAttribute('value', 'returned');
+                                    option3.innerHTML = 'Rendue';
+                                    statusSelect.appendChild(option3);
+                                }
+                                else{
+                                    const option3 = document.createElement('option');
+                                    option3.setAttribute('value', 'returned');
+                                    option3.innerHTML = 'Rendue';
+                                    statusSelect.appendChild(option3);
+                                }
+                                form.appendChild(statusSelect);
+                                form.innerHTML += '<button type="submit">Modifier</button>';
+                                loanStatus.appendChild(form);
+
+                                form.addEventListener('submit', async function(){
+                                    formData = new FormData(form);
+                                    try {
+                                        const response = await fetch('/api/modifyLoan/'+loan.booking_number, {
+                                            method : 'POST',
+                                            body : formData
+                                        });
+                                        const loanData = await response.json();
+                                        window.location.href = './admin';
+                                    } catch (error) {
+                                        console.error('Error fetching loan data:', error);
+                                    }
+                                })
+
+                                line.appendChild(bookingNumber);
+                                line.appendChild(userName);
+                                items.appendChild(itemList);
+                                line.appendChild(items);
+                                line.appendChild(loanStatus);
+                                document.getElementById('modifyBooking').appendChild(line);
+                                document.getElementById('loadingModifyBookings').remove();
+                            }
+                        });
+
+                    } catch (error) {
+                        console.error('Error fetching data:', error);
                     }
                 }
 
@@ -787,6 +1076,7 @@
                 await fetchBookingsAndDisplay();
                 await fetchBookAndPopulateModifyTable();
                 await fetchFilmAndPopulateModifyTable();
+                await fetchBookingsAndPopulateModifyTable();
 
                 addBookForm.addEventListener('submit', async function(event) {
                     event.preventDefault();
