@@ -96,3 +96,6 @@ Route::get('/books-most-loaned-books', [BookController::class, 'mostLoanedBooks'
 Route::get('/films-most-loaned', [FilmController::class, 'mostLoanedFilm']);
 Route::get('/films-latest', [FilmController::class, 'latestFilms']);
 Route::get('/films-most-loaned-films', [FilmController::class, 'mostLoanedFilms']);
+
+Route::get('/panier', [LoanController::class, 'fetchLoanUser']);
+Route::put('/panier/reserver', [LoanController::class, 'bookItems']);
