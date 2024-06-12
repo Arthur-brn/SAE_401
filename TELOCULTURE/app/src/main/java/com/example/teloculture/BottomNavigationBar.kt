@@ -33,7 +33,7 @@ fun BottomNavigationBar(navController: NavController) {
         NavigationBarItem(
             icon = {
                 Icon(
-                    painter = painterResource(id = R.drawable.user),
+                    painter = painterResource(id = R.drawable.inventory),
                     contentDescription = null,
                     modifier = Modifier.size(24.dp) // Ajuster la taille de l'icône
                 )

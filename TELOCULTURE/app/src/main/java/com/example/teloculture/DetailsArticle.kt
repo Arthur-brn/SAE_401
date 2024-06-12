@@ -28,7 +28,7 @@ fun DetailsArticle(navController: NavController) {
         TopBar()
         Spacer(modifier = Modifier.height(16.dp))
         BookDetails()
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.weight(1f)) // This pushes the button to the bottom
         AddToReservationButton()
         Spacer(modifier = Modifier.height(16.dp))
     }
@@ -38,25 +38,16 @@ fun DetailsArticle(navController: NavController) {
 fun TopBar() {
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp), // Ajout de padding
+        horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(
-            painter = painterResource(id = R.drawable.user),
-            contentDescription = null,
-            modifier = Modifier.size(40.dp)
-        )
         Image(
             painter = painterResource(id = R.drawable.logo), // Remplacez par votre logo
             contentDescription = null,
-            modifier = Modifier.size(60.dp)
+            modifier = Modifier.size(75.dp) // Ajuster la taille du logo
         )
-        //Icon(
-        //    painter = painterResource(id = R.drawable.ic_menu),
-        //   contentDescription = null,
-        //    modifier = Modifier.size(40.dp)
-        //)
     }
 }
 
@@ -101,7 +92,7 @@ fun AddToReservationButton() {
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
     ) {
-        Text(text = "Ajouter à la réservation !")
+        Text(text = "Réserver tout de suite !")
     }
 }
 
