@@ -12,12 +12,16 @@
             </div>
             <div class="choix">
                 <div class="filtre_rapides">
-                    <label name="nouveautes">Nouveautes</label>
-                    <input type="checkbox" name="nouveautes">
+                    <label for="filtre-plus-recents">Les plus récents</label>
+                    <input class="filtres" value="desc" type="radio" name="filtres-rapides" id="filtre-plus-recents">
                 </div>
                 <div class="filtre_rapides">
-                    <label name="coup_de_coeur">Coup de coeur</label>
-                    <input type="checkbox" name="coup_de_coeur">
+                    <label for="filtre-plus-anciens">Les plus anciens</label>
+                    <input class="filtres" value="asc" type="radio" name="filtres-rapides" id="filtre-plus-anciens">
+                </div>
+                <div class="filtre_rapides">
+                    <label for="filtre-plus-empruntes">Les plus empruntés</label>
+                    <input class="filtres" value="loan" type="radio" name="filtres-rapides" id="filtre-plus-empruntes">
                 </div>
 
             </div>
@@ -27,42 +31,42 @@
             </div>
             <div class="choix">
                 <div class="type">
-                    <label name="livre">Livre</label>
-                    <input type="checkbox" name="livre">
+                    <label for="filtre-livre">Livre</label>
+                    <input class="filtres" name="livre" type="checkbox" id="filtre-livre">
                 </div>
                 <div class="type">
-                    <label name="film">Film</label>
-                    <input type="checkbox" name="film">
+                    <label for="filtre-film">Film</label>
+                    <input class="filtres" name="film" type="checkbox" id="filtre-film">
                 </div>
             </div>
             <div class="filtre">
-                <h6>Genres</h6>
+                <h6>Styles populaires</h6>
                 <img src="./assets/img/fleche_bas.svg" alt="Teloculture">
             </div>
             <div class="choix">
                 <div class="genre">
-                    <label name="romans">Romans</label>
-                    <input type="checkbox" name="romans">
+                    <label for="filtre-drame">Drame</label>
+                    <input class="filtres" type="checkbox" name="filtres-style" value="drame" id="filtre-drame">
                 </div>
                 <div class="genre">
-                    <label name="bd_mangas">BD et Mangas</label>
-                    <input type="checkbox" name="bd_mangas">
+                    <label for="filtre-sience-fiction">Science-fiction</label>
+                    <input class="filtres" type="checkbox" name="filtres-style" value="sience-fiction" id="filtre-sience-fiction">
                 </div>
                 <div class="genre">
-                    <label name="jeunesse">Jeunesse</label>
-                    <input type="checkbox" name="jeunesse">
+                    <label for="filtre-thriller">Thriller</label>
+                    <input class="filtres" type="checkbox" name="filtres-style" value="thriller" id="filtre-thriller">
                 </div>
                 <div class="genre">
-                    <label name="poesie">Poésie</label>
-                    <input type="checkbox" name="poesie">
+                    <label for="filtre-fantastique">Fantastique</label>
+                    <input class="filtres" type="checkbox" name="filtres-style" value="fantastique" id="filtre-fantastique">
                 </div>
                 <div class="genre">
-                    <label name="biographie">Biographie</label>
-                    <input type="checkbox" name="biographie">
+                    <label for="filtre-poesie">Poésie</label>
+                    <input class="filtres" type="checkbox" name="filtres-style" value="poésie" id="filtre-poesie">
                 </div>
                 <div class="genre">
-                    <label name="actualites">Actualités</label>
-                    <input type="checkbox" name="actualites">
+                    <label for="filtre-policier">Policier</label>
+                    <input class="filtres" type="checkbox" name="filtres-style" value="policier" id="filtre-policier">
                 </div>
             </div>
         </div>
@@ -95,150 +99,7 @@
             </div>
         </div>
         <div class="all_articles">
-            <div class="article" data-article="1">
-                <div class="gauche_article">
-                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
-                    <div class="plus_infos">
-                        <img src="./assets/img/Info.svg" alt="TeloCulture">
-                        <h5>Plus d'informations</h5>
-                    </div>
-                </div>
-                <div class="infos">
-                    <h6 class="type">- BD ou manga</h6>
-                    <h2>Paradoxe. 1</h2>
-                    <h3>MARAZANO, RICHARD</h3>
-                    <p>Collection - 2023</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
-                        hendrerit urna.
-                        Pellentesque sit amet sapien fringilla, ...</p>
-                </div>
-            </div>
-            <div class="article" data-article="2">
-                <div class="gauche_article">
-                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
-                    <div class="plus_infos">
-                        <img src="./assets/img/Info.svg" alt="TeloCulture">
-                        <h5>Plus d'informations</h5>
-                    </div>
-                </div>
-                <div class="infos">
-                    <h6 class="type">- BD ou manga</h6>
-                    <h2>Paradoxe. 2</h2>
-                    <h3>MARAZANO, RICHARD</h3>
-                    <p>Collection - 2023</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
-                        hendrerit urna.
-                        Pellentesque sit amet sapien fringilla, ...</p>
-                </div>
-            </div>
-            <div class="article" data-article="3">
-                <div class="gauche_article">
-                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
-                    <div class="plus_infos">
-                        <img src="./assets/img/Info.svg" alt="TeloCulture">
-                        <h5>Plus d'informations</h5>
-                    </div>
-                </div>
-                <div class="infos">
-                    <h6 class="type">- BD ou manga</h6>
-                    <h2>Paradoxe. 3</h2>
-                    <h3>MARAZANO, RICHARD</h3>
-                    <p>Collection - 2023</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
-                        hendrerit urna.
-                        Pellentesque sit amet sapien fringilla, ...</p>
-                </div>
-            </div>
-            <div class="article" data-article="4">
-                <div class="gauche_article">
-                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
-                    <div class="plus_infos">
-                        <img src="./assets/img/Info.svg" alt="TeloCulture">
-                        <h5>Plus d'informations</h5>
-                    </div>
-                </div>
-                <div class="infos">
-                    <h6 class="type">- BD ou manga</h6>
-                    <h2>Paradoxe. 4</h2>
-                    <h3>MARAZANO, RICHARD</h3>
-                    <p>Collection - 2023</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
-                        hendrerit urna.
-                        Pellentesque sit amet sapien fringilla, ...</p>
-                </div>
-            </div>
-            <div class="article" data-article="5">
-                <div class="gauche_article">
-                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
-                    <div class="plus_infos">
-                        <img src="./assets/img/Info.svg" alt="TeloCulture">
-                        <h5>Plus d'informations</h5>
-                    </div>
-                </div>
-                <div class="infos">
-                    <h6 class="type">- BD ou manga</h6>
-                    <h2>Paradoxe. 5</h2>
-                    <h3>MARAZANO, RICHARD</h3>
-                    <p>Collection - 2023</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
-                        hendrerit urna.
-                        Pellentesque sit amet sapien fringilla, ...</p>
-                </div>
-            </div>
-            <div class="article hidden" data-article="6">
-                <div class="gauche_article">
-                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
-                    <div class="plus_infos">
-                        <img src="./assets/img/Info.svg" alt="TeloCulture">
-                        <h5>Plus d'informations</h5>
-                    </div>
-                </div>
-                <div class="infos">
-                    <h6 class="type">- BD ou manga</h6>
-                    <h2>Paradoxe. 6</h2>
-                    <h3>MARAZANO, RICHARD</h3>
-                    <p>Collection - 2023</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
-                        hendrerit urna.
-                        Pellentesque sit amet sapien fringilla, ...</p>
-                </div>
-            </div>
-            <div class="article hidden" data-article="7">
-                <div class="gauche_article">
-                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
-                    <div class="plus_infos">
-                        <img src="./assets/img/Info.svg" alt="TeloCulture">
-                        <h5>Plus d'informations</h5>
-                    </div>
-                </div>
-                <div class="infos">
-                    <h6 class="type">- BD ou manga</h6>
-                    <h2>Paradoxe. 7</h2>
-                    <h3>MARAZANO, RICHARD</h3>
-                    <p>Collection - 2023</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
-                        hendrerit urna.
-                        Pellentesque sit amet sapien fringilla, ...</p>
-                </div>
-            </div>
-            <div class="article hidden" data-article="8">
-                <div class="gauche_article">
-                    <img class="img_article" src="./assets/img/catalogue.jpg" alt="TeloCulture">
-                    <div class="plus_infos">
-                        <img src="./assets/img/Info.svg" alt="TeloCulture">
-                        <h5>Plus d'informations</h5>
-                    </div>
-                </div>
-                <div class="infos">
-                    <h6 class="type">- BD ou manga</h6>
-                    <h2>Paradoxe. 8</h2>
-                    <h3>MARAZANO, RICHARD</h3>
-                    <p>Collection - 2023</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in
-                        hendrerit urna.
-                        Pellentesque sit amet sapien fringilla, ...</p>
-                </div>
-            </div>
+
         </div>
     </section>
 </div>

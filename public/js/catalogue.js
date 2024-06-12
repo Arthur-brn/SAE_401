@@ -93,3 +93,117 @@ document.addEventListener("DOMContentLoaded", function () {
 
     showPage(currentPage);
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Fonction pour récupérer tous les articles
+    function fetchArticles() {
+        fetch('/api/articles')
+            .then(response => response.json())
+            .then(data => {
+                allArticles = data;
+                applyFiltersAndDisplay();
+            })
+            .catch(error => console.error('Erreur lors de la récupération des articles:', error));
+    }
+
+    // Fonction pour afficher les articles
+    function displayArticles(articles) {
+        const resultsContainer = document.querySelector('.all_articles');
+
+        // Efface les articles précédents
+        resultsContainer.innerHTML = '';
+
+        // Parcours tous les articles et les ajoute à la page
+        articles.forEach(article => {
+            const articleHTML = `
+            <div class="article" data-article="${article.id}">
+                <div class="gauche_article">
+                    <img class="img_article" src="./assets/img/${article.article === 'book' ? 'livres/' : 'dvd/'}${article.picture}" alt="${article.title}">
+                    <div class="plus_infos">
+                        <img src="./assets/img/Info.svg" alt="TeloCulture">
+                        <h5>Plus d'informations</h5>
+                    </div>
+                </div>
+                <div class="infos">
+                    <h6 class="type">- ${article.type.charAt(0).toUpperCase() + article.type.slice(1)}</h6>
+                    <h2>${article.title}</h2>
+                    <h3>${article.article === 'book' ? article.author : article.director}</h3>
+                    <p>${article.article === 'book' ? article.editor + ' - '  + article.edition_year : article.year}</p>
+                    <p>${article.summary}</p>
+                </div>
+            </div>
+            `;
+            resultsContainer.insertAdjacentHTML('beforeend', articleHTML);
+        });
+    }
+
+    // Appel de la fonction pour récupérer tous les articles au chargement de la page
+    fetchArticles();
+
+    // Appliquer les filtres et afficher les articles
+    function applyFiltersAndDisplay() {
+        let filteredArticles = [...allArticles];
+
+        // Appliquer le filtre par année
+        filteredArticles = fastFilter(filteredArticles);
+
+        // Appliquer le filtre par type (livre ou film)
+        filteredArticles = applyTypeFilter(filteredArticles);
+
+        // Appliquer le filtre par style
+        filteredArticles = applyStyleFilter(filteredArticles);
+
+        // Afficher les articles filtrés
+        displayArticles(filteredArticles);
+    }
+
+    function fastFilter(articles) {
+        const sortOption = document.querySelector('input[name="filtres-rapides"]:checked');
+        if (sortOption) {
+            const sortOrder = sortOption.value;
+            if (sortOrder === 'asc' || sortOrder === 'desc') {
+                articles.sort((a, b) => {
+                    const yearA = a.article === 'book' ? a.edition_year : a.year;
+                    const yearB = b.article === 'book' ? b.edition_year : b.year;
+                    if (sortOrder === 'asc') {
+                        return yearA - yearB;
+                    } else {
+                        return yearB - yearA;
+                    }
+                });
+            } else if (sortOrder === 'loan') {
+                articles.sort((a, b) => b.loan_number - a.loan_number);
+            }
+        }
+        console.log(articles); 
+        return articles; 
+    }
+
+    function applyTypeFilter(articles) {
+        const livreChecked = document.querySelector('input[name="livre"]').checked;
+        const filmChecked = document.querySelector('input[name="film"]').checked;
+    
+        if (!livreChecked && !filmChecked) {
+            return articles;
+        }
+    
+        return articles.filter(article => {
+            return (livreChecked && article.article === 'book') || (filmChecked && article.article === 'film');
+        });
+    }
+
+    function applyStyleFilter(articles) {
+        const styleFilters = document.querySelectorAll('input[name="filtres-style"]:checked');
+        if (styleFilters.length === 0) {
+            return articles;
+        }
+        const selectedStyles = Array.from(styleFilters).map(filter => filter.value);
+        return articles.filter(article => selectedStyles.includes(article.style));
+    }
+
+    document.querySelectorAll('.filtres').forEach(input => {
+        input.addEventListener('change', function() {
+            applyFiltersAndDisplay();
+        });
+    });
+});
