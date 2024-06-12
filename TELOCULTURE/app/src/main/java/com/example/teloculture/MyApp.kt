@@ -18,7 +18,7 @@ fun MyApp(navController: NavHostController) {
             // Affiche le contenu de la page actuelle en fonction de la navigation
             NavHost(navController = navController, startDestination = "HomePage") {
                 composable("HomePage") { HomePage(navController) }
-                composable("catalogue") { catalogue(navController) }
+                composable("catalogue") { Catalogue(navController) }
                 composable("login") { login(navController) }
                 composable("DetailsArticle") { DetailsArticle(navController) }
                 composable("ProfilePage") { ProfilePage(navController) }

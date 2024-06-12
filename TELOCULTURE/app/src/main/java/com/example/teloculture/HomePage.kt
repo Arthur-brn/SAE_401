@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -87,29 +88,44 @@ fun SectionTitle(title: String, color: Color) {
         modifier = Modifier.padding(vertical = 8.dp)
     )
 }
+
 @Composable
 fun CategoriesRow(navController: NavController) {
     val categories = listOf(
-        "Livre", "Cinéma", "Fantastique", "Magazine", "Actualité"
+        "Livre", "Cinéma", "Fantastique", "Actualité", "Poésie"
     )
+    val categoryImages = listOf(
+        R.drawable.livre, // Remplacez par les IDs de vos ressources drawable
+        R.drawable.cinema,
+        R.drawable.fantastique,
+        R.drawable.actualite,
+        R.drawable.poesie
+    )
+
     LazyRow(
         modifier = Modifier.padding(vertical = 8.dp)
     ) {
-        items(categories) { category ->
+        items(categories.zip(categoryImages)) { (category, image) ->
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .padding(horizontal = 8.dp)
                     .clickable { navController.navigate("catalogue") }
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.imgbook), // Replace with your actual drawable resource ID
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
+                Box(
                     modifier = Modifier
                         .size(80.dp)
+                        .clip(CircleShape) // Rond
                         .background(Color.LightGray)
-                )
+                        .border(1.dp, Color.Gray, CircleShape) // Bordure grise
+                ) {
+                    Image(
+                        painter = painterResource(id = image), // Utilise l'image spécifique de la catégorie
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.size(80.dp)
+                    )
+                }
                 Text(text = category)
             }
         }
@@ -126,6 +142,7 @@ fun BooksRow() {
         }
     }
 }
+
 @Composable
 fun Books(book: String) {
     Column(
@@ -133,7 +150,7 @@ fun Books(book: String) {
         modifier = Modifier.padding(8.dp)
     ) {
         Image(
-            painter = painterResource(id = R.drawable.imgbook), // Replace with your actual drawable resource ID
+            painter = painterResource(id = R.drawable.imgbook), // Remplacer par votre ressource drawable
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.size(120.dp)
@@ -142,6 +159,7 @@ fun Books(book: String) {
         Text(text = "Dana Thomas")
     }
 }
+
 @Composable
 fun MoreButton(text: String) {
     Button(
@@ -157,6 +175,7 @@ fun MoreButton(text: String) {
         Text(text)
     }
 }
+
 @Composable
 fun CinemaSection() {
     val gradient = Brush.linearGradient(

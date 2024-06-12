@@ -3,15 +3,14 @@ package com.example.teloculture
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -19,9 +18,18 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun catalogue(navController: NavController) {
-    val categories = listOf("Livre", "Cinéma", "Romance", "Thriller", "Fiction", "Crime")
-    val books = List(6) { "Fashionopolis" }
+fun Catalogue(navController: NavController) {
+    val categories = listOf("Tous", "Livre", "Cinéma", "Romance", "Thriller", "Fiction", "Crime")
+    val allBooks = listOf(
+        "Fashionopolis", "Book2", "Book3", "Book4", "Book5", "Book6"
+    )
+
+    var selectedCategory by remember { mutableStateOf("Tous") }
+    val filteredBooks = if (selectedCategory == "Tous") {
+        allBooks
+    } else {
+        allBooks.filter { it.contains(selectedCategory, ignoreCase = true) }
+    }
 
     Column {
         Text("Les catégories", fontSize = 24.sp, modifier = Modifier.padding(16.dp))
@@ -29,15 +37,24 @@ fun catalogue(navController: NavController) {
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             items(categories) { category ->
-                Text(category, modifier = Modifier.padding(8.dp))
+                Button(
+                    onClick = { selectedCategory = category },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (selectedCategory == category) Color.Gray else Color.LightGray,
+                        contentColor = Color.Black
+                    ),
+                    modifier = Modifier.padding(4.dp)
+                ) {
+                    Text(category)
+                }
             }
         }
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier.padding(16.dp)
         ) {
-            items(books.size) { index ->
-                BookItem(book = books[index]) {
+            items(filteredBooks.size) { index ->
+                BookItem(book = filteredBooks[index]) {
                     navController.navigate("DetailsArticle")
                 }
             }
