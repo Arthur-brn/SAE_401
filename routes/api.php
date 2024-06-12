@@ -65,13 +65,14 @@ Route::post('/checkLoans', [LoanController::class, 'checkLoans']);
 Route::get('/removeLoan/{loanRef}', [LoanController::class, 'removeLoan']);
 Route::get('/checkBook/{id}', [LoanController::class, 'checkBook']);
 Route::get('/checkFilm/{id}', [LoanController::class, 'checkFilm']);
+Route::get('/checkCart/{id}', [LoanController::class, 'checkCart']);
 Route::post('/modifyLoan/{loanRef}', [LoanController::class, 'update']);
+Route::get('/account/loan/{id}', [LoanController::class, 'getCustomerLoan']);
 
 Route::post('/connect', [UserController::class, 'login']);
 
 Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/account/{id}', [UserController::class, 'getCustomerInfo']);
-Route::get('/account/loan/{id}', [UserController::class, 'getCustomerLoan']);
 
 Route::get('/authors', [AuthorController::class, 'index']);
 Route::post('/authors', [AuthorController::class, 'store']);

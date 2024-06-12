@@ -32,11 +32,10 @@
     <p id="userName"></p>
     <p id="userMail"></p>
     <p id="userAddress"></p>
-    <button>Editer</button>
     <button id="deconnect">Me déconnecter</button>
 </div>
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             const userId = sessionStorage.getItem('userId');
             const userStatus = sessionStorage.getItem('userStatus');
             if(userId)
@@ -56,7 +55,7 @@
                         window.location.href = './account';
                     });
 
-                    fetch('/api/account/'+userId)
+                    await fetch('/api/account/'+userId)
                         .then(response => response.json())
                         .then(user => {
                             userName.innerHTML = user.first_name + " " + user.last_name;
@@ -67,39 +66,53 @@
                             console.error('Error fetching data:', error);
                         });
                     
-                    fetch('/api/account/loan/'+userId)
+                    await fetch('/api/account/loan/'+userId)
                         .then(response => response.json())
                         .then(loans => {
-                            loans.forEach((loan) => {
-                            line = document.createElement("tr");
+                            loans.forEach(async (loan) => {
+                                const line = document.createElement("tr");
 
-                            currentDate = new Date();
-                            loanDate = new Date(loan.start_date);
-                            returnDate = new Date(loanDate);
-                            returnDate.setDate(loanDate.getDate() + 7);
+                                currentDate = new Date();
+                                loanDate = new Date(loan.start_date);
+                                returnDate = new Date(loanDate);
+                                returnDate.setDate(loanDate.getDate() + 7);
 
-                            productName = document.createElement("td");
-                            productName.innerHTML = loan.article_name;
-                            startDate = document.createElement("td");
-                            startDate.innerHTML = loanDate.getDate()+" - "+(loanDate.getMonth()+1)+" - "+loanDate.getFullYear();
-                            endDate = document.createElement("td");
-                            endDate.innerHTML = returnDate.getDate()+" - "+(returnDate.getMonth()+1)+" - "+returnDate.getFullYear();
-                            bookingNumber = document.createElement("td");
-                            bookingNumber.innerHTML = loan.booking_number;
+                                const startDate = document.createElement("td");
+                                startDate.innerHTML = loanDate.getDate()+" - "+(loanDate.getMonth()+1)+" - "+loanDate.getFullYear();
+                                const endDate = document.createElement("td");
+                                endDate.innerHTML = returnDate.getDate()+" - "+(returnDate.getMonth()+1)+" - "+returnDate.getFullYear();
+                                const bookingNumber = document.createElement("td");
+                                bookingNumber.innerHTML = loan.booking_number;
 
-                            line.appendChild(productName);
-                            line.appendChild(startDate);
-                            line.appendChild(endDate);
-                            line.appendChild(bookingNumber);
-                            if(currentDate > returnDate)
-                            {
-                                passedTable.appendChild(line);
-                            }
-                            else
-                            {
-                                currentTable.appendChild(line);
-                            }
-                        });
+                                if(currentDate > returnDate)
+                                {
+                                    passedTable.appendChild(line);
+                                }
+                                else
+                                {
+                                    currentTable.appendChild(line);
+                                }
+
+                                const productName = document.createElement("td");
+                                try{
+                                    let articleResponse;
+                                    if(loan.loanable_type == 'App\\Models\\Book'){
+                                        articleResponse = await fetch('/api/books/'+loan.loanable_id);
+                                    }
+                                    else{
+                                        articleResponse = await fetch('/api/films/'+loan.loanable_id);
+                                    }
+                                    const article = await articleResponse.json();
+                                    productName.innerHTML = article.title;
+                                }catch (error) {
+                                    console.error('Error fetching data:', error);
+                                }
+
+                                line.appendChild(productName);
+                                line.appendChild(startDate);
+                                line.appendChild(endDate);
+                                line.appendChild(bookingNumber);
+                            });
                     })
                     .catch(error => {
                         console.error('Error fetching data:', error);
