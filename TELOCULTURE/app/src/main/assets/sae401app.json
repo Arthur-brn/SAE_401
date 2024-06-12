@@ -1,0 +1,18 @@
+[
+{"type":"header","version":"5.2.0","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"sae401app"},
+{"type":"table","name":"book","database":"sae401app","data":
+[
+{"id":"1","title":"Harry Potter and the Sorcerer's Stone","author":"J.K Rowling","picture":"hp_sorcerers_stone.jpg","editor":"Penguin Random House","language":"English","style":"fantastique","type":"roman","summray":"A young boy discovers he is a wizard and attends a magical school, where he makes friends and enemies and uncovers a dark secret.","page_number":"309","edition_year":"1997","copy_number":"3"},
+{"id":"2","title":"A Game of Thrones","author":"George R. R. Martin","picture":"game_of_thrones.jpg","editor":"Harper Collins","language":"English","style":"fantasy épique","type":"roman","summray":"Noble families vie for control of the Iron Throne as an ancient enemy rises in the north.","page_number":"694","edition_year":"1996","copy_number":"2"},
+{"id":"3","title":"The Hobbit","author":"J. R. R. Tolkien","picture":"the_hobbit.jpg","editor":"Penguin Random House","language":"English","style":"fantasy épique","type":"roman","summray":"A hobbit embarks on a journey with a group of dwarves to reclaim their mountain home from a dragon.","page_number":"310","edition_year":"1937","copy_number":"1"}
+]
+}
+,{"type":"table","name":"film","database":"sae401app","data":
+[
+{"id":"1","title":"Inception","picture":"inception.jpg","director":"Christopher Nolan","style":"science-fiction","type":"long métrage","age_limit":"13","summary":"A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.","duration":"148","year":"2010","copy_number":"4","languages":"English, Spanish","subtitles":"French, English"},
+{"id":"2","title":"Schindler's List","picture":"schindlers_list.jpg","director":"Steven Spielberg","style":"historique","type":"long métrage","age_limit":"16","summary":"In German-occupied Poland during World War II, Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.","duration":"195","year":"193","copy_number":"6","languages":"French, English","subtitles":"English, French, Spanish, German"},
+{"id":"3","title":"Pulp Fiction","picture":"pulp_fiction.jpg","director":"Quentin Tarantino","style":"policier","type":"long métrage","age_limit":"18","summary":"The lives of two mob hitmen, a boxer, a gangster, and his wife intertwine in four tales of violence and redemption.","duration":"154","year":"1994","copy_number":"2","languages":"English","subtitles":"French, English"}
+]
+}
+]

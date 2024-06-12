@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,7 +19,7 @@ fun MyApp(navController: NavHostController) {
             // Affiche le contenu de la page actuelle en fonction de la navigation
             NavHost(navController = navController, startDestination = "HomePage") {
                 composable("HomePage") { HomePage(navController) }
-                composable("catalogue") { catalogue(navController) }
+                composable("catalogue") { Catalogue(navController) }
                 composable("login") { login(navController) }
                 composable("DetailsArticle") { DetailsArticle(navController) }
                 composable("ProfilePage") { ProfilePage(navController) }
