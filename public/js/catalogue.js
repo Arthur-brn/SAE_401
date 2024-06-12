@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Filtres
+    // Déclaration des variables globales
+    let allArticles = [];
+    const articlesPerPage = 5;
+    let currentPage = 1;
 
+    // Filtres
     const filters = document.querySelectorAll(".filtre");
     const closeButtons = document.querySelectorAll(".type img");
 
@@ -32,69 +36,68 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Changement page
-
-    const articles = document.querySelectorAll(".article");
-    const pages = document.querySelectorAll(".droite p[data-page]");
-    const totalPage = parseInt(
-        document.querySelector(".totale_page").getAttribute("data-page"),
-        10
-    );
-    const articlesPerPage = 5;
-    let currentPage = 1;
-
-    function showPage(pageNum) {
+    // Afficher les articles selon la page sélectionnée
+    function showPage(pageNum, articles) {
         const start = (pageNum - 1) * articlesPerPage;
         const end = pageNum * articlesPerPage;
+        const paginatedArticles = articles.slice(start, end);
 
-        articles.forEach((article, index) => {
-            if (index >= start && index < end) {
-                article.classList.remove("hidden");
-            } else {
-                article.classList.add("hidden");
-            }
-        });
-
-        updatePagination(pageNum);
+        displayArticles(paginatedArticles);
+        updatePagination(pageNum, articles.length);
     }
 
-    function updatePagination(activePage) {
-        pages.forEach((page) => {
-            const pageNum = parseInt(page.getAttribute("data-page"), 10);
+    // Mise à jour de la pagination
+    function updatePagination(activePage, totalArticles) {
+        const totalPages = Math.ceil(totalArticles / articlesPerPage);
+        const paginationContainer = document.querySelector(".droite");
+        paginationContainer.innerHTML = '';
 
-            if (pageNum === activePage) {
-                page.classList.remove("passive");
-                page.classList.add("active");
-            } else if (
-                pageNum === activePage - 1 ||
-                pageNum === activePage + 1
-            ) {
-                page.classList.remove("active");
-                page.classList.add("passive");
-                page.classList.remove("hidden");
-            } else {
-                page.classList.remove("active");
-                page.classList.add("passive");
-                page.classList.add("hidden");
-            }
+        const prevButton = document.createElement('img');
+        prevButton.src = './assets/img/fleche_back_catalogue.svg';
+        prevButton.alt = 'Previous';
+        prevButton.classList.add('pagination-nav');
+        prevButton.setAttribute('data-page', 'prev');
+        paginationContainer.appendChild(prevButton);
+
+        for (let i = 1; i <= totalPages; i++) {
+            const pageNum = document.createElement('p');
+            pageNum.setAttribute('data-page', i);
+            pageNum.classList.add(i === activePage ? 'active' : 'passive');
+            pageNum.textContent = i;
+            paginationContainer.appendChild(pageNum);
+        }
+
+        const nextButton = document.createElement('img');
+        nextButton.src = './assets/img/fleche_forward_catalogue.svg';
+        nextButton.alt = 'Next';
+        nextButton.classList.add('pagination-nav');
+        nextButton.setAttribute('data-page', 'next');
+        paginationContainer.appendChild(nextButton);
+
+        paginationContainer.querySelectorAll('p[data-page]').forEach((page) => {
+            page.addEventListener('click', () => {
+                currentPage = parseInt(page.getAttribute('data-page'), 10);
+                showPage(currentPage, allArticles);
+            });
         });
 
-        document.querySelector(".reduit").classList.remove("hidden");
-        document.querySelector(".totale_page").classList.remove("hidden");
+        document.querySelectorAll('.pagination-nav').forEach((button) => {
+            button.addEventListener('click', () => {
+                if (button.getAttribute('data-page') === 'prev' && currentPage > 1) {
+                    currentPage--;
+                } else if (button.getAttribute('data-page') === 'next' && currentPage < totalPages) {
+                    currentPage++;
+                }
+                showPage(currentPage, allArticles);
+            });
+        });
+
+        const resultsRangeStart = (activePage - 1) * articlesPerPage + 1;
+        const resultsRangeEnd = Math.min(activePage * articlesPerPage, totalArticles);
+        document.querySelector(".gauche h6").textContent = `Résultats ${resultsRangeStart} - ${resultsRangeEnd} / `;
+        document.querySelector(".totale_resultat").textContent = totalArticles;
     }
 
-    pages.forEach((page) => {
-        page.addEventListener("click", () => {
-            const pageNum = parseInt(page.getAttribute("data-page"), 10);
-            currentPage = pageNum;
-            showPage(currentPage);
-        });
-    });
-
-    showPage(currentPage);
-});
-
-document.addEventListener("DOMContentLoaded", function () {
     // Fonction pour récupérer tous les articles
     function fetchArticles() {
         fetch('/api/articles')
@@ -142,9 +145,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Appel de la fonction pour récupérer tous les articles au chargement de la page
-    fetchArticles();
-
     // Appliquer les filtres et afficher les articles
     function applyFiltersAndDisplay() {
         let filteredArticles = [...allArticles];
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
         filteredArticles = applyStyleFilter(filteredArticles);
 
         // Afficher les articles filtrés
-        displayArticles(filteredArticles);
+        showPage(currentPage, filteredArticles);
     }
 
     function fastFilter(articles) {
@@ -180,18 +180,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 articles.sort((a, b) => b.loan_number - a.loan_number);
             }
         }
-        console.log(articles); 
-        return articles; 
+        return articles;
     }
 
     function applyTypeFilter(articles) {
         const livreChecked = document.querySelector('input[name="livre"]').checked;
         const filmChecked = document.querySelector('input[name="film"]').checked;
-    
+
         if (!livreChecked && !filmChecked) {
             return articles;
         }
-    
+
         return articles.filter(article => {
             return (livreChecked && article.article === 'book') || (filmChecked && article.article === 'film');
         });
@@ -216,13 +215,13 @@ document.addEventListener("DOMContentLoaded", function () {
         else if (livreChecked) { selectedType = 'LIVRES'; }
         else if (filmChecked) { selectedType = 'FILMS'; } 
         else { selectedType = 'TOUS LES DOCUMENTS'; }
-        
+
         let selectedSort = '';
         const checkedRadio = document.querySelector('input[name="filtres-rapides"]:checked');
         if (checkedRadio && checkedRadio.previousElementSibling) {
             selectedSort = checkedRadio.previousElementSibling.textContent.trim().toUpperCase();
         }
-        
+
         const selectedStyles = [...document.querySelectorAll('input[name="filtres-style"]:checked')]
             .map(input => `
                 <div class="type" data-id="${input.id}">
@@ -231,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             `)
             .join('');
-    
+
         const searchSummary = `
             <p>Ma recherche :</p>
             <div class="type">
@@ -242,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
             ${selectedStyles}
         `;
-        
+
         searchContainer.innerHTML = searchSummary;
 
         searchContainer.querySelectorAll('.type[data-id] img').forEach(img => {
@@ -265,4 +264,6 @@ document.addEventListener("DOMContentLoaded", function () {
             updateSearchSummary();
         });
     });
+
+    fetchArticles();
 });
