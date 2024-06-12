@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 allArticles = data;
                 applyFiltersAndDisplay();
+                updateSearchSummary();
             })
             .catch(error => console.error('Erreur lors de la récupération des articles:', error));
     }
@@ -116,17 +117,21 @@ document.addEventListener("DOMContentLoaded", function () {
         // Parcours tous les articles et les ajoute à la page
         articles.forEach(article => {
             const articleHTML = `
-            <div class="article" data-article="${article.id}">
+            <div class="article" data-article="${article.article + '-' + article.id}">   
                 <div class="gauche_article">
-                    <img class="img_article" src="./assets/img/${article.article === 'book' ? 'livres/' : 'dvd/'}${article.picture}" alt="${article.title}">
-                    <div class="plus_infos">
-                        <img src="./assets/img/Info.svg" alt="TeloCulture">
-                        <h5>Plus d'informations</h5>
-                    </div>
+                    <a href="${article.article === 'book' ? '/litterature-' : '/cinema-'}${article.id}">
+                        <img class="img_article" src="./assets/img/${article.article === 'book' ? 'livres/' : 'dvd/'}${article.picture}" alt="${article.title}">
+                    </a>
+                    <a href="${article.article === 'book' ? '/litterature-' : '/cinema-'}${article.id}">
+                        <div class="plus_infos">
+                            <img src="./assets/img/Info.svg" alt="TeloCulture">
+                            <h5>Plus d'informations</h5>
+                        </div>
+                    </a>
                 </div>
                 <div class="infos">
                     <h6 class="type">- ${article.type.charAt(0).toUpperCase() + article.type.slice(1)}</h6>
-                    <h2>${article.title}</h2>
+                    <h2><a href="${article.article === 'book' ? '/litterature-' : '/cinema-'}${article.id}">${article.title}</a></h2>
                     <h3>${article.article === 'book' ? article.author : article.director}</h3>
                     <p>${article.article === 'book' ? article.editor + ' - '  + article.edition_year : article.year}</p>
                     <p>${article.summary}</p>
@@ -201,9 +206,63 @@ document.addEventListener("DOMContentLoaded", function () {
         return articles.filter(article => selectedStyles.includes(article.style));
     }
 
+    function updateSearchSummary() {
+        const searchContainer = document.querySelector('.ma_recherche');
+
+        const livreChecked = document.querySelector('input[name="livre"]').checked;
+        const filmChecked = document.querySelector('input[name="film"]').checked;
+        let selectedType;
+        if (livreChecked && filmChecked) { selectedType = 'TOUS LES DOCUMENTS'; } 
+        else if (livreChecked) { selectedType = 'LIVRES'; }
+        else if (filmChecked) { selectedType = 'FILMS'; } 
+        else { selectedType = 'TOUS LES DOCUMENTS'; }
+        
+        let selectedSort = '';
+        const checkedRadio = document.querySelector('input[name="filtres-rapides"]:checked');
+        if (checkedRadio && checkedRadio.previousElementSibling) {
+            selectedSort = checkedRadio.previousElementSibling.textContent.trim().toUpperCase();
+        }
+        
+        const selectedStyles = [...document.querySelectorAll('input[name="filtres-style"]:checked')]
+            .map(input => `
+                <div class="type" data-id="${input.id}">
+                    <p>${input.previousElementSibling.textContent.toUpperCase()}</p>
+                    <img src="./assets/img/croix.svg" alt="Teloculture">
+                </div>
+            `)
+            .join('');
+    
+        const searchSummary = `
+            <p>Ma recherche :</p>
+            <div class="type">
+                <p>${selectedType}</p>
+            </div>
+            <div class="type">
+                <p>${selectedSort}</p>
+            </div>
+            ${selectedStyles}
+        `;
+        
+        searchContainer.innerHTML = searchSummary;
+
+        searchContainer.querySelectorAll('.type[data-id] img').forEach(img => {
+            img.addEventListener('click', function(event) {
+                event.stopPropagation();
+                const inputId = this.parentElement.getAttribute('data-id');
+                const input = document.getElementById(inputId);
+                if (input) {
+                    input.checked = false;
+                    applyFiltersAndDisplay();
+                    updateSearchSummary();
+                }
+            });
+        });
+    }
+
     document.querySelectorAll('.filtres').forEach(input => {
         input.addEventListener('change', function() {
             applyFiltersAndDisplay();
+            updateSearchSummary();
         });
     });
 });
