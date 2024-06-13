@@ -28,7 +28,7 @@
             <img src="./assets/img/fleche_gauche.svg" alt="TeloCulture">
         </div>
     </div>
-    <a href="/catalogue"><button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button></a>
+    <a href="/catalogue?filter=desc&type=livre"><button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button></a>
 </section>
 
 <section id="coups_de_coeur" class="splide" aria-label="Splide Basic HTML Example">
@@ -46,7 +46,7 @@
             <img src="./assets/img/fleche_gauche.svg" alt="TeloCulture">
         </div>
     </div>
-    <a href="/catalogue"><button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button></a>
+    <a href="/catalogue?filter=loan&type=livre"><button class="voir_plus">VOIR PLUS <img src="./assets/img/voir_plus.svg" alt="Teloculture"></button></a>
 </section>
 
 <section id="genre">
@@ -55,22 +55,34 @@
         <div class="allGenre">
             <div>
                 <div class="genre romans">
-                    <h3>Romans</h3>
+                    <a href="/catalogue?filter=roman">
+                        <h3>Romans</h3>
+                    </a>
                 </div>
                 <div class="genre bd_mangas">
-                    <h3>BD et mangas</h3>
+                    <a href="/catalogue?filter=bd+et+manga">
+                        <h3>BD et mangas</h3>
+                    </a>
                 </div>
                 <div class="genre jeunesse">
-                    <h3>Jeunesse</h3>
+                    <a href="/catalogue?filter=jeunesse">
+                        <h3>Jeunesse</h3>
+                    </a>
                 </div>
                 <div class="genre poesie">
-                    <h3>Poésie</h3>
+                    <a href="/catalogue?filter=po%c3%a9sie">
+                        <h3>Poésie</h3>
+                    </a>
                 </div>
                 <div class="genre biographie">
-                    <h3>Biographie</h3>
+                    <a href="/catalogue?filter=biographie">
+                        <h3>Biographie</h3>
+                    </a>
                 </div>
                 <div class="genre actualites">
-                    <h3>Actualités</h3>
+                    <a href="/catalogue?filter=actualit%c3%a9">
+                        <h3>Actualités</h3>
+                    </a>
                 </div>
             </div>
         </div>
