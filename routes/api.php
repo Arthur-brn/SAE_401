@@ -94,6 +94,7 @@ Route::post('/subtitle', [SubtitleController::class, 'store']);
 
 Route::get('/bookReview/{id}', [ReviewController::class, 'getBookReview']);
 Route::get('/filmReview/{id}', [ReviewController::class, 'getFilmReview']);
+Route::post('/reviews', [ReviewController::class, 'store']);
 
 Route::get('/books-most-loaned', [BookController::class, 'mostLoanedBook']);
 Route::get('/books-latest', [BookController::class, 'latestBooks']);

@@ -14,7 +14,15 @@ class Review extends Model
     protected $fillable = [
         'review_content',
         'review_mark',
+        'user_id',
+        'reviewable_id',
+        'reviewable_type',
     ];
+
+    public function reviewable()
+    {
+        return $this->morphTo();
+    }
 
     public function user()
     {

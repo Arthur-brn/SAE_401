@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
+use Carbon\Carbon;
 
 class ReviewController extends Controller
 {
@@ -19,13 +20,6 @@ class ReviewController extends Controller
     {
         $Review = Review::findOrFail($id);
         return response()->json($Review);
-    }
-
-    // Méthode pour créer un nouveau livre
-    public function store(Request $request)
-    {
-        $Review = Review::create($request->all());
-        return response()->json($Review, 201);
     }
 
     // Méthode pour mettre à jour les informations d'un livre
@@ -46,16 +40,45 @@ class ReviewController extends Controller
     public function getBookReview($id)
     {
         $reviews = Review::where('reviewable_type', 'App\\Models\\Book')
-                         ->where('reviewable_id', $id)
-                         ->get();
-        return response()->json($reviews,201);
+            ->where('reviewable_id', $id)
+            ->get();
+        return response()->json($reviews, 201);
     }
 
     public function getFilmReview($id)
     {
         $reviews = Review::where('reviewable_type', 'App\\Models\\Film')
-                         ->where('reviewable_id', $id)
-                         ->get();
+            ->where('reviewable_id', $id)
+            ->get();
         return response()->json($reviews, 201);
+    }
+
+    public function store(Request $request)
+    {
+        // Validation des données reçues du formulaire
+        $request->validate([
+            'review_content' => 'required|string',
+            'review_mark' => 'required|integer|min:0|max:5',
+            'user_id' => 'required|integer',
+            'reviewable_id' => 'required|integer',
+            'reviewable_type' => 'required|string',
+        ]);
+
+        try {
+            // Création de la review
+            $review = new Review();
+            $review->review_content = $request->input('review_content');
+            $review->review_mark = $request->input('review_mark');
+            $review->user_id = $request->input('user_id'); // ID de l'utilisateur connecté
+            $review->reviewable_id = $request->input('reviewable_id');
+            $review->reviewable_type = $request->input('reviewable_type');
+
+            // Sauvegarde de la review
+            $review->save();
+
+            return response()->json(['message' => 'Review ajoutée avec succès', 'review' => $review], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Erreur lors de l\'ajout de la review', 'error' => $e->getMessage()], 500);
+        }
     }
 }
