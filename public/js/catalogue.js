@@ -353,8 +353,16 @@ function getUrlParameter(name) {
 function applyInitialFilter() {
     const filterParam = getUrlParameter('filter');
 
+    const filterType = getUrlParameter('type');
+
+    if (!filterParam){
+        return
+    }
     document.querySelector(`input[value="${filterParam}"]`).checked = true;
 
+    if (filterType){
+        document.querySelector(`input[value="${filterType}"]`).checked = true;
+    }
     // Appliquer les filtres et afficher les articles
     applyFiltersAndDisplay();
     updateSearchSummary();
