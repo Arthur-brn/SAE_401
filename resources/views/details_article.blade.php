@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div x-show="tab === 'tab2'" id="comments">
-                <form action="">
+                <form id="reviewForm">
                     <textarea name="review_content" id="review_content" placeholder="Rentrez votre commentaire ici !"></textarea>
                     <div id="buttons">
                         <div class="rating_zone">
@@ -236,51 +236,70 @@
             }
         }
 
-        async function fetchArticleReview(id, type){
+        async function fetchArticleReview(id, type) {
             try {
                 let reviewResponse;
-                if(type == "Book"){
-                    reviewResponse = await fetch('/api/bookReview/'+id);
-                }
-                else{
-                    reviewResponse = await fetch('/api/filmReview/'+id);
+                if (type == "Book") {
+                    reviewResponse = await fetch('/api/bookReview/' + id);
+                } else {
+                    reviewResponse = await fetch('/api/filmReview/' + id);
                 }
                 const reviews = await reviewResponse.json();
-                reviews.forEach(async (review) => {
-                    const line = document.createElement('div');
-                    try{
-                        const userResponse = await fetch('/api/user/'+review.user_id);
+
+                // Stocker une référence au premier enfant
+                const firstChild = reviewSection.firstElementChild;
+
+                // Vider la section des critiques existantes sauf le premier enfant
+                reviewSection.innerHTML = '';
+
+                // Réinsérer le premier enfant s'il existe
+                if (firstChild) {
+                    reviewSection.appendChild(firstChild);
+                }
+
+                // Boucle asynchrone sur les critiques
+                for (const review of reviews) {
+                    try {
+                        const userResponse = await fetch('/api/user/' + review.user_id);
                         const user = await userResponse.json();
+
+                        // Créer les éléments HTML pour chaque critique
+                        const line = document.createElement('div');
                         const userName = document.createElement('div');
-                        userName.innerHTML = user.first_name+" "+user.last_name+ " - "+review.review_mark+"/5";
-                        userName.classList.add('first_name');
                         const reviewContent = document.createElement('div');
+
+                        // Remplir les données de l'utilisateur et de la critique
+                        userName.innerHTML = `${user.first_name} ${user.last_name} - ${review.review_mark}/5`;
+                        userName.classList.add('first_name');
                         reviewContent.innerHTML = review.review_content;
                         reviewContent.classList.add('comment_content');
+
+                        // Ajouter les éléments à la ligne
                         line.appendChild(userName);
                         line.appendChild(reviewContent);
+
+                        // Ajouter la ligne à reviewSection
+                        reviewSection.appendChild(line);
                     } catch (error) {
                         console.error('Error fetching data:', error);
                     }
-                    reviewSection.appendChild(line);
-                })
+                }
 
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         }
 
-        async function displayCartButton(){
-            if(!userId){
+
+        async function displayCartButton() {
+            if (!userId) {
                 addToCartBtn.innerHTML = "Connectez-vous pour ajouter au panier !";
-            }
-            else if(availableNum.innerHTML == "Aucun exemplaire disponible dans le réseau"){
+            } else if (availableNum.innerHTML == "Aucun exemplaire disponible dans le réseau") {
                 addToCartBtn.innerHTML = "Impossible d'ajouter l'article au panier !";
-            }
-            else{
-                try{
+            } else {
+                try {
                     checkData = new FormData();
-                    checkData.set('loanable_type', 'App\\Models\\'+articleType);
+                    checkData.set('loanable_type', 'App\\Models\\' + articleType);
                     checkData.set('loanable_id', articleId);
                     checkData.set('user_id', userId);
                     const loansResponse = await fetch('/api/checkLoans', {
@@ -288,47 +307,44 @@
                         body: checkData
                     })
                     const loans = await loansResponse.json();
-                    if(Object.keys(loans).length === 0){
-                        addToCartBtn.addEventListener('click', async function(){
+                    if (Object.keys(loans).length === 0) {
+                        addToCartBtn.addEventListener('click', async function() {
                             const formData = new FormData();
                             const date = new Date().toISOString().split('T')[0];
-                            formData.set('loanable_type', 'App\\Models\\'+articleType);
+                            formData.set('loanable_type', 'App\\Models\\' + articleType);
                             formData.set('loanable_id', articleId);
                             formData.set('user_id', userId);
-                            try{
-                                const bookingNumResponse = await fetch('/api/checkCart/'+userId)
+                            try {
+                                const bookingNumResponse = await fetch('/api/checkCart/' + userId)
                                 const bookingNum = await bookingNumResponse.json();
-                                if(bookingNum != '')
-                                {
+                                if (bookingNum != '') {
                                     formData.set('booking_number', bookingNum.booking_number);
-                                }
-                                else{
+                                } else {
                                     formData.set('booking_number', generateRandomString(10));
                                 }
-                            }catch (error) {
+                            } catch (error) {
                                 console.error('Error fetching author data:', error);
                             }
                             formData.set('start_date', date);
                             formData.set('status', 'add_to_cart');
-                            try{
+                            try {
                                 const bookingResponse = await fetch('/api/loans', {
                                     method: 'POST',
                                     body: formData
                                 })
                                 const booking = await bookingResponse.json();
                                 window.location.href = "";
-                            }catch (error) {
+                            } catch (error) {
                                 console.error('Error fetching author data:', error);
                             }
                         });
-                    }
-                    else{
+                    } else {
                         addToCartBtn.innerHTML = "Vous avez déjà réservé cet article !";
                     }
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
-                
+
             }
         }
 
@@ -336,14 +352,53 @@
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let result = '';
             const charactersLength = characters.length;
-            
+
             for (let i = 0; i < length; i++) {
                 const randomIndex = Math.floor(Math.random() * charactersLength);
                 result += characters.charAt(randomIndex);
             }
-            
+
             return result;
         }
+
+        const reviewForm = document.getElementById('reviewForm');
+
+        reviewForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(reviewForm);
+            formData.append('user_id', userId);
+            formData.append('reviewable_id', "{{$id}}");
+            formData.append('reviewable_type', `App\\Models\\{{$type}}`);
+
+            console.log(formData);
+
+            const url = '/api/reviews'; // URL de l'API Laravel pour ajouter une review
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erreur lors de l\'ajout de la review');
+                }
+
+                await fetchArticleReview(articleId, articleType);
+
+                reviewForm.reset(); // Réinitialiser le formulaire après soumission réussie
+
+            } catch (error) {
+                console.error('Erreur :', error);
+                alert('Une erreur est survenue. Veuillez réessayer.');
+            }
+        });
+
+        const cancelButton = document.getElementById('cancelButton');
+        cancelButton.addEventListener('click', () => {
+            reviewForm.reset(); // Réinitialiser le formulaire lors de l'annulation
+        });
     });
 </script>
 
