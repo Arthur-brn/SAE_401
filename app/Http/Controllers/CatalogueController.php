@@ -14,7 +14,7 @@ class CatalogueController extends Controller
         $books = Book::all()->map(function ($book) {
             return [
                 'article' => 'book',
-                'id' => 'book_' . $book->id,
+                'id' => $book->id,
                 'title' => $book->title,
                 'picture' => $book->picture,
                 'author' => $book->author ? $book->author->name : null,
@@ -34,7 +34,7 @@ class CatalogueController extends Controller
         $films = Film::all()->map(function ($film) {
             return [
                 'article' => 'film',
-                'id' => 'film_' . $film->id,
+                'id' => $film->id,
                 'title' => $film->title,
                 'picture' => $film->picture,
                 'director' => $film->director ? $film->director->name : null,
