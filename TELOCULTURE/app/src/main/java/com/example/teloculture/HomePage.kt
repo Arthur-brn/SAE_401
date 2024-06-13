@@ -65,13 +65,13 @@ fun HomePage(navController: NavController) {
                 BooksRow()
             }
             item {
-                MoreButton("Voir plus")
+                MoreButton("Voir plus", navController)
             }
             item {
                 SectionTitle("Le cinéma", Color(0xFFFF625C))
             }
             item {
-                CinemaSection()
+                CinemaSection(navController)
             }
         }
     }
@@ -207,9 +207,9 @@ fun getResourceId(name: String): Int {
 }
 
 @Composable
-fun MoreButton(text: String) {
+fun MoreButton(text: String, navController: NavController) {
     Button(
-        onClick = { /* Handle click */ },
+        onClick = { navController.navigate("catalogue") },
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Transparent,
             contentColor = Color(0xFF6887F6)
@@ -223,7 +223,7 @@ fun MoreButton(text: String) {
 }
 
 @Composable
-fun CinemaSection() {
+fun CinemaSection(navController: NavController) {
     val gradient = Brush.linearGradient(
         colors = listOf(
             Color(0xFFFFE5E5),
@@ -257,7 +257,7 @@ fun CinemaSection() {
                     color = Color.Gray,
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
-                MoreButton("Voir plus")
+                MoreButton("Voir plus", navController)
             }
             Spacer(modifier = Modifier.width(16.dp)) // Ajout d'un Spacer pour l'espacement
             Image(
