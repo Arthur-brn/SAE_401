@@ -44,56 +44,68 @@
         <ul>
             <li>
                 <div id="books_categories">
-                    <div class="categorie">
-                        <img src="./assets/img/roman.png" alt="Teloculture">
-                        <h3>Roman</h3>
-                        <p>Découvrez notre sélection de romans incontournables. Plongez dans des histoires captivantes et laissez-vous emporter par des récits fascinants.</p>
-                    </div>
+                    <a href="/catalogue?filter=roman">
+                        <div class="categorie">
+                            <img src="./assets/img/roman.png" alt="Teloculture">
+                            <h3>Roman</h3>
+                            <p>Découvrez notre sélection de romans incontournables. Plongez dans des histoires captivantes et laissez-vous emporter par des récits fascinants.</p>
+                        </div>
+                    </a>
                 </div>
             </li>
             <li>
                 <div id="books_categories">
-                    <div class="categorie">
-                        <img src="./assets/img/type_bd_mangas.jpg" alt="Teloculture">
-                        <h3>BD et Mangas</h3>
-                        <p>Explorez nos incontournables BD et mangas ! Découvrez des récits palpitants et des dessins captivants pour une immersion totale.</p>
-                    </div>
+                    <a href="/catalogue?filter=bd+et+manga">
+                        <div class="categorie">
+                            <img src="./assets/img/type_bd_mangas.jpg" alt="Teloculture">
+                            <h3>BD et Mangas</h3>
+                            <p>Explorez nos incontournables BD et mangas ! Découvrez des récits palpitants et des dessins captivants pour une immersion totale.</p>
+                        </div>
+                    </a>
                 </div>
             </li>
             <li>
                 <div id="books_categories">
-                    <div class="categorie">
-                        <img src="./assets/img/type_jeunesse.jpg" alt="Teloculture">
-                        <h3>Jeunesse</h3>
-                        <p>Explorez notre catégorie jeunesse ! Des livres qui éveillent l'imagination, des aventures palpitantes et des personnages attachants vous attendent.</p>
-                    </div>
+                    <a href="/catalogue?filter=jeunesse">
+                        <div class="categorie">
+                            <img src="./assets/img/type_jeunesse.jpg" alt="Teloculture">
+                            <h3>Jeunesse</h3>
+                            <p>Explorez notre catégorie jeunesse ! Des livres qui éveillent l'imagination, des aventures palpitantes et des personnages attachants vous attendent.</p>
+                        </div>
+                    </a>
                 </div>
             </li>
             <li>
                 <div id="books_categories">
-                    <div class="categorie">
-                        <img src="./assets/img/type_poesie.jpg" alt="Teloculture">
-                        <h3>Poésie</h3>
-                        <p>Plongez dans la magie de la poésie ! Laissez-vous envoûter par des vers qui captent l'amour, la nature et les émotions humaines avec une intensité saisissante.</p>
-                    </div>
+                    <a href="/catalogue?filter=po%c3%a9sie">
+                        <div class="categorie">
+                            <img src="./assets/img/type_poesie.jpg" alt="Teloculture">
+                            <h3>Poésie</h3>
+                            <p>Plongez dans la magie de la poésie ! Laissez-vous envoûter par des vers qui captent l'amour, la nature et les émotions humaines avec une intensité saisissante.</p>
+                        </div>
+                    </a>
                 </div>
             </li>
             <li>
                 <div id="books_categories">
-                    <div class="categorie">
-                        <img src="./assets/img/type_biographie.jpg" alt="Teloculture">
-                        <h3>Biographie</h3>
-                        <p>Découvrez notre sélection de biographies ! Des récits captivants qui vous plongent dans la vie fascinante de personnalités inspirantes.</p>
-                    </div>
+                    <a href="/catalogue?filter=biographie">
+                        <div class="categorie">
+                            <img src="./assets/img/type_biographie.jpg" alt="Teloculture">
+                            <h3>Biographie</h3>
+                            <p>Découvrez notre sélection de biographies ! Des récits captivants qui vous plongent dans la vie fascinante de personnalités inspirantes.</p>
+                        </div>
+                    </a>
                 </div>
             </li>
             <li>
                 <div id="books_categories">
-                    <div class="categorie">
-                        <img src="./assets/img/type_actualites.jpg" alt="Teloculture">
-                        <h3>Actualités</h3>
-                        <p>Explorez notre rubrique Actualités ! Restez à jour sur les événements récents, les tendances et les sujets d'actualité qui façonnent le monde contemporain.</p>
-                    </div>
+                    <a href="/catalogue?filter=actualit%c3%a9">
+                        <div class="categorie">
+                            <img src="./assets/img/type_actualites.jpg" alt="Teloculture">
+                            <h3>Actualités</h3>
+                            <p>Explorez notre rubrique Actualités ! Restez à jour sur les événements récents, les tendances et les sujets d'actualité qui façonnent le monde contemporain.</p>
+                        </div>
+                    </a>
                 </div>
             </li>
         </ul>
