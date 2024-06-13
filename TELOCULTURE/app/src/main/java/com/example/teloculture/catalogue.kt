@@ -10,6 +10,10 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,9 +27,18 @@ import retrofit2.Callback
 import retrofit2.Response
 
 @Composable
-fun catalogue(navController: NavController) {
-    val categories = listOf("Livre", "Cinéma", "Romance", "Thriller", "Fiction", "Crime")
-    val books = List(6) { "Fashionopolis" }
+fun Catalogue(navController: NavController) {
+        val categories = listOf("Tous", "Livre", "Cinéma", "Romance", "Thriller", "Fiction", "Crime")
+        val allBooks = listOf(
+            "Fashionopolis", "Book2", "Book3", "Book4", "Book5", "Book6"
+        )
+
+        var selectedCategory by remember { mutableStateOf("Tous") }
+        val filteredBooks = if (selectedCategory == "Tous") {
+            allBooks
+        } else {
+            allBooks.filter { it.contains(selectedCategory, ignoreCase = true) }
+        }
 
     Column {
         Text("Les catégories", fontSize = 24.sp, modifier = Modifier.padding(16.dp))
@@ -49,8 +62,8 @@ fun catalogue(navController: NavController) {
             columns = GridCells.Fixed(2),
             modifier = Modifier.padding(16.dp)
         ) {
-            items(books.size) { index ->
-                BookItem(book = books[index]) {
+            items(filteredBooks.size) { index ->
+                BookItem(book = filteredBooks[index]) {
                     navController.navigate("DetailsArticle")
                 }
             }
@@ -59,25 +72,23 @@ fun catalogue(navController: NavController) {
 }
 
 @Composable
-fun BookItem(book: String, author: String, picture: String, onClick: () -> Unit) {
+fun BookItem(book: String, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
             .clickable(onClick = onClick) // Rendre la Card cliquable
     ) {
-        val imgName = picture.split('.')[0]
-        val img = getResourceId(name = imgName)
         Column(modifier = Modifier.padding(16.dp)) {
             Image(
-                painter = painterResource(id = img),
+                painter = painterResource(id = R.drawable.imgbook),
                 contentDescription = "Image du livre",
                 modifier = Modifier.size(120.dp),
                 contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(book)
-            Text(author)
+            Text("Dana Thomas")
         }
     }
 }
