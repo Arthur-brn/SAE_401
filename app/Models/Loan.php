@@ -25,11 +25,6 @@ class Loan extends Model
         return $this->morphTo();
     }
 
-    public function reviewable()
-    {
-        return $this->morphTo();
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
