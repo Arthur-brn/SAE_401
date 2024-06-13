@@ -32,11 +32,11 @@
             <div class="choix">
                 <div class="type">
                     <label for="filtre-livre">Livre</label>
-                    <input class="filtres" name="livre" type="checkbox" id="filtre-livre">
+                    <input class="filtres" value="livre" name="livre" type="checkbox" id="filtre-livre">
                 </div>
                 <div class="type">
                     <label for="filtre-film">Film</label>
-                    <input class="filtres" name="film" type="checkbox" id="filtre-film">
+                    <input class="filtres" value="film" name="film" type="checkbox" id="filtre-film">
                 </div>
             </div>
             <div class="filtre">
@@ -69,6 +69,66 @@
                     <input class="filtres" type="checkbox" name="filtres-style" value="policier" id="filtre-policier">
                 </div>
             </div>
+            <div class="filtre">
+                <h6>Catégories livres</h6>
+                <img src="./assets/img/fleche_bas.svg" alt="Teloculture">
+            </div>
+            <div class="choix">
+                <div class="genre">
+                    <label for="filtre-romans">Romans</label>
+                    <input class="filtres" type="checkbox" name="filtres-livres" value="roman" id="filtre-romans">
+                </div>
+                <div class="genre">
+                    <label for="filtre-bd-mangas">Bd et mangas</label>
+                    <input class="filtres" type="checkbox" name="filtres-livres" value="bd et manga" id="filtre-bd-mangas">
+                </div>
+                <div class="genre">
+                    <label for="filtre-jeunesse">Jeunesse</label>
+                    <input class="filtres" type="checkbox" name="filtres-livres" value="jeunesse" id="filtre-jeunesse">
+                </div>
+                <div class="genre">
+                    <label for="filtre-poesie">Poésie</label>
+                    <input class="filtres" type="checkbox" name="filtres-livres" value="poésie" id="filtre-poesie">
+                </div>
+                <div class="genre">
+                    <label for="filtre-biographie">Biographie</label>
+                    <input class="filtres" type="checkbox" name="filtres-livres" value="biographie" id="filtre-biographie">
+                </div>
+                <div class="genre">
+                    <label for="filtre-actualite">Actualités</label>
+                    <input class="filtres" type="checkbox" name="filtres-livres" value="actualité" id="filtre-actualite">
+                </div>
+            </div>
+            <div class="filtre">
+                <h6>Catégories film</h6>
+                <img src="./assets/img/fleche_bas.svg" alt="Teloculture">
+            </div>
+            <div class="choix">
+                <div class="genre">
+                    <label for="filtre-longs-metrages">Longs métrages</label>
+                    <input class="filtres" type="checkbox" name="filtres-films" value="long métrage" id="filtre-longs-metrages">
+                </div>
+                <div class="genre">
+                    <label for="filtre-series">Séries</label>
+                    <input class="filtres" type="checkbox" name="filtres-films" value="série" id="filtre-series">
+                </div>
+                <div class="genre">
+                    <label for="filtre-documentaires">Documentaires</label>
+                    <input class="filtres" type="checkbox" name="filtres-films" value="documentaire" id="filtre-documentaires">
+                </div>
+                <div class="genre">
+                    <label for="filtre-films-danimations">Films d'animations</label>
+                    <input class="filtres" type="checkbox" name="filtres-films" value="film animation" id="filtre-films-danimations">
+                </div>
+                <div class="genre">
+                    <label for="filtre-courts-metrages">Courts métrages</label>
+                    <input class="filtres" type="checkbox" name="filtres-films" value="court métrage" id="filtre-courts-metrages">
+                </div>
+                <div class="genre">
+                    <label for="filtre-reportages">Reportages</label>
+                    <input class="filtres" type="checkbox" name="filtres-films" value="reportage" id="filtre-reportages">
+                </div>
+            </div>
         </div>
     </section>
     <section id="resultat">
@@ -84,7 +144,7 @@
             </div>
         </div>
         <div class="all_articles">
-
+            <!-- Articles injected here -->
         </div>
     </section>
 </div>
